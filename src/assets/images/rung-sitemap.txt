@@ -1,0 +1,16 @@
+1. Home https://portotheme.com/html/molla/index-5.html
+2. Shop https://portotheme.com/html/molla/product-category-boxed.html		
+3. Category page https://d-themes.com/angular/molla/demo5/shop/sidebar/2cols
+4. Product page https://d-themes.com/angular/molla/demo5/product/fullwidth/black-faux-leather-chain-trim-sandals\
+5. pages mention in footer under information and customer service are all required. 
+
+
+
+1. cover iage slider
+2. logo and color theming
+3. single badge on product at a time, try applying badge color according to logo colors.
+4. product sale price pattern should be changed, price cut kar kay show ho. 
+5. tawk.to chat widget embed. 
+6. add related products section in mobile viwe, right after 'add to cart' button
+7. hide color variant option in category page and other pages if any
+8. homepage add testimonial section

@@ -1,0 +1,186 @@
+body {
+  font: normal 300 1.4rem/1.86 "AlbertSans" !important;
+  color: #666666;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Main Navbar Styles */
+  .main-nav {
+    padding: 0px 20px;
+  }
+
+.menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.menu li {
+  position: relative;
+  margin-right: 20px;
+}
+
+.menu li a {
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s;
+}
+
+/* Dropdown Styles */
+.menudropdown {
+  cursor: pointer;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+.menudropdown:hover{
+  color: #fdcc04;
+}
+.menudropdown:hover .menudropdown-menu {
+  display: block;
+}
+
+.menudropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%; /* Position below the dropdown */
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  min-width: 200px;
+  border-radius: 4px;
+}
+.primary{
+  color: #fdcc04 !important;
+}
+
+.ratio>*>* {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.wishlist-div{
+  /* display: flex; */
+  position: relative;
+}
+.wishlist-div .wishlist-count{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1;
+  color: #fff;
+  background-color: #fdcc04;
+  position: absolute;
+  top:-5px;
+  left: 70%;
+}
+
+.menudropdown-menu a {
+  display: block;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.4rem;
+  letter-spacing: -.01em;
+  text-transform: uppercase;
+}
+
+.menudropdown-menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.menudropdown-menu.show {
+  display: block; /* For programmatic control */
+}
+
+.App {
+    text-align: center;
+  }
+  
+  .App-logo {
+    height: 40vmin;
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  .App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* components/LoadingSpinner.module.css */
+.spinnerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Adjust transparency here */
+  z-index: 9999;
+}
+
+.spinner {
+  border: 10px solid #f3f3f3; /* Light grey */
+  border-top: 10px solid #fdcc04; /* Blue */
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.video-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9;
+}
+
+  
