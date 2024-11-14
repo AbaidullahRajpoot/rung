@@ -97,46 +97,11 @@ const ContactContent = () => {
 	return (
 		<>
 			<div className="page-content pt-0">
-					<div className="row">
-						<div className="mb-2 col-12">
-							<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
-								<a href="https://www.gps.ie/">gps trackers</a>
-							</iframe>
-						</div>
-					</div>
 				<div className="container">
-					{/* <div className="row">
-						<div className="col-12 col-md-4">
-							<div className="contact-box text-center">
-								<h3>Office</h3>
-								<address>1 New York Plaza, New York, <br />NY 10004, USA</address>
-							</div>
-						</div>
-						<div className="col-12 col-md-4">
-							<div className="contact-box text-center">
-								<h3>Start a Conversation</h3>
-								<div><a href="mailto:contact@myrung.ae">contact@myrung.ae</a></div>
-								<div><a href="tel:00971 56 583 9938 ">00971 56 583 9938 </a></div>
-							</div>
-						</div>
-						<div className="col-12 col-md-4">
-							<div className="contact-box text-center">
-								<h3>Social</h3>
-								<div className="social-icons social-icons-color justify-content-center">
-									<a href="#" className="social-icon social-facebook" title="Facebook" target="_blank"><i className="icon-facebook-f"></i></a>
-									<a href="#" className="social-icon social-twitter" title="Twitter" target="_blank"><i className="icon-twitter"></i></a>
-									<a href="#" className="social-icon social-instagram" title="Instagram" target="_blank"><i className="icon-instagram"></i></a>
-									<a href="#" className="social-icon social-youtube" title="Youtube" target="_blank"><i className="icon-youtube"></i></a>
-									<a href="#" className="social-icon social-pinterest" title="Pinterest" target="_blank"><i className="icon-pinterest"></i></a>
-								</div>
-							</div>
-						</div>
-					</div> */}
 					<div className="touch-container row justify-content-center mt-2">
 						<div className="col-md-9 col-lg-7">
 							<div className="text-center">
-								<h2 className="title mb-1">Get In Touch</h2>
-								<p className="lead text-primary">
+								<p className="">
 									At Rung, we’re always excited to connect with our community! Whether you have questions, feedback, or partnership ideas, we’re here to listen.
 								</p>
 								<p className="mb-3">Feel free to reach out to us anytime. Your thoughts and insights are invaluable as we strive to enhance your shopping experience.
@@ -144,29 +109,29 @@ const ContactContent = () => {
 									We look forward to hearing from you!.</p>
 							</div>
 							<form action="#" onSubmit={addUserHandler} className="contact-form mb-2">
-								<div className="row">
-									<div className="col-sm-12">
+								<div className="row gy-3">
+									<div className="col-sm-4">
 										<label>Full Name *</label>
-										<input type="text" className="form-control" name="name" maxLength={250} onChange={(e) => setName(e.target.value.replace(/[^a-zA-Z\s]/g, ''))} value={name} placeholder="Full Name" />
+										<input type="text" className="form-control" name="name" maxLength={250} onChange={(e) => setName(e.target.value.replace(/[^a-zA-Z\s]/g, ''))} value={name} placeholder="" />
 										{nameerror && <span className="text-danger">{nameerror}</span>}
 									</div>
-									<div className="col-sm-12">
+									<div className="col-sm-4">
 										<label>Email *</label>
-										<input type="text" className="form-control" name="email" maxLength={250} value={email} onChange={(e) => setEmail(e.target.value)} id="cemail" placeholder="Email " />
+										<input type="text" className="form-control" name="email" maxLength={250} value={email} onChange={(e) => setEmail(e.target.value)} id="cemail" placeholder=" " />
 										{emailerror && <span className="text-danger">{emailerror}</span>}
 									</div>
-									<div className="col-sm-12">
+									<div className="col-sm-4">
 										<label>Phone *</label>
-										<input type="tel" className="form-control" onChange={(e) => setPhone(e.target.value.replace(/[^0-9+\-\(\)\s]/g, '').slice(0, 15))} value={phone} name="phone" id="cphone" placeholder="Phone " />
+										<input type="tel" className="form-control" onChange={(e) => setPhone(e.target.value.replace(/[^0-9+\-\(\)\s]/g, '').slice(0, 15))} value={phone} name="phone" id="cphone" placeholder=" " />
 										{phoneerror && <span className="text-danger">{phoneerror}</span>}
 									</div>
 									<div className="col-sm-12">
 										<label>Subject *</label>
-										<input type="text" className="form-control" name="subject" maxLength={250} value={subject} onChange={(e) => setSubject(e.target.value)} id="csubject" placeholder="Subject " />
+										<input type="text" className="form-control" name="subject" maxLength={250} value={subject} onChange={(e) => setSubject(e.target.value)} id="csubject" placeholder=" " />
 										{subjecterror && <span className="text-danger">{subjecterror}</span>}
 									</div>
 									<div className="col-sm-12">
-										<label>Message</label>
+										<label>Message *</label>
 										<textarea
 											className="form-control"
 											onChange={(e) => setMessage(e.target.value)}
@@ -174,7 +139,7 @@ const ContactContent = () => {
 											rows="4"
 											name="message"
 											id="cmessage"
-											placeholder="Message"
+											placeholder=""
 											maxLength="300"
 											value={message}
 										/>
@@ -191,6 +156,50 @@ const ContactContent = () => {
 							</form>
 						</div>
 					</div>
+					<div className="row mt-4">
+                		
+                        {/* <!-- End .col-md-4 --> */}
+
+                		<div className="col-12 col-md-4 col-sm-4 col-lg-4">
+                			<div className="contact-box text-center">
+        						<h3>Start a Conversation</h3>
+        						<div><a  href="mailto:website@myrung.ae"><i className="icon-envelope mr-2"></i>website@myrung.ae</a></div>
+        						<div><a  href="tel:+971 56 583 9938"><i className="icon-phone mr-2"></i>+971 56 583 9938</a></div>
+        						<div><a  target="_blank" href="https://api.whatsapp.com/send/?phone=%2B971565839938&text=Thank+you+for+contacting+MyRung%2C+one+of+our+representative+will+be+with+you+shortly.&type=phone_number&app_absent=0"><i className="icon-whatsapp mr-2"></i>+971 56 583 9938</a></div>
+        					</div>
+                            {/* <!-- End .contact-box --> */}
+                		</div>
+                        {/* <!-- End .col-md-4 --> */}
+
+						<div className="col-12 col-md-4 col-sm-4 col-lg-4">
+                			<div className="contact-box text-center">
+								<h3>Business Hours</h3>
+								<div><a ><i className="icon-clock-o"></i> Monday-Saturday<br></br>8AM to 10PM</a></div>
+        					</div>
+                            {/* <!-- End .contact-box --> */}
+                		</div>
+
+                		<div className="col-12 col-md-4 col-sm-4 col-lg-4">
+                			<div className="contact-box text-center">
+        						<h3>Social Links</h3>
+								<div className="social-icons social-icons-colored justify-content-center mb-3">
+                                    <a href="https://www.facebook.com" className="social-icon social-facebook" title="Facebook" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.twitter.com" className="social-icon social-twitter" title="Twitter" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com" className="social-icon social-instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-instagram"></i>
+                                    </a>
+                                </div>
+                                {/* <!-- End .soial-icons --> */}
+        					</div>
+                            {/* <!-- End .contact-box --> */}
+                		</div>
+                        {/* <!-- End .col-md-4 --> */}
+						
+                	</div>
 				</div>
 			</div>
 		</>

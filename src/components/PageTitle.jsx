@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Title_img from '../assets/images/page-header-bg.jpg';
 
 
-const PageTitle = ({name}) => {
+const PageTitle = ({ name }) => {
     var path = window.location.pathname;
     var splitUrl = path.split('/');
     const nthElement = (splitUrl, n = 0) => (n > 0 ? splitUrl.slice(n, n + 1) : splitUrl.slice(n))[0];
@@ -24,10 +24,7 @@ const PageTitle = ({name}) => {
                         {
                             splitUrl.map((item, i) => {
                                 return (
-                                    <>
-                                        {item === '' ? null :
-                                            <li className="breadcrumb-item" ><a href="#">{item}</a></li>}
-                                    </>
+                                    item === '' ? null : <li className="breadcrumb-item" key={item.id}><a href="#">{item}</a></li>
                                 )
                             })
                         }

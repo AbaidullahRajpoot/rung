@@ -5,7 +5,7 @@ import ProductSkeltonCard from "./Productskeltoncard";
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 
-const AllProduct = () => {
+const AllProduct = () => { 
 
     const [isloding, setIsloading] = useState(true);
     const [min, setMin] = useState(null)
@@ -38,27 +38,51 @@ const AllProduct = () => {
     const getProduct = async (minValue, maxValue) => {
         setProduct([])
         setIsloading(true)
-        let data = { min: minValue, max: maxValue, categories: category_id }
-        var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/pricefilter`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+        const userToken = sessionStorage.getItem('user-info_token');
+        if(userToken){
+            const user_id_product = await JSON.parse((localStorage.getItem('user-info')))
+            let data = { min: minValue, max: maxValue, categories: category_id,user_id:user_id_product }
+            var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/pricefilter`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            Result = await Result.json()
+            if (Result) {
+                setProduct(Result?.products?.data)
+                setTotalPages(Result?.total_pages)
             }
-        });
-        Result = await Result.json()
-        if (Result) {
-            setProduct(Result?.products?.data)
-            setTotalPages(Result?.total_pages)
         }
+        else{
+            localStorage.removeItem('user-info')
+            localStorage.removeItem('user')
+            localStorage.removeItem('user-name')
+            let data = { min: minValue, max: maxValue, categories: category_id,user_id:null }
+            var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/pricefilter`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            Result = await Result.json()
+            if (Result) {
+                setProduct(Result?.products?.data)
+                setTotalPages(Result?.total_pages)
+            }
+        }
+       
         setIsloading(false)
     }
 
     //===============================================Get Pagination Api===========================================
 
     const GetPaginationData = async (currentPage) => {
-
+ 
         setIsloading(true)
         let data = { min, max, categories: category_id }
         setProduct([])

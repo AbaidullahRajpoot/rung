@@ -29,6 +29,9 @@ const ProductCard = (props) => {
 
     //==========================================Add to wishlist Code===================================================
 
+    const addWhishlistActiveHandler = async (e) => {
+        toast.error("Already added in to wishlist")
+    }
     const addWhishlistHandler = async (e) => {
         if (token != null) {
             let product_id = e.target.getAttribute("data-id")
@@ -86,25 +89,43 @@ const ProductCard = (props) => {
     return (
         <>
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                <div className="product product-7 text-center">
+                <div className="product product-7">
                     <figure className="product-media">
-                        <span className="product-label label-new">New</span>
+                        {
+                            product.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>
+
+                        }
                         <NavLink to={`/shop/product/catogeroy/fullwidth/${product.id}`}>
                             <img src={"https://beta.myrung.co.uk/b/public/" + product.thumbnail_image} alt="Product image" className="product-image" />
-                        </NavLink> 
+                        </NavLink>
                         <div className="product-action-vertical">
-                            <a style={{ cursor: "pointer" }} onClick={addWhishlistHandler} data-id={product.id} className="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                            {
+                                product?.wishlist_status === 1 ?
+                                    <a onClick={addWhishlistActiveHandler} data-id={product?.id} className="btn-product-icon btn-product-icon-active btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
+                                    :
+                                    <a onClick={addWhishlistHandler} data-id={product?.id} className="btn-product-icon  btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
+
+                            }
                             <div onClick={() => { quickView(product.id) }} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                         </div>
-                        <div onClick={notify} className="product-action">
+                        <div className="product-action">
+                        <div className="product-action product-action-transparent">
                             <a onClick={() => {
-                                props.addToCartHandler({
-                                    cat_name: product.category_name, name: product.name, quantity: Value,
-                                    Price: product.calculable_price, symbol: product.currency_symbol,
-                                    product_image: product.thumbnail_image, product_id: product.id, totalprice: (Value * product.calculable_price)
-                                })
+                                if (product.current_stock <= 0) {
+                                    toast.error("Out of stock")
+                                }
+                                else if (product.current_stock > 0) {
+                                    props.addToCartHandler({
+                                        cat_name: product.category_name, name: product.name, quantity: Value,
+                                        Price: product.calculable_price, symbol: product.currency_symbol,
+                                        product_image: product.thumbnail_image, product_id: product.id, totalprice: (Value * product.calculable_price)
+                                    })
+                                    notify()
+                                }
+
                             }}
                                 className="btn-product btn-cart"><span>add to cart</span></a>
+                            </div>
                         </div>
                     </figure>
                     <div className="product-body">
@@ -113,7 +134,7 @@ const ProductCard = (props) => {
                         </div>
                         <h3 className="product-title"><NavLink to={`/shop/product/catogeroy/fullwidth/${product.id}`}>{product.name}</NavLink></h3>
                         <div className="product-price">
-                            {product.currency_symbol}{product.calculable_price}
+                            {product.currency_symbol} {product.calculable_price}
                         </div>
                     </div>
                 </div>

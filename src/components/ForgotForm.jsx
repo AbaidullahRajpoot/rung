@@ -78,7 +78,7 @@ const ForgotForm = () => {
 								<div className="tab-pane fade show active" id="register-2" role="tabpanel" aria-labelledby="register-tab-2">
 									<form action="#" onSubmit={ForgotHandler}>
 										<div className="form-group">
-											<label htmlFor="register-email-2">Your Email address *</label>
+											<label htmlFor="register-email-2">Your Email Address *</label>
 											<input type="text" maxLength={250} onChange={(e) => setEmail(e.target.value)} className="form-control" id="register-email-2" name="email" />
 											<p className="text-danger">{emailerror && emailerror}</p>
 										</div>

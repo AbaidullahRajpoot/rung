@@ -18,11 +18,16 @@ const Dashboardcontent = () => {
     const [isOpenEdit, setIsOpenEdit] = useState(false);
 
     const [shippingInfo, setshippingInfo] = useState(null);
-    
+
     const [shippingCountry, setShippingCountry] = useState([]);
     const [shippingState, setShippingState] = useState([]);
     const [shippingCity, setShippingCity] = useState([]);
-    
+
+    const [showOrder, setShowOrder] = useState(false);
+    const [showWishlist, setShowWishlist] = useState(false);
+
+    const [DataLoading, setDataLoading] = useState(false);
+
     const [shippingAddress, setShippingAddress] = useState('');
     const [shippingpostal, setShippingPostal] = useState('');
     const [shippingPhone, setShippingPhone] = useState('');
@@ -47,12 +52,10 @@ const Dashboardcontent = () => {
     useEffect(() => {
         const data = JSON.parse((localStorage.getItem('user-info')))
         const user = JSON.parse((localStorage.getItem('user')))
-        setName(user.name)
-        setEmail(user.email)
+        setName(user?.name)
+        setEmail(user?.email)
         setUser(user)
         setUser_id(data)
-        getShippingInfo()
-        getCountry()
     }, [])
 
     //============================================Model box form add submit=================================
@@ -195,6 +198,7 @@ const Dashboardcontent = () => {
     //=====================================================Get Shipping Info===========================
 
     const getShippingInfo = async () => {
+        setDataLoading(true)
         const user = await JSON.parse((localStorage.getItem('user-info')))
         let data = {
             user_id: user,
@@ -217,7 +221,7 @@ const Dashboardcontent = () => {
         else {
             setshippingInfo(null)
         }
-
+        setDataLoading(false)
     }
 
 
@@ -308,8 +312,6 @@ const Dashboardcontent = () => {
     const singoutHandler = () => {
         sessionStorage.removeItem('user-info_token')
         localStorage.removeItem('user-info')
-        sessionStorage.removeItem('user-info_token')
-        localStorage.removeItem('user-info')
         localStorage.removeItem('user')
         localStorage.removeItem('user-name')
     }
@@ -318,7 +320,7 @@ const Dashboardcontent = () => {
         <>
             <div className="page-content">
                 <div className="dashboard pt-1">
-                    {loading && <LoadingSpinner />}
+                    {loading === true && <LoadingSpinner />}
                     <div className="container">
                         <div className="row">
                             <aside className="col-md-3 col-lg-2">
@@ -326,13 +328,16 @@ const Dashboardcontent = () => {
                                     <li className="nav-item">
                                         <a className="nav-link active" id="tab-dashboard-link" data-toggle="tab" href="#tab-dashboard" role="tab" aria-controls="tab-dashboard" aria-selected="true">Dashboard</a>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item" onClick={() => { setShowOrder(true) }}>
                                         <a className="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders" role="tab" aria-controls="tab-orders" aria-selected="false">Orders</a>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item" onClick={() => {
+                                        getShippingInfo()
+                                        getCountry()
+                                    }}>
                                         <a className="nav-link" id="tab-address-link" data-toggle="tab" href="#tab-address" role="tab" aria-controls="tab-address" aria-selected="false">Adresses</a>
                                     </li>
-                                    <li className="nav-item">
+                                    <li className="nav-item" onClick={() => { setShowWishlist(true) }}>
                                         <a className="nav-link" id="tab-wishlist-link" data-toggle="tab" href="#tab-wishlist" role="tab" aria-controls="tab-wishlist" aria-selected="false">Whishlist</a>
                                     </li>
                                     <li className="nav-item">
@@ -346,12 +351,14 @@ const Dashboardcontent = () => {
                             <div className="col-md-9 col-lg-10">
                                 <div className="tab-content">
                                     <div className="tab-pane fade show active" id="tab-dashboard" role="tabpanel" aria-labelledby="tab-dashboard-link">
-                                        <p>Hello <span className="font-weight-normal text-dark">{user.name}</span> (<a href="#">Log out</a>)
+                                        <p>Hello <span className="font-weight-normal text-dark">{user?.name}</span>
                                             <br />
                                             From your account dashboard you can view your <a href="#tab-orders" className="tab-trigger-link link-underline">recent orders</a>, manage your <a href="#tab-address" className="tab-trigger-link">shipping and billing addresses</a>, and <a href="#tab-account" className="tab-trigger-link">edit your password and account details</a>.</p>
                                     </div>
                                     <div className="tab-pane fade" id="tab-orders" role="tabpanel" aria-labelledby="tab-orders-link">
-                                        <UserOrders />
+                                        {
+                                            showOrder === true && <UserOrders />
+                                        }
                                     </div>
                                     <div className="tab-pane fade" id="tab-downloads" role="tabpanel" aria-labelledby="tab-downloads-link">
                                         <p>No downloads available yet.</p>
@@ -369,39 +376,55 @@ const Dashboardcontent = () => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            {
-                                                shippingInfo && shippingInfo.length > 0 ?
+                                            {DataLoading === true ? (
+                                                <LoadingSpinner />
+                                            ) : (
+                                                shippingInfo && shippingInfo.length > 0 ? (
                                                     <div className="col-lg-12">
                                                         <div className="card card-dashboard">
                                                             <div className="card-body">
                                                                 <h3 className="card-title">Billing Address</h3>
-                                                                <p>Name: {user.name}<br />
+                                                                <p>
+                                                                    Name: {user.name}<br />
                                                                     Country: {shippingInfo[0].country_name}<br />
                                                                     State: {shippingInfo[0].state_name}<br />
                                                                     City: {shippingInfo[0].city_name}<br />
                                                                     Postal Code: {shippingInfo[0].postal_code}<br />
                                                                     Phone: {shippingInfo[0].phone}<br />
                                                                     Address: {shippingInfo[0].address}<br />
-                                                                    <a href="#" onClick={() => setIsOpenEdit(true)}>Edit <i className="icon-edit"></i></a></p>
+                                                                    <a href="#" onClick={() => {
+                                                                        document.querySelector('body').classList.add("modal-open")
+                                                                        setIsOpenEdit(true)
+                                                                    }
+                                                                    }>Edit <i className="icon-edit"></i></a>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    :
+                                                ) : (
                                                     <div className="col-lg-12">
                                                         <div className="card card-dashboard">
                                                             <div className="card-body">
                                                                 <h3 className="card-title">Shipping Address</h3>
-                                                                <p>You have not set up this type of address yet.<br />
-                                                                    <a href="#" onClick={() => setIsOpenAdd(true)}>Add Shipping</a></p>
+                                                                <p>
+                                                                    You have not set up this type of address yet.<br />
+                                                                    <a href="#" onClick={() => {
+                                                                        document.querySelector('body').classList.add("modal-open")
+                                                                        setIsOpenAdd(true)
+                                                                    }}>Add Shipping</a>
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
-                                            }
+                                                )
+                                            )}
 
                                         </div>
                                     </div>
                                     <div className="tab-pane fade" id="tab-wishlist" role="tabpanel" aria-labelledby="tab-wishlist-link">
-                                        <AdminWhishlistComponent />
+                                        {
+                                            showWishlist === true && <AdminWhishlistComponent />
+                                        }
                                     </div>
                                     <div className="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
                                         <form action="#" onSubmit={editUserHandler}>
@@ -434,206 +457,216 @@ const Dashboardcontent = () => {
                 </div>
             </div>
             {/* Model Box Add */}
-            {isOpenAdd && (
-                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div className="modal-dialog modal-dialog-scrollable " role="document">
-                        <div className="modal-content px-5 py-3">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Add Shipping Address</h5>
-                                <button type="button" className="close" onClick={() => setIsOpenAdd(false)} aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body  pr-2">
-                                <form onSubmit={handleSubmit}>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Address:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingAddress}
-                                            onChange={(e) => setShippingAddress(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Country:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={handleShippingCountryChange}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingCountry.map(country => (
-                                                <option key={country.id} value={country.id}>
-                                                    {country.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">State:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={handleShippingStateChange}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingState.map(State => (
-                                                <option key={State.id} value={State.id}>
-                                                    {State.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">City:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={(e) => { setSelectedShippingCity(e.target.value) }}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingCity.map(city => (
-                                                <option key={city.id} value={city.id}>
-                                                    {city.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingpostal}
-                                            onChange={(e) => setShippingPostal(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingPhone}
-                                            onChange={(e) => setShippingPhone(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" onClick={() => setIsOpenAdd(false)}>Close</button>
-                                        <button type="submit" className="btn btn-primary">Send message</button>
-                                    </div>
-                                </form>
-                            </div>
+            <div className={`modal fade ${isOpenAdd ? 'show' : null}`} style={{ display: `${isOpenAdd ? 'block' : 'none'}` }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div className="modal-content px-5 py-3">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Add Shipping Address</h5>
+                            <button type="button" className="close close-btn-style" onClick={() => {
+                                document.querySelector('body').classList.remove("modal-open")
+                                setIsOpenAdd(false)
+                            }
+                            } aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body  pr-2">
+                            <form onSubmit={handleSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Address:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingAddress}
+                                        onChange={(e) => setShippingAddress(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Country:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={handleShippingCountryChange}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a country</option>
+                                        {shippingCountry.map(country => (
+                                            <option key={country.id} value={country.id}>
+                                                {country.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">State:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={handleShippingStateChange}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a state</option>
+                                        {shippingState.map(State => (
+                                            <option key={State.id} value={State.id}>
+                                                {State.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">City:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={(e) => { setSelectedShippingCity(e.target.value) }}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a city</option>
+                                        {shippingCity.map(city => (
+                                            <option key={city.id} value={city.id}>
+                                                {city.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingpostal}
+                                        onChange={(e) => setShippingPostal(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingPhone}
+                                        onChange={(e) => setShippingPhone(e.target.value)}
+                                    />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" onClick={() => setIsOpenAdd(false)}>Close</button>
+                                    <button type="submit" className="btn btn-primary">Send message</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className={`modal fade ${isOpenEdit ? 'show' : null}`} style={{ display: `${isOpenEdit ? 'block' : 'none'}` }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div className="modal-content px-5 py-3">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Edit Shipping Address</h5>
+                            <button type="button" className="close close-btn-style" onClick={() => {
+                                document.querySelector('body').classList.remove("modal-open")
+                                setIsOpenEdit(false)
+                            }
+                            } aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className="modal-body  pr-2">
+                            <form onSubmit={handleEditSubmit}>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Address:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingAddress}
+                                        onChange={(e) => setShippingAddress(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Country:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={handleShippingCountryChange}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a country</option>
+                                        {shippingCountry.map(country => (
+                                            <option key={country.id} value={country.id}>
+                                                {country.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">State:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={handleShippingStateChange}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a country</option>
+                                        {shippingState.map(State => (
+                                            <option key={State.id} value={State.id}>
+                                                {State.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">City:</label>
+                                    <select
+                                        className="form-control form-select"
+                                        id="shipping-country"
+                                        onChange={(e) => { setSelectedShippingCity(e.target.value) }}
+                                        aria-label="Shipping country select"
+                                    >
+                                        <option value="">Select a country</option>
+                                        {shippingCity.map(city => (
+                                            <option key={city.id} value={city.id}>
+                                                {city.name}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingpostal}
+                                        onChange={(e) => setShippingPostal(e.target.value)}
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="recipient-name"
+                                        value={shippingPhone}
+                                        onChange={(e) => setShippingPhone(e.target.value)}
+                                    />
+                                </div>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-danger" onClick={() => setIsOpenEdit(false)}>Close</button>
+                                    <button type="submit" className="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {isOpenAdd && (
+                <div className="modal-backdrop fade show"></div>
             )}
             {/* Model Box Edit */}
             {isOpenEdit && (
-                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div className="modal-dialog modal-dialog-scrollable " role="document">
-                        <div className="modal-content px-5 py-3">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Edit Shipping Address</h5>
-                                <button type="button" className="close" onClick={() => setIsOpenEdit(false)} aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body  pr-2">
-                                <form onSubmit={handleEditSubmit}>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Address:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingAddress}
-                                            onChange={(e) => setShippingAddress(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Country:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={handleShippingCountryChange}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingCountry.map(country => (
-                                                <option key={country.id} value={country.id}>
-                                                    {country.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">State:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={handleShippingStateChange}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingState.map(State => (
-                                                <option key={State.id} value={State.id}>
-                                                    {State.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">City:</label>
-                                        <select
-                                            className="form-control form-select"
-                                            id="shipping-country"
-                                            onChange={(e) => { setSelectedShippingCity(e.target.value) }}
-                                            aria-label="Shipping country select"
-                                        >
-                                            <option value="">Select a country</option>
-                                            {shippingCity.map(city => (
-                                                <option key={city.id} value={city.id}>
-                                                    {city.name}
-                                                </option>
-                                            ))}
-                                        </select>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingpostal}
-                                            onChange={(e) => setShippingPostal(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
-                                        <input
-                                            type="text"
-                                            className="form-control"
-                                            id="recipient-name"
-                                            value={shippingPhone}
-                                            onChange={(e) => setShippingPhone(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" onClick={() => setIsOpenEdit(false)}>Close</button>
-                                        <button type="submit" className="btn btn-primary">Send message</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div className="modal-backdrop fade show"></div>
             )}
         </>
     );

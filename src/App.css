@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #fdcc04;
+  --secondary-color: #2ecc71;
+}
+
 body {
   font: normal 300 1.4rem/1.86 "AlbertSans" !important;
   color: #666666;
@@ -36,7 +41,7 @@ body {
   font-weight: 500;
   font-size: 1.4rem;
   letter-spacing: -.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .menudropdown:hover{
   color: #fdcc04;
@@ -95,7 +100,7 @@ body {
   font-weight: 500;
   font-size: 1.4rem;
   letter-spacing: -.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .menudropdown-menu a:hover {

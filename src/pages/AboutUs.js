@@ -1,25 +1,21 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import HeaderContainer from "../container/HeaderContainer";
-import PageTitle from '../components/PageTitle';
+import PageTitle from "../components/PageTitle";
 import WhoWeAre from '../components/WhoWeAre';
-import CounterArea from '../components/CounterArea';
-import Team from '../components/OurTeam';
-import Brands from '../components/Brands';
 import Footer2 from '../components/Footer2';
 
+const AboutUs = () => {
 
-const AboutUs=(props)=>{
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
-    return(
+    }, [])
+
+    return ( 
         <>
-            <HeaderContainer/>
-            <WhoWeAre/>
-            {/* <CounterArea/> */}
-            {/* <Team/> */}
-            {/* <Brands/> */}
-            <Footer2/>
+            <HeaderContainer />
+            <PageTitle name={"About Us"} />
+            <WhoWeAre />
+            <Footer2 />
         </>
     );
 }

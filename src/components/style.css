@@ -1,0 +1,53 @@
+/* SwipeableView.css */
+.swipeable-view {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    margin: auto;
+  }
+  
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  
+  .slide {
+    min-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .slide img {
+    width: 100%;
+    display: block;
+  }
+  
+  .label {
+    text-align: center;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .indicators {
+    text-align: center;
+    margin-top: 16px;
+  }
+  
+  .indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: gray;
+    margin: 0 4px;
+  }
+  
+  .indicator.active {
+    background: black;
+  }
+  

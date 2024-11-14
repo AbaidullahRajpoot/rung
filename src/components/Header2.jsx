@@ -10,7 +10,7 @@ const Header2 = (props) => {
     const [scroll, setScroll] = useState("")
     const [isloading, setLoading] = useState(true);
     const [Catagaries, SetCatagories] = useState([]);
-    const [wishlistcount, setWishlistcount] = useState(0);
+    const [wishlistcount, setWishlistcount] = useState(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [show, setShow] = useState(false);
 
@@ -135,12 +135,12 @@ const Header2 = (props) => {
                         </div>
                         <div className="header-left">
                             <NavLink to='/' className="logo">
-                                <img src={finel_logo} alt="Molla Logo" width="105" height="25" />
+                                <img src={finel_logo} alt="Molla Logo" width="150" height="auto" />
                             </NavLink>
                             <nav className="main-nav">
                                 <ul className="menu sf-arrows">
                                     <li className={splitLocation[1] === "" ? "active" : ""}>
-                                        <NavLink to="/">HOME</NavLink>
+                                        <NavLink to="/">Home</NavLink>
                                     </li>
                                     <li >
                                         <div className="menudropdown">
@@ -158,13 +158,10 @@ const Header2 = (props) => {
                                         </div>
                                     </li>
                                     <li className={splitLocation[1] === "about" ? "active" : ""}>
-                                        <NavLink to="/about">ABOUT Us</NavLink>
+                                        <NavLink to="/about">About Us</NavLink>
                                     </li>
                                     <li className={splitLocation[1] === "contact" ? "active" : ""}>
                                         <NavLink to="/contact">Contact Us</NavLink>
-                                    </li>
-                                    <li className={splitLocation[1] === "faq" ? "active" : ""}>
-                                        <NavLink to="/faq">FAQ</NavLink>
                                     </li>
                                 </ul>
                             </nav>
@@ -185,11 +182,8 @@ const Header2 = (props) => {
                                 <a style={{ cursor: "pointer" }} onClick={WhishlistHandler} className="wishlist-link">
                                     <i className="icon-heart-o"></i>
                                 </a>
-                                <span className="wishlist-count">{wishlistcount}</span>
+                                {wishlistcount > 0 && <span className="wishlist-count">{wishlistcount}</span>}
                             </div>
-                            {/* <a href="#" className="search" style={{ cursor: "pointer" }}>
-                                <i className="icon-search"></i>
-                            </a> */}
                             <div className="dropdown cart-dropdown">
                                 <a href="#" className="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
                                     <i className="icon-shopping-cart"></i>
@@ -266,13 +260,9 @@ const Header2 = (props) => {
             <div className={(hiddenmenu ? "hidden" : "") + " mobile-menu-container mobile-menu-light"}>
                 <div className=" mobile-menu-wrapper">
                     <span onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-close"> <i className="icon-close"></i></span>
-                    {/* <form action="#" method="get" onSubmit={toggleSearch} className="mobile-search">
-                        <label htmlFor="mobile-search" className="sr-only">Search</label>
-                        <input onChange={searchHandle} value={searchValue} type="search" className="form-control" name="mobile-search" id="mobile-search"
-                            placeholder="Search in..." required />
-                        <button className="btn btn-primary"> <i className="icon-search"></i>
-                        </button>
-                    </form> */}
+                    <NavLink to='/' className="logo mt-0 ml-4 mb-2">
+                                <img src={finel_logo} alt="Rung Logo" width="100" height="auto" />
+                    </NavLink>
                     <nav className="mobile-nav">
                         <ul className="mobile-menu">
                             <li className={splitLocation[1] === "" ? "active" : ""}>
@@ -308,9 +298,6 @@ const Header2 = (props) => {
                                 <li className={splitLocation[1] === "whishlist" ? "active" : ""}>
                                     <NavLink to='/whishlist'>Whishlist</NavLink>
                                 </li>}
-                            <li className={splitLocation[1] === "faq" ? "active" : ""}>
-                                <NavLink to='/faq' className="sf-with-ul">FAQ</NavLink>
-                            </li>
                             <li className={splitLocation[1] === "contact" ? "active" : ""}>
                                 <NavLink to='/contact'>Contact Us</NavLink>
                             </li>
@@ -319,12 +306,6 @@ const Header2 = (props) => {
                             </li>
                         </ul>
                     </nav>
-                    <div className="social-icons">
-                        <a href="#" className="social-icon" target="_blank" title="Facebook"><i className="icon-facebook-f"></i></a>
-                        <a href="#" className="social-icon" target="_blank" title="Twitter"><i className="icon-twitter"></i></a>
-                        <a href="#" className="social-icon" target="_blank" title="Instagram"><i className="icon-instagram"></i></a>
-                        <a href="#" className="social-icon" target="_blank" title="Youtube"><i className="icon-youtube"></i></a>
-                    </div>
                 </div>
             </div>
         </>

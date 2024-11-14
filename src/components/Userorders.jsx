@@ -151,19 +151,21 @@ const User_orders = () => {
 
     return (
         <>
+            {actionloading && <LoadingSpinner />}
             {orders ? (
                 <div style={{ overflowX: "auto" }}>
                     <table className="table product-invoice-table">
-                        {actionloading && <LoadingSpinner />}
                         <thead>
                             <tr>
                                 <th className="px-4" scope="col">#Order id</th>
                                 <th className="px-4" scope="col">Product Image</th>
                                 <th className="px-4" scope="col">Product Name</th>
                                 <th className="px-4" scope="col">Buy Date</th>
-                                <th className="px-4" scope="col">Payment status</th>
-                                <th className="px-4" scope="col">Delivery status</th>
-                                <th className="px-4" scope="col">Total Price</th>
+                                <th className="px-4" scope="col">Payment Status</th>
+                                <th className="px-4" scope="col">Delivery Status</th>
+                                <th className="px-4" scope="col">Shipping Cost</th>
+                                <th className="px-4" scope="col">Shipping Days</th>
+                                <th className="px-4" scope="col">Product Price</th>
                                 <th className="px-4" scope="col">Action</th>
                             </tr>
                         </thead>
@@ -186,13 +188,23 @@ const User_orders = () => {
                                     <td className="text-center">{item.date}</td>
                                     <td className="text-center">{item.payment_status}</td>
                                     <td className="text-center">{item.delivery_status_string}</td>
-                                    <td className="text-center">{item.grand_total}</td>
+                                    <td className="text-center">{item.shipping_cost}</td>
+                                    <td className="text-center">{item?.shipping_day}</td>
+                                    <td className="text-center">{item?.grand_total}</td>
                                     <td className="text-center">
                                         <div className="product-details-action pb-0">
-                                            <button className="reviewbtn" onClick={() => IsOpenReviewProductHandler(item)}>
-                                                Review
-                                            </button>
-                                            <button onClick={() => IsOpenViewProductHandler(item)} className="viewbtn">
+                                            {
+                                                item.delivery_status_string === "Delivered" &&
+                                                <button className="reviewbtn" onClick={() => IsOpenReviewProductHandler(item)}>
+                                                    Review
+                                                </button>
+                                            }
+                                            <button
+                                                onClick={() => {
+                                                    document.querySelector('body').classList.add("modal-open")
+                                                    IsOpenViewProductHandler(item)
+                                                }}
+                                                className="viewbtn">
                                                 View
                                             </button>
                                         </div>
@@ -206,94 +218,102 @@ const User_orders = () => {
                 <p>No order has been made yet.</p>
             )}
 
-            {isOpenAViewProduct && (
-                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div className="modal-dialog modal-dialog-scrollable" role="document">
-                        <div className="modal-content px-5 py-3">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Product View Details</h5>
-                                <button type="button" className="close" onClick={() => setIsOpenViewProduct(false)} aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body px-5">
-                                <table className="table">
-                                    <tbody>
-                                        <tr>
-                                            <td className="rotate">Product Image</td>
-                                            <td>
-                                                <img
-                                                    className="product-media-order-details"
-                                                    src={`https://beta.myrung.co.uk/b/public/${Singleorders.thumbnail_img}`}
-                                                    alt="Product image"
-                                                />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td className="rotate">Buy Date</td>
-                                            <td>{Singleorders.date}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="rotate">Product Name</td>
-                                            <td>{Singleorders.product_name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="rotate">Payment Status</td>
-                                            <td>{Singleorders.payment_status}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="rotate">Delivery Status</td>
-                                            <td>{Singleorders.delivery_status_string}</td>
-                                        </tr>
-                                        <tr>
-                                            <td className="rotate">Total Price</td>
-                                            <td>{Singleorders.grand_total}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <div className="modal-footer" style={{ borderTop: "none" }}>
-                                    <button className="btn btn-primary" onClick={handlePrint}>Print Order</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
-            {isOpenAReviewProduct && (
-                <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-                    <div className="modal-dialog modal-dialog-scrollable" role="document">
-                        <div className="modal-content px-5 py-3">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Product Review</h5>
-                                <button type="button" className="close" onClick={() => setIsOpenReviewProduct(false)} aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className='d-flex align-items-center'>
-                                <h5 className='reviewheading'>Rating: </h5>
-                                <Rating
-                                    count={5}
-                                    size={30}
-                                    value={rating}
-                                    onChange={(newRating) => setRating(newRating)}
-                                    activeColor="#ffd700"
-                                />
-                            </div>
-
-                            <textarea
-                                className="form-control"
-                                rows={3}
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
-                                placeholder="Write your message here..."
-                            />
-                            <button  className="btn btn-primary mt-3" onClick={AddReview}>
-                                Submit
+            <div className={`modal fade ${isOpenAViewProduct ? 'show' : null}`} style={{ display: `${isOpenAViewProduct ? 'block' : 'none'}` }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div className="modal-content px-5 py-3">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Product View Details</h5>
+                            <button type="button" className="close close-btn-style"
+                                onClick={() => {
+                                    document.querySelector('body').classList.remove("modal-open")
+                                    setIsOpenViewProduct(false)
+                                }}
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
+                        <div className="modal-body px-5">
+                            <table className="table">
+                                <tbody>
+                                    <tr>
+                                        <td className="rotate">Product Image</td>
+                                        <td>
+                                            <img
+                                                className="product-media-order-details"
+                                                src={`https://beta.myrung.co.uk/b/public/${Singleorders?.thumbnail_img}`}
+                                                alt="Product image"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Buy Date</td>
+                                        <td>{Singleorders?.date}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Product Name</td>
+                                        <td>{Singleorders?.product_name}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Payment Status</td>
+                                        <td>{Singleorders?.payment_status}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Delivery Status</td>
+                                        <td>{Singleorders?.delivery_status_string}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Total Price</td>
+                                        <td>{Singleorders?.grand_total}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div className="modal-footer" style={{ borderTop: "none" }}>
+                                <button className="btn btn-primary" onClick={handlePrint}>Print Order</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            )}
+            </div>
+            <div className={`modal fade ${isOpenAReviewProduct ? 'show' : null}`} style={{ display: `${isOpenAReviewProduct ? 'block' : 'none'}` }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+                    <div className="modal-content px-5 py-3">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Product Review</h5>
+                            <button type="button" className="close"
+                                onClick={() => {
+                                    document.querySelector('body').classList.remove("modal-open")
+                                    setIsOpenReviewProduct(false)
+                                }}
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div className='d-flex align-items-center'>
+                            <h5 className='reviewheading'>Rating: </h5>
+                            <Rating
+                                count={5}
+                                size={30}
+                                value={rating}
+                                onChange={(newRating) => setRating(newRating)}
+                                activeColor="#ffd700"
+                            />
+                        </div>
+
+                        <textarea
+                            className="form-control"
+                            rows={3}
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            placeholder="Write your message here..."
+                        />
+                        <button className="btn btn-primary mt-3" onClick={AddReview}>
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {isOpenAViewProduct && (<div className="modal-backdrop fade show"></div>)}
+            {isOpenAReviewProduct && (<div className="modal-backdrop fade show"></div>)}
         </>
     );
 };

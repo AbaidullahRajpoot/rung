@@ -1,64 +1,91 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import ReactDOM from 'react-dom';
+import {loadStripe} from '@stripe/stripe-js';
+import {
+  PaymentElement,
+  Elements,
+  useStripe,
+  useElements,
+} from '@stripe/react-stripe-js';
 
-const ExampleModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [recipient, setRecipient] = useState('');
-  const [message, setMessage] = useState('');
+const CheckoutForm = () => {
+  const stripe = useStripe();
+  const elements = useElements();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsOpen(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (elements == null) {
+      return;
+    }
+
+    // Trigger form validation and wallet collection
+    const {error: submitError} = await elements.submit();
+    if (submitError) {
+      // Show error to your customer
+      setErrorMessage(submitError.message);
+      return;
+    }
+
+    // Create the PaymentIntent and obtain clientSecret from your server endpoint
+    const res = await fetch('/create-intent', {
+      method: 'POST',
+    });
+
+    const {client_secret: clientSecret} = await res.json();
+
+    const {error} = await stripe.confirmPayment({
+      //`Elements` instance that was used to create the Payment Element
+      elements,
+      clientSecret,
+      confirmParams: {
+        return_url: 'https://example.com/order/123/complete',
+      },
+    });
+
+    if (error) {
+      // This point will only be reached if there is an immediate error when
+      // confirming the payment. Show error to your customer (for example, payment
+      // details incomplete)
+      setErrorMessage(error.message);
+    } else {
+      // Your customer will be redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer will be redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+    }
   };
 
   return (
-    <>
-      <button type="button" className="btn btn-primary" onClick={() => setIsOpen(true)}>
-        Launch demo modal
+    <form onSubmit={handleSubmit}>
+      <PaymentElement />
+      <button type="submit" disabled={!stripe || !elements}>
+        Pay
       </button>
-
-      {isOpen && (
-        <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" className="close" onClick={() => setIsOpen(false)} aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <form onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label htmlFor="recipient-name" className="col-form-label">Recipient:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="recipient-name"
-                      value={recipient}
-                      onChange={(e) => setRecipient(e.target.value)}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="message-text" className="col-form-label">Message:</label>
-                    <textarea
-                      className="form-control"
-                      id="message-text"
-                      value={message}
-                      onChange={(e) => setMessage(e.target.value)}
-                    />
-                  </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" onClick={() => setIsOpen(false)}>Close</button>
-                    <button type="submit" className="btn btn-primary">Send message</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+      {/* Show error message to your customers */}
+      {errorMessage && <div>{errorMessage}</div>}
+    </form>
   );
 };
 
-export default ExampleModal;
+const stripePromise = loadStripe('pk_test_51MRvgrI8Q2cWx8u9dN5751EZoLBySTxhWSBhPr7ZrhOevgMRvI8XIEpeNyX7U3hKws4sj5r4aiS9Zvj89LGyTza200sLDLJ37m');
+
+const options = {
+  mode: 'payment',
+  amount: 1099,
+  currency: 'usd',
+  // Fully customizable with appearance API.
+  appearance: {
+    /*...*/
+  },
+};
+
+const ExampleModal = () => (
+  <Elements stripe={stripePromise} options={options}>
+    <CheckoutForm />
+  </Elements>
+);
+
+
+export default ExampleModal

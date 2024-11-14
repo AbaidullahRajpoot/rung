@@ -1,15 +1,16 @@
 import React from "react";
-import { CardElement } from "@stripe/react-stripe-js";
+import { CardElement,PaymentElement, } from "@stripe/react-stripe-js";
 
-const PaymentCardElement = ({ stripe, cardError, cart_products, isCheckoutSubmit }) => {
-    
+const PaymentComponent = ({ stripe, cardError, cart_products, isCheckoutSubmit }) => {
+
     return (
-        <div className="my-2">
+        <div className="my-2 stripe-border">
             <CardElement
                 options={{
                     style: {
                         base: {
-                            fontSize: "16px",
+                            fontSize: "18px",
+                            fontFamily:"AlbertSans",
                             color: "#424770",
                             "::placeholder": {
                                 color: "#aab7c4",
@@ -18,20 +19,17 @@ const PaymentCardElement = ({ stripe, cardError, cart_products, isCheckoutSubmit
                         invalid: {
                             color: "#9e2146",
                         },
+                        
                     },
                 }}
             />
-            <div className="order-button-payment mt-25">
-
-                <button
-                    type="submit"
-                    data-payment-type="stripe"
-                    className="tp-btn"
-                    disabled={!stripe || cart_products.length === 0 || isCheckoutSubmit}
-                >
-                    Place order
-                </button>
-            </div>
+            {/* <PaymentElement
+            options={{layout:"tabs"}}
+            /> */}
+            <button type="submit" className="btn btn-outline-primary-2 btn-order btn-block mt-2">
+                <span className="btn-text">Pay with Card</span>
+                <span className="btn-hover-text" >Pay with Card</span>
+            </button>
             {cardError && (
                 <p className="mt-15" style={{ color: "red" }}>
                     {cardError}
@@ -41,4 +39,4 @@ const PaymentCardElement = ({ stripe, cardError, cart_products, isCheckoutSubmit
     );
 };
 
-export default PaymentCardElement;
+export default PaymentComponent;

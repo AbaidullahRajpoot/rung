@@ -5,7 +5,7 @@ import AllProduct from "../components/Relatedproduct";
 import HeaderContainer from "../container/HeaderContainer";
 
 const Products = () => {
-
+    
     return (
         <>
             <HeaderContainer />

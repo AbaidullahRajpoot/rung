@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import OwlCarousel from 'react-owl-carousel';
-import { NavLink } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductSkeltonCard from "./Productskeltoncard";
@@ -12,6 +10,7 @@ const Fullwitdh = (props) => {
 
     const [Product, SetProduct] = useState([]);
     const [relatedProduct, SetRelatedProduct] = useState([]);
+    const [activeProduct, SetactiveProduct] = useState(0);
     const [reletedReview, setReletedReview] = useState([]);
     const [totalReview, setTotalReview] = useState(null);
     const [isloading, setLoading] = useState(true);
@@ -27,17 +26,9 @@ const Fullwitdh = (props) => {
     var Page_Title_id = nthElementcurnt(splitCurUrl, -1);
 
 
-    //===============================================Other Function===============================================
 
-    const changeThumbnail = (path) => {
-        setGalaryImag(path)
-    }
 
     //===============================================Other Function===============================================
-
-    function reloadComp() {
-        setReload(reload + 1)
-    }
 
     const inputDecrement = () => {
         if (Value > 1) {
@@ -146,6 +137,10 @@ const Fullwitdh = (props) => {
         }
     }
 
+    //============================================================Swipe Prodct Code===========================================
+
+
+
     return (
         <>
             <div className="page-content">
@@ -218,34 +213,47 @@ const Fullwitdh = (props) => {
                                                 var calculable_price = item.calculable_price
                                                 var currency_symbol = item.currency_symbol
                                                 var image = item.thumbnail_image
+                                                var productStock = item.current_stock
                                                 var product_id = item.id
 
                                                 return (
                                                     <>
                                                         <div className="col-md-6" key={index}>
-                                                            <div className="product-gallery"><figure className="product-main-image">
-                                                                <span className="product-label label-sale">Sale</span>
-                                                                {
-                                                                    GalaryImag ?
-                                                                        <img src={"https://beta.myrung.co.uk/b/public/" + GalaryImag} alt="product side" />
-                                                                        :
-                                                                        <img id="product-zoom" src={"https://beta.myrung.co.uk/b/public/" + item.thumbnail_image} data-zoom-image={"https://beta.myrung.co.uk/b/public/" + item.thumbnail_image} alt="product image" />
-                                                                }
-                                                                <a id="btn-product-gallery" className="btn-product-gallery">
-                                                                    <i className="icon-arrows"></i>
-                                                                </a>
-                                                            </figure>
-                                                                <div id="product-zoom-gallery" className="product-image-gallery max-col-6">
+                                                            <div className="product-gallery">
+                                                                <div id="productImagesSlider" className="carousel slide" data-ride="carousel">
+
+                                                                    <div className="carousel-inner">
+                                                                        {galary.map((phots, index) => {
+                                                                            return (
+                                                                                <div key={index} className={`carousel-item  ${index === 0 ? "active" : ""}`}>
+                                                                                    {
+                                                                                        productStock <= 0 && <span className="product-label label-sale">Out of stock</span>
+
+                                                                                    }
+                                                                                    <img className="product-slider-img" src={"https://beta.myrung.co.uk/b/public/" + phots.path} alt="product side" />
+                                                                                </div>
+                                                                            );
+                                                                        })}
+                                                                    </div>
+                                                                    <button className="carousel-control-prev" type="button" data-target="#productImagesSlider" data-slide="prev">
+                                                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                                        <span className="sr-only">Previous</span>
+                                                                    </button>
+                                                                    <button className="carousel-control-next" type="button" data-target="#productImagesSlider" data-slide="next">
+                                                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                                                        <span className="sr-only">Next</span>
+                                                                    </button>
+                                                                </div>
+
+                                                                <ol className="carousel-indicators">
                                                                     {galary.map((phots, index) => {
                                                                         return (
-                                                                            <>
-                                                                                <a onClick={() => changeThumbnail(phots.path)} className="product-gallery-item active" data-image={"https://beta.myrung.co.uk/b/public/" + phots.path} data-zoom-image={"https://beta.myrung.co.uk/b/public/" + phots.path}>
-                                                                                    <img src={"https://beta.myrung.co.uk/b/public/" + phots.path} alt="product side" />
-                                                                                </a>
-                                                                            </>
+                                                                            <li onClick={() => { SetactiveProduct(index) }} key={index} data-target="#productImagesSlider" data-slide-to={index} className={`${activeProduct === index ? "active" : ""}`}>
+                                                                                <img className="product-slider-img" src={"https://beta.myrung.co.uk/b/public/" + phots.path} alt="product side" />
+                                                                            </li>
                                                                         );
                                                                     })}
-                                                                </div>
+                                                                </ol>
                                                             </div>
                                                         </div>
                                                         <div className="col-md-6">
@@ -261,49 +269,10 @@ const Fullwitdh = (props) => {
                                                                     <span className="new-price">{item.main_price}</span>
                                                                 </div>
                                                                 <div className="product-desc-content">
-                                                                    <div dangerouslySetInnerHTML={{ __html: item.description }} />
+                                                                    <div className="product-desc" dangerouslySetInnerHTML={{ __html: item.description }} />
                                                                 </div>
-                                                                <div className="details-filter-row details-row-size">
-                                                                    <label className="mt-0" htmlFor="size">Shop Name:</label>
-                                                                    <div className="">
-                                                                        {item.shop_name}
-                                                                    </div>
-                                                                </div>
-                                                                <div className="details-filter-row details-row-size">
-                                                                    <label className="mt-0" htmlFor="size">Shipping Type:</label>
-                                                                    <div className="">
-                                                                        {item.shipping_type}
-                                                                    </div>
-                                                                </div>
-                                                                <div className="details-filter-row details-row-size">
-                                                                    <label className="mt-0" htmlFor="size">Shipping Cost:</label>
-                                                                    <div className="">
-                                                                        {currency_symbol +" "+ item.shipping_cost}
-                                                                    </div>
-                                                                </div>
-                                                                {
-                                                                    item?.est_shipping_days &&
-                                                                    <div className="details-filter-row details-row-size">
-                                                                        <label className="mt-0" htmlFor="size">Shipping Days:</label>
-                                                                        <div className="">
-                                                                            {item.est_shipping_days} Days
-                                                                        </div>
-                                                                    </div>
-                                                                }
-                                                                {/* <div className="details-filter-row details-row-size">
-                                                                    <label htmlFor="size">Size:</label>
-                                                                    <div className="select-custom">
-                                                                        <select name="size" defaultValue="#" id="size" className="form-control">
-                                                                            <option value="#">Select a size</option>
-                                                                            <option value="s">Small</option>
-                                                                            <option value="m">Medium</option>
-                                                                            <option value="l">Large</option>
-                                                                            <option value="xl">Extra Large</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div> */}
                                                                 <div className="details-filter-row details-row-size mb-2">
-                                                                    <label htmlFor="qty mt-0">Qty:</label>
+                                                                    <label htmlFor="qty mt-0">Quantity:</label>
                                                                     <div className="product-details-quantity" >
                                                                         <div className="input-group-prepend"><button onClick={inputDecrement} className="btn btn-qantity-mines btn-decrement btn-spinner" type="button">
                                                                             <i className="icon-minus"></i></button>
@@ -315,59 +284,25 @@ const Fullwitdh = (props) => {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                {/* <div className="details-filter-row details-row-size">
-                                                                    <label htmlFor="color">Color:</label>
-                                                                    <div className="colors-varient">
-                                                                        <label className="red" >
-                                                                            <input type="radio" name="color" hidden value='red' className="form-control" />
-                                                                            <div></div>
-                                                                        </label>
-                                                                        <label className="yellow" >
-                                                                            <input type="radio" name="color" hidden value='red' className="form-control" />
-                                                                            <div></div>
-                                                                        </label>
-                                                                        <label className="green" >
-                                                                            <input type="radio" name="color" hidden value='red' className="form-control" />
-                                                                            <div></div>
-                                                                        </label>
-                                                                        <label className="blue" >
-                                                                            <input type="radio" name="color" hidden value='red' className="form-control" />
-                                                                            <div></div>
-                                                                        </label>
-                                                                    </div>
-                                                                </div> */}
+
                                                                 <div className="product-details-action">
                                                                     <a onClick={() => {
-                                                                        notify()
-                                                                        props.addToCartHandler({
-                                                                            name: name, Price: calculable_price, symbol: currency_symbol, quantity: Value,
-                                                                            product_image: image, product_id: product_id, totalprice: (Value * calculable_price)
-                                                                        })
+                                                                        if (productStock <= 0) {
+                                                                            toast.error("Out of stock")
+                                                                        }
+                                                                        else if ((productStock > 0)) {
+
+                                                                            props.addToCartHandler({
+                                                                                name: name, Price: calculable_price, symbol: currency_symbol, quantity: Value,
+                                                                                product_image: image, product_id: product_id, totalprice: (Value * calculable_price)
+                                                                            })
+                                                                            notify()
+                                                                        }
+
                                                                     }}
                                                                         className="btn-product btn-cart add_to_cat "><span >add to cart</span></a>
                                                                     <div className="details-action-wrapper">
-                                                                        <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="product-details-footer">
-                                                                    <div className="product-cat">
-                                                                        <span>Tag:</span>
-                                                                        {
-                                                                            item?.tags.map((tag, index) => {
-                                                                                return (
-                                                                                    <a href="#" key={index}>
-                                                                                        {tag && `${tag},`}
-                                                                                    </a>
-                                                                                );
-                                                                            })
-                                                                        }
-                                                                    </div>
-                                                                    <div className="social-icons social-icons-sm">
-                                                                        <span className="social-label">Share:</span>
-                                                                        <a href="#" className="social-icon" title="Facebook" target="_blank"><i className="icon-facebook-f"></i></a>
-                                                                        <a href="#" className="social-icon" title="Twitter" target="_blank"><i className="icon-twitter"></i></a>
-                                                                        <a href="#" className="social-icon" title="Instagram" target="_blank"><i className="icon-instagram"></i></a>
-                                                                        <a href="#" className="social-icon" title="Pinterest" target="_blank"><i className="icon-pinterest"></i></a>
+                                                                        <a onClick={addWhishlistHandler} data-id={product_id} className="btn-product btn-wishlist margin-10 " title="Wishlist"><span>Add to Wishlist</span></a>
                                                                     </div>
                                                                 </div>
                                                                 <div className="accordion accordion d-none d-md-block product-details-accordion" id="product-accordion">
@@ -415,7 +350,6 @@ const Fullwitdh = (props) => {
                                                                             <div className="card-body">
                                                                                 <div className="product-desc-content">
                                                                                     <div dangerouslySetInnerHTML={{ __html: item.shipping_returns }} />
-
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -431,13 +365,13 @@ const Fullwitdh = (props) => {
                                                                             </div>
                                                                             <div id="product-accordion-review" className="collapse" aria-labelledby="product-review-heading" data-parent="#product-accordion">
                                                                                 <div className="card-body">
-                                                                                    <div className="reviews">
-                                                                                    <div className="product-desc-content">
-                                                                                        {reletedReview.reviews.data.map((item, index) => (
-                                                                                            <div className="review" key={index}>
-                                                                                                <div className="row no-gutters">
+                                                                                    <div className="review">
+                                                                                        {reletedReview.reviews.data.map((item, index) => {
+                                                                                            console.log(item)
+                                                                                            return (
+                                                                                                <div key={index} className="row no-gutters">
                                                                                                     <div className="col-auto">
-                                                                                                        <h4><a>{item.user_name}</a></h4>
+                                                                                                        <h4><a href="#">{item.user_name}</a></h4>
                                                                                                         <div className="ratings-container">
                                                                                                             <div className="ratings">
                                                                                                                 <div className="ratings-val" style={{ width: `${item.rating}%` }}></div>
@@ -446,21 +380,19 @@ const Fullwitdh = (props) => {
                                                                                                         <span className="review-date">{item.time}</span>
                                                                                                     </div>
                                                                                                     <div className="col">
+                                                                                                        <h4>This product is good</h4>
                                                                                                         <div className="review-content">
                                                                                                             <p>{item.comment}</p>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
-                                                                                            </div>
-                                                                                        ))}
-                                                                                        </div>
+                                                                                            )
+                                                                                        })}
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     )}
-
-
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -470,221 +402,104 @@ const Fullwitdh = (props) => {
                                 </div>
                             </div>
                         </div>
-                        {/* <aside className="col-xl-2 col-md-6">
-                            <div className="sidebar sidebar-product d-none d-md-block">
-                                <div className="widget widget-products">
-                                    {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
-                                        {isloading ? <h4 className="widget-title"><Skeleton /></h4>
-                                            :
-                                            <h4 className="widget-title">Related Product</h4>
-                                        }
-                                    </SkeletonTheme>}
-                                    <div className="products">
-                                        {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
-                                            {isloading ?
-                                                <div className="product product-sm">
-                                                    <figure >
-                                                        <Skeleton width={80} height={82.25} className="product-image" />
-                                                    </figure>
-
-                                                    <div className="product-body">
-                                                        <h5 className="product-title"><Skeleton /></h5>
-                                                        <div className="product-price">
-                                                            <span className="new-price"><Skeleton width={100} /></span>
-                                                        </div>
+                        {Product.map((item, index) => {
+                            return (
+                                <div className="col-12 d-md-none" key={index}>
+                                    <div className="accordion accordion-plus  product-details-accordion" id={`product-accordion-${index}`}>
+                                        <div className="card card-box card-sm">
+                                            <div className="card-header" id={`product-desc-heading-${index}`}>
+                                                <h2 className="card-title">
+                                                    <a className="collapsed collapsed-heading" role="button" data-toggle="collapse" href={`#product-accordion-desc-${index}`} aria-expanded="false" aria-controls={`product-accordion-desc-${index}`}>
+                                                        Description
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                            <div id={`product-accordion-desc-${index}`} className="collapse" aria-labelledby={`product-desc-heading-${index}`} data-parent={`#product-accordion-${index}`}>
+                                                <div className="card-body">
+                                                    <div className="product-desc-content">
+                                                        <div className="product-desc" dangerouslySetInnerHTML={{ __html: item.long_description }} />
                                                     </div>
                                                 </div>
-                                                :
-                                                relatedProduct.map((item, index) => {
-                                                    if (index <= 3) {
-                                                        return (
-                                                            <div className="product product-sm">
-                                                                <figure className="product-media">
-                                                                    <NavLink onClick={reloadComp} to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
-                                                                        <img src={'https://beta.myrung.co.uk/b/public/' + item.thumbnail_image} alt="Product image" className="product-image single-product-image" />
-                                                                    </NavLink>
-                                                                </figure>
-                                                                <div className="product-body">
-                                                                    <h5 className="product-title"><NavLink onClick={reloadComp} to={`/shop/product/catogeroy/fullwidth/${item.id}`}>{item.name} <br />Wide fit wedges</NavLink></h5>
-                                                                    <div className="product-price">
-                                                                        <span className="new-price">{item.main_price}</span>
+                                            </div>
+                                        </div>
+                                        <div className="card card-box card-sm">
+                                            <div className="card-header" id={`product-info-heading-${index}`}>
+                                                <h2 className="card-title">
+                                                    <a className="collapsed collapsed-heading" role="button" data-toggle="collapse" href={`#product-accordion-info-${index}`} aria-expanded="false" aria-controls={`product-accordion-info-${index}`}>
+                                                        Additional Information
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                            <div id={`product-accordion-info-${index}`} className="collapse" aria-labelledby={`product-info-heading-${index}`} data-parent={`#product-accordion-${index}`}>
+                                                <div className="card-body">
+                                                    <div className="product-desc-content">
+                                                        <div className="product-desc" dangerouslySetInnerHTML={{ __html: item.additional_information }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card card-box card-sm">
+                                            <div className="card-header" id={`product-shipping-heading-${index}`}>
+                                                <h2 className="card-title">
+                                                    <a className="collapsed collapsed-heading" role="button" data-toggle="collapse" href={`#product-accordion-shipping-${index}`} aria-expanded="false" aria-controls={`product-accordion-shipping-${index}`}>
+                                                        Shipping & Returns
+                                                    </a>
+                                                </h2>
+                                            </div>
+                                            <div id={`product-accordion-shipping-${index}`} className="collapse" aria-labelledby={`product-shipping-heading-${index}`} data-parent={`#product-accordion-${index}`}>
+                                                <div className="card-body">
+                                                    <div className="product-desc-content">
+                                                        <div className="product-desc" dangerouslySetInnerHTML={{ __html: item.shipping_returns }} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {reletedReview?.reviews?.data && (
+                                            <div className="card card-box card-sm">
+                                                <div className="card-header" id="product-review-heading">
+                                                    <h2 className="card-title">
+                                                        <a className="collapsed collapsed-heading" role="button" data-toggle="collapse" href="#product-accordion-review" aria-expanded="false" aria-controls="product-accordion-review">
+                                                            Reviews ({totalReview})
+                                                        </a>
+                                                    </h2>
+                                                </div>
+                                                <div id="product-accordion-review" className="collapse" aria-labelledby="product-review-heading" data-parent="#product-accordion">
+                                                    <div className="card-body">
+                                                        <div className="reviews">
+                                                            <div className="product-desc-content">
+                                                                {reletedReview.reviews.data.map((item, index) => {
+                                                                    console.log(item)
+                                                                    return (
+                                                                        <div key={index} className="row no-gutters">
+                                                                        <div className="col-12">
+                                                                       <a>{item.user_name}</a>
+                                                                            <div className="ratings-container">
+                                                                                <div className="ratings">
+                                                                                    <div className="ratings-val" style={{ width: `${item.rating}%` }}></div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <span className="review-date">{item.time}</span>
+                                                                        </div>
+                                                                        <div className="col-12 mt-1">
+                                                                            <p className="review-heading">This product is good</p>
+                                                                            <div className="review-content">
+                                                                                <p>{item.comment}</p>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    }
-                                                })}
-                                        </SkeletonTheme>
-                                        }
-                                    </div>
-                                    {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
-                                        {isloading ? <Skeleton width={198.16} height={61} /> :
-                                            <NavLink to="/shop/categories" className="btn btn-outline-dark-3">
-                                                <span>View More Products</span><i className="icon-long-arrow-right"></i></NavLink>
-                                        }
-                                    </SkeletonTheme>
-                                    }
-                                </div>
-                            </div>
-                            <OwlCarousel className="owl-carousel d-md-none d-block owl-theme" dots={false} items={2} loop autoPlay={true} autoplaySpeed="200" nav={false}>
-                                {relatedProduct ? relatedProduct.map((item, index) => {
-                                    return (
-                                        <>
-                                            <div>
-                                                <div className="product product-sm">
-                                                    <figure className="product-media">
-                                                        <NavLink to=''>
-                                                            <img src={'https://beta.myrung.co.uk/b/public/' + item.thumbnail_image} alt="Product image  " className="product-image mobile-product " />
-                                                        </NavLink>
-                                                    </figure>
-                                                    <div className="product-body">
-                                                        <h5 className="product-title"><NavLink to=''>{item.name}</NavLink></h5>
-                                                        <div className="product-price">
-                                                            <span className="new-price">{item.main_price}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </>
-                                    );
-                                })
-                                    : ''}
-
-
-                            </OwlCarousel>
-                        </aside> */}
-                        <div className="col-12 d-md-none">
-                            <div className="accordion accordion-plus  product-details-accordion" id="product-accordion">
-                                <div className="card card-box card-sm">
-                                    <div className="card-header" id="product-desc-heading">
-                                        <h2 className="card-title">
-                                            <a className="collapsed" role="button" data-toggle="collapse" href="#product-accordion-desc" aria-expanded="false" aria-controls="product-accordion-desc">
-                                                Description
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="product-accordion-desc" className="collapse" aria-labelledby="product-desc-heading" data-parent="#product-accordion">
-                                        <div className="card-body">
-                                            <div className="product-desc-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.</p>
-                                                <ul>
-                                                    <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit. </li>
-                                                    <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                                    <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.</li>
-                                                </ul>
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card card-box card-sm">
-                                    <div className="card-header" id="product-info-heading">
-                                        <h2 className="card-title">
-                                            <a className="collapsed" role="button" data-toggle="collapse" href="#product-accordion-info" aria-expanded="false" aria-controls="product-accordion-info">
-                                                Additional Information
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="product-accordion-info" className="collapse" aria-labelledby="product-info-heading" data-parent="#product-accordion">
-                                        <div className="card-body">
-                                            <div className="product-desc-content">
-                                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
-                                                <h3>Fabric & care</h3>
-                                                <ul>
-                                                    <li>100% Polyester</li>
-                                                    <li>Do not iron</li>
-                                                    <li>Do not wash</li>
-                                                    <li>Do not bleach</li>
-                                                    <li>Do not tumble dry</li>
-                                                    <li>Professional dry clean only</li>
-                                                </ul>
-
-                                                <h3>Size</h3>
-                                                <p>S, M, L, XL</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card card-box card-sm">
-                                    <div className="card-header" id="product-shipping-heading">
-                                        <h2 className="card-title">
-                                            <a className="collapsed" role="button" data-toggle="collapse" href="#product-accordion-shipping" aria-expanded="false" aria-controls="product-accordion-shipping">
-                                                Shipping & Returns
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="product-accordion-shipping" className="collapse" aria-labelledby="product-shipping-heading" data-parent="#product-accordion">
-                                        <div className="card-body">
-                                            <div className="product-desc-content">
-                                                <p>We deliver to over 100 countries around the world. For full details of the delivery options we offer, please view our <a href="#">Delivery information</a><br />
-                                                    We hope you’ll love every purchase, but if you ever need to return an item you can do so within a month of receipt. For full details of how to make a return, please view our <a href="#">Returns information</a></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="card card-box card-sm">
-                                    <div className="card-header" id="product-review-heading">
-                                        <h2 className="card-title">
-                                            <a role="button" data-toggle="collapse" href="#product-accordion-review" aria-expanded="true" aria-controls="product-accordion-review">
-                                                Reviews (2)
-                                            </a>
-                                        </h2>
-                                    </div>
-                                    <div id="product-accordion-review" className="collapse show" aria-labelledby="product-review-heading" data-parent="#product-accordion">
-                                        <div className="card-body">
-                                            <div className="reviews">
-                                                <div className="review">
-                                                    <div className="row no-gutters">
-                                                        <div className="col-auto">
-                                                            <h4><a href="#">Samanta J.</a></h4>
-                                                            <div className="ratings-container">
-                                                                <div className="ratings">
-                                                                    <div className="ratings-val" style={{ width: "80%" }}></div>
-                                                                </div>
-                                                            </div>
-                                                            <span className="review-date">6 days ago</span>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h4>Good, perfect size</h4>
-                                                            <div className="review-content">
-                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus cum dolores assumenda asperiores facilis porro reprehenderit animi culpa atque blanditiis commodi perspiciatis doloremque, possimus, explicabo, autem fugit beatae quae voluptas!</p>
-                                                            </div>
-                                                            <div className="review-action">
-                                                                <a href="#"><i className="icon-thumbs-up"></i>Helpful (2)</a>
-                                                                <a href="#"><i className="icon-thumbs-down"></i>Unhelpful (0)</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div className="review">
-                                                    <div className="row no-gutters">
-                                                        <div className="col-auto">
-                                                            <h4><a href="#">John Doe</a></h4>
-                                                            <div className="ratings-container">
-                                                                <div className="ratings">
-                                                                    <div className="ratings-val" style={{ width: "100%" }}></div>
-                                                                </div>
-                                                            </div>
-                                                            <span className="review-date">5 days ago</span>
-                                                        </div>
-                                                        <div className="col">
-                                                            <h4>Very good</h4>
-                                                            <div className="review-content">
-                                                                <p>Sed, molestias, tempore? Ex dolor esse iure hic veniam laborum blanditiis laudantium iste amet. Cum non voluptate eos enim, ab cumque nam, modi, quas iure illum repellendus, blanditiis perspiciatis beatae!</p>
-                                                            </div>
-                                                            <div className="review-action">
-                                                                <a href="#"><i className="icon-thumbs-up"></i>Helpful (0)</a>
-                                                                <a href="#"><i className="icon-thumbs-down"></i>Unhelpful (0)</a>
+                                                                    )
+                                                                })}
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        )}
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            )
+                        })}
+
                     </div>
                 </div>
             </div>

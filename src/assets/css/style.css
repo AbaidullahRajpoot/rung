@@ -55,11 +55,16 @@
 /* Fonts */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800");
 
-/* font-family: "AlbertSans", sans-serif; */
+
 @font-face {
-    font-family: 'AlbertSans';
-    src: url('../../fonts/AlbertSans.ttf') ;
+  font-family: 'AlbertSans';
+  src: url('../../fonts/OpenSans-Regular.ttf');
 }
+@font-face {
+  font-family: 'Tempnou';
+  src: url('../../fonts/tempnou.ttf') ;
+}
+
 /*--------------------- 1.General Styles ---------- */
 html {
   font-size: 62.5%;
@@ -171,22 +176,25 @@ img {
   position: relative;
 }
 
-.carousel-caption{
+.carousel-caption {
   background-color: rgba(0, 0, 0, 0.4);
   margin-bottom: 30px;
 }
-.slider-title{
+
+.slider-title {
   font-family: 'Granjonbold';
   font-size: 4rem;
   font-weight: 500;
   color: #fdcc04;
 }
-.slider-description{
+
+.slider-description {
   font-family: 'Granjonbold';
   font-size: 2rem;
   font-weight: 300;
   color: #fff;
 }
+
 .bg-overlay:before {
   content: '';
   display: block;
@@ -310,7 +318,6 @@ a:focus {
 
 blockquote {
   position: relative;
-  margin: 0 0 4.2rem;
   padding: 0;
   color: #777;
   font-style: italic;
@@ -496,7 +503,7 @@ blockquote.text-white cite span {
 
 .page-content {
   padding-bottom: 5rem;
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
 }
 
 @media screen and (min-width: 992px) {
@@ -806,7 +813,7 @@ blockquote.text-white cite span {
 }
 
 .top-menu {
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: -.01em;
   margin: 0;
 }
@@ -866,7 +873,7 @@ blockquote.text-white cite span {
   padding-bottom: .2rem;
   padding-right: 2.2rem;
   align-items: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .header-dropdown>a::after,
@@ -1139,7 +1146,8 @@ blockquote.text-white cite span {
   padding-left: 1rem;
   position: relative;
 }
-.cart-count{
+
+.cart-count {
   position: absolute;
   top: -5px;
   left: 60%;
@@ -1229,7 +1237,7 @@ blockquote.text-white cite span {
   align-items: flex-end;
   font-size: 1.4rem;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #666666;
   margin-bottom: 1.1rem;
 }
@@ -1263,11 +1271,12 @@ blockquote.text-white cite span {
   margin-left: 1rem;
 }
 
-.wishlist-count{
+.wishlist-count {
   position: absolute;
   top: -2px;
   left: 50%;
 }
+
 .wishlist-link i {
   display: inline-block;
   margin-top: -2px;
@@ -1914,10 +1923,11 @@ blockquote.text-white cite span {
     display: none;
   }
 
-  .mobile-search{
+  .mobile-search {
     display: flex !important;
   }
-  .search-toggle-mobile{
+
+  .search-toggle-mobile {
     display: flex !important;
   }
 
@@ -1995,7 +2005,8 @@ blockquote.text-white cite span {
   .wishlist-link {
     display: none;
   }
-  .wishlist-count{
+
+  .wishlist-count {
     display: none !important;
   }
 
@@ -2156,7 +2167,7 @@ blockquote.text-white cite span {
   font-size: 1.4rem;
   letter-spacing: -.01em;
   padding: 3.95rem 3rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .menu>li+li {
@@ -2216,7 +2227,7 @@ blockquote.text-white cite span {
 
 .menu .megamenu .btn {
   min-width: 210px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .menu .banner {
@@ -2237,7 +2248,7 @@ blockquote.text-white cite span {
   color: #333;
   font-weight: 400;
   font-size: 1.4rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: .6rem;
 }
 
@@ -2270,7 +2281,7 @@ blockquote.text-white cite span {
   font-weight: 400;
   font-size: 1.8rem;
   line-height: 1.25;
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 0;
 }
 
@@ -2359,7 +2370,7 @@ blockquote.text-white cite span {
   z-index: 1;
   border-radius: 0;
   margin-left: .5rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   background-color: #cc9966;
 }
 
@@ -2421,35 +2432,44 @@ blockquote.text-white cite span {
   .main-nav {
     display: block;
   }
-  .mobile-btn{
+
+  .mobile-btn {
     display: none;
   }
-  .desktop-btn{
+
+  .desktop-btn {
     display: flex;
   }
 }
+
 @media screen and (max-width: 1200px) {
-.menu *{
-  padding: 0px !important;
+  .menu * {
+    padding: 0px !important;
+  }
 }
-}
+
 @media screen and (max-width: 992px) {
-  .header-right{
+  .header-right {
     margin: 0px;
   }
-  .header-left{
+
+  .header-left {
     margin: auto;
   }
-  .desktop-btn{
+
+  .desktop-btn {
     display: none;
   }
-  .mobile-btn{
+
+  .mobile-btn {
     display: flex;
   }
 }
-.header-first-left{
+
+.header-first-left {
   display: flex;
 }
+
 /*--------------------- 2.2.Vertical Menu -------------------- */
 /* Vertical Menu */
 .side-nav {
@@ -2465,7 +2485,7 @@ blockquote.text-white cite span {
   padding: 1.45rem 3rem;
   color: #fff;
   background-color: #333;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .category-dropdown {
@@ -2484,7 +2504,7 @@ blockquote.text-white cite span {
   font-size: 1.4rem;
   line-height: 1.5;
   letter-spacing: -.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   padding: 1rem 1.9rem 1rem 2rem;
   min-width: 270px;
   transition: background .4s, color .1s;
@@ -2841,31 +2861,33 @@ blockquote.text-white cite span {
 }
 
 /* @media screen and (min-width: 992px) { */
-  .sticky-header.fixed {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    z-index: 1040;
-    animation-name: fixedHeader;
-    animation-duration: .4s;
-    background-color: #fff;
-    box-shadow: 0 3px 6px rgba(51, 51, 51, 0.05);
-  }
-  .fixed > div {
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
+.sticky-header.fixed {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 1040;
+  animation-name: fixedHeader;
+  animation-duration: .4s;
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(51, 51, 51, 0.05);
+}
 
-  .sticky-header.fixed .logo {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+.fixed>div {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
 
-  .sticky-header.fixed.header-middle .menu>li>a {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+.sticky-header.fixed .logo {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.sticky-header.fixed.header-middle .menu>li>a {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
 /* } */
 
 /*--------------------- 2.4.Mobiel Menu -------------------- */
@@ -2976,7 +2998,7 @@ blockquote.text-white cite span {
 }
 
 .mobile-menu>li>a {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .mobile-menu li {
@@ -3037,7 +3059,7 @@ blockquote.text-white cite span {
 }
 
 .mobile-menu>li>a {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .mobile-menu span:not(.mmenu-btn):not(.tip) {
@@ -3081,11 +3103,12 @@ blockquote.text-white cite span {
 
 .mobile-search {
   display: none;
-  margin-bottom:1.5rem;
+  margin-bottom: 1.5rem;
   padding: 0 2rem;
   align-items: center;
 }
-.search-toggle-mobile{
+
+.search-toggle-mobile {
   display: none;
 }
 
@@ -3112,6 +3135,7 @@ blockquote.text-white cite span {
   border-color: #cc9966;
   background-color: #fff;
 }
+
 .mobile-search .btn {
   font-size: 2rem;
   min-width: 3.6rem;
@@ -3151,7 +3175,7 @@ blockquote.text-white cite span {
   font-weight: 600;
   font-size: 1.3rem;
   line-height: 1.5;
-  text-transform: uppercase;
+  text-transform: capitalize;
   border-bottom: .2rem solid transparent;
   background: none;
   padding: .8rem 2rem;
@@ -4037,7 +4061,7 @@ p {
   font-weight: 500;
   letter-spacing: .05em;
   color: #fff;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .header-6 .menu ul,
@@ -5220,7 +5244,7 @@ p {
 }
 
 .header-13 .top-menu {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .header-13 .top-menu li+li {
@@ -5449,7 +5473,7 @@ p {
 }
 
 .header-14 .top-menu {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .header-14 .top-menu ul {
@@ -6075,7 +6099,7 @@ p {
 }
 
 @media screen and (max-width: 340px) {
- 
+
 
   .wishlist-link .wishlist-txt {
     display: none;
@@ -6958,7 +6982,7 @@ a:focus {
   color: #fdcc04 !important;
 }
 
-.page_item.active .page-link{
+.page_item.active .page-link {
   box-shadow: none;
   color: #fdcc04 !important;
   border-color: #ebebeb;
@@ -9927,7 +9951,7 @@ a:focus {
 .header-31 .cart-text {
   margin-left: 1.4rem;
   margin-top: -0.6rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "AlbertSans";
   font-size: 1.4rem;
   color: inherit;
   letter-spacing: -.02em;
@@ -9995,6 +10019,7 @@ a:focus {
   margin-top: 0;
   margin-bottom: 1.9rem;
 }
+
 .footer-middle {
   padding: 6.7rem 0 2.2rem;
   border-top: .1rem solid #ebebeb;
@@ -10014,7 +10039,7 @@ a:focus {
 }
 
 .widget-about p:last-of-type {
-  margin-bottom: 3.2rem;
+  /* margin-bottom: 3.2rem; */
 }
 
 .widget-list {
@@ -10371,8 +10396,8 @@ a:focus {
 
 .page-header h1 {
   color: #333333;
-  font: normal 400 3.2rem/1.1 "Poppins", sans-serif;
-  letter-spacing: -.025em;
+  font-family: "Tempnou";
+  letter-spacing: 1px;
   margin-bottom: 0;
 }
 
@@ -10538,6 +10563,8 @@ a:focus {
 }
 
 .heading.heading-center .title {
+  font-family: "Tempnou";
+  letter-spacing: 1px;
   margin-bottom: 1.5rem;
 }
 
@@ -11009,7 +11036,7 @@ a:focus {
   padding: .45rem 1rem;
   border-radius: 0;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
   border: none;
   border-bottom: .1rem solid transparent;
   background-color: transparent;
@@ -11249,7 +11276,7 @@ a:focus {
   padding-top: 1.15rem;
   padding-bottom: 1.15rem;
   min-width: 230px;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .btn-link {
@@ -11262,7 +11289,7 @@ a:focus {
   letter-spacing: 0;
   font-size: 1.4rem;
   min-width: 0;
-  font-family: "Poppins", sans-serif;
+  font-family: "AlbertSans";
 }
 
 .btn-link.btn-link-dark {
@@ -11902,8 +11929,10 @@ a:focus {
 .product {
   position: relative;
   margin-bottom: 1rem;
-  transition: box-shadow .35s ease;
+  /* transition: box-shadow .35s ease; */
   background-color: #fff;
+  /* border: 1px solid #ccc; */
+  /* border-radius: 10px; */
 }
 
 .owl-carousel .product {
@@ -11911,7 +11940,7 @@ a:focus {
 }
 
 .product:hover {
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05); */
 }
 
 .product-media {
@@ -11932,6 +11961,8 @@ a:focus {
   height: 300px;
   object-fit: cover;
   transition: 2s;
+  /* border-top-left-radius: 10px;
+  border-top-left-radius: 10px; */
 }
 
 .mobile-product {
@@ -12067,7 +12098,7 @@ a:focus {
   font-size: 1.4rem;
   line-height: 1;
   margin-bottom: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .product:hover .product-countdown,
@@ -12106,9 +12137,9 @@ a:focus {
 }
 
 .product-cat {
-  color: #777;
+  color: #ccc;
   font-weight: 300;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   line-height: 1.2;
   letter-spacing: -.01em;
   margin-bottom: .3rem;
@@ -12237,7 +12268,6 @@ a:focus {
   display: flex;
   align-items: center;
   font-size: 1.3rem;
-  margin-bottom: 1.7rem;
   line-height: 1;
   white-space: nowrap;
 }
@@ -12296,7 +12326,6 @@ a:focus {
   bottom: 0;
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.95);
   z-index: 10;
   transition: all .35s ease;
   opacity: 0;
@@ -12437,6 +12466,11 @@ a:focus {
 
 .btn-product-icon:hover,
 .btn-product-icon:focus {
+  color: #fff !important;
+  background-color: #fdcc04 !important;
+}
+
+.btn-product-icon-active {
   color: #fff !important;
   background-color: #fdcc04 !important;
 }
@@ -12969,8 +13003,8 @@ a:focus {
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
   color: #fdcc04 !important;
-  background-color: #fff;
-  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  text-transform: capitalize;
   border-bottom: .1rem solid #ebebeb;
 }
 
@@ -13035,7 +13069,7 @@ a:focus {
   padding-bottom: 1.2rem;
   color: #fff;
   background-color: #333;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .product.product-8 .btn-product:before {
@@ -13115,7 +13149,7 @@ a:focus {
 
 .product.product-9 .label-sale {
   background-color: #fdcc04 !important;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .product.product-9 .product-body {
@@ -13126,7 +13160,7 @@ a:focus {
 .product.product-9 .product-action {
   bottom: auto;
   background-color: #fff;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .product.product-9 .product-action::before {
@@ -13251,7 +13285,7 @@ a:focus {
 }
 
 .product.product-10 .btn-cart span {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .product.product-10 .btn-cart::before {
@@ -13313,7 +13347,7 @@ a:focus {
 
 .product.product-10 .product-label {
   left: 3rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-size: 1.3rem;
   font-weight: 700;
   font-family: "AlbertSans";
@@ -13363,7 +13397,7 @@ a:focus {
 }
 
 .product.product-11 .btn-product {
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #333;
   border: .1rem solid #ebebeb;
   margin-left: 2rem;
@@ -13494,7 +13528,7 @@ a:focus {
   border: 0.1rem solid #fdcc04 !important;
   flex: 1 1 100%;
   max-width: 100%;
-  text-transform: uppercase;
+  text-transform: capitalize;
   line-height: 1;
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -13555,7 +13589,7 @@ a:focus {
   color: #cccccc;
   font-weight: 400;
   font-size: 1.3rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-bottom: .2rem;
 }
 
@@ -13834,7 +13868,7 @@ a:focus {
   line-height: 1;
   padding: .8rem 1.4rem;
   min-width: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-decoration: none !important;
 }
 
@@ -14286,8 +14320,8 @@ a:focus {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   color: #777;
   margin: 0;
   background-color: transparent;
@@ -14458,8 +14492,10 @@ a:focus {
 
 .testimonial img {
   display: inline-block !important;
-  max-width: 70px;
-  border-radius: 50%;
+  width: 70px !important;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 100%;
   margin-top: 1rem;
   margin-bottom: 2.1rem;
 }
@@ -15042,14 +15078,16 @@ small.form-text {
 .table {
   margin-bottom: 3rem;
 }
-.overflow-scroll{
+
+.overflow-scroll {
   overflow-x: auto;
 }
 
-.product-invoice-table{
+.product-invoice-table {
   width: max-content !important;
   min-width: 100% !important;
 }
+
 .table th {
   font-weight: 400;
   font-size: 1.4rem;
@@ -15566,7 +15604,7 @@ small.form-text {
   font-family: "AlbertSans";
   letter-spacing: .01em;
   color: #666;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /*--------------------- 5.Pages -------------------- */
@@ -15808,7 +15846,7 @@ button:focus {
 .blog-posts .read-more {
   padding-right: 0;
   font-weight: 400;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .blog-posts .read-more:after {
@@ -15975,7 +16013,7 @@ button:focus {
 .quickView-content .details-filter-row label {
   font-size: 1.4rem;
   letter-spacing: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #333;
 }
 
@@ -16000,7 +16038,7 @@ button:focus {
   font-size: 1.3rem;
   letter-spacing: .01em;
   color: #777;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .quickView-content .btn-product.btn-cart {
@@ -16224,7 +16262,7 @@ button:focus {
   letter-spacing: -.025em;
   color: #222;
   margin-bottom: 1rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
   line-height: 1.4em;
 }
 
@@ -16278,7 +16316,7 @@ button:focus {
   background-color: #222;
   color: #fff;
   border-radius: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .newsletter-popup-container .input-group .btn:hover,
@@ -16632,7 +16670,7 @@ button:focus {
 }
 
 .btn.btn-load-more {
-  text-transform: uppercase;
+  text-transform: capitalize;
   min-width: 190px;
   justify-content: space-between;
   padding-left: 2rem;
@@ -16768,7 +16806,7 @@ button:focus {
   font-size: 1.4rem;
   line-height: 1;
   letter-spacing: -.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   margin-right: 3rem;
 }
 
@@ -16856,6 +16894,31 @@ button:focus {
     margin-right: -.5rem;
     margin-left: 1rem;
   }
+}
+
+@media screen and (max-width: 576px) {
+  .product-desc * {
+    font-size: 12px !important
+  }
+  .product-desc  {
+    font-size: 12px !important
+  }
+  .product-details .product-price {
+    font-size: 1.8rem !important;
+  }
+  .product-details .product-title {
+    font-size: 1.8rem !important;
+  }
+  .collapsed-heading{
+    font-size: 1.4rem !important;
+  }
+  .review *{
+    font-size: 12px !important
+  }
+  .details-filter-row label {
+    font-size: 1.2rem !important;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -17209,7 +17272,7 @@ button:focus {
   padding-right: 1rem;
   background-color: #fff;
   border-color: #d7d7d7;
-  min-width: 131px;
+  min-width: 120px;
 }
 
 .details-filter-row .select-custom {
@@ -17260,13 +17323,11 @@ button:focus {
 }
 
 .product-details-quantity {
-  max-width: 131px;
+  max-width: 120px;
   display: flex;
 }
 
 .product-details-quantity .form-control {
-  padding-left: 2.6rem;
-  padding-right: 2.6rem;
   text-align: center;
   margin-bottom: 0;
 }
@@ -17277,7 +17338,8 @@ button:focus {
   flex-flow: row wrap;
   padding-bottom: 2rem;
 }
-.reviewbtn{
+
+.reviewbtn {
   font-size: 1.2rem;
   background-color: white !important;
   max-width: 198px;
@@ -17286,7 +17348,8 @@ button:focus {
   border: 0.1rem solid #fdcc04 !important;
   border-radius: 8px;
 }
-.viewbtn{
+
+.viewbtn {
   font-size: 1.2rem;
   background-color: white !important;
   max-width: 198px;
@@ -17295,24 +17358,28 @@ button:focus {
   border: 0.1rem solid #ef269d !important;
   border-radius: 8px;
 }
-.viewbtn:hover{
+
+.viewbtn:hover {
   color: #fff !important;
   border-color: #ef269d !important;
   background-color: #ef269d !important;
 }
+
 .reviewbtn:hover,
 .reviewbtn:focus {
   color: #fff !important;
   border-color: #fdcc04 !important;
   background-color: #fdcc04 !important;
 }
-.rotate{
+
+.rotate {
   font-size: 1.4rem;
   font-weight: 600;
-  min-width: 200px !important;
+  min-width: 120px !important;
   color: black;
 
 }
+
 .product-details-action .btn-cart {
   padding: 1rem 1.5rem;
   max-width: 198px;
@@ -17323,7 +17390,7 @@ button:focus {
 .product-details-action .btn-cart span {
   font-size: 1.4rem;
   color: inherit;
-  text-transform: uppercase;
+  text-transform: capitalize;
   box-shadow: none;
   transition: box-shadow .35s ease, color 0s ease;
 }
@@ -17445,6 +17512,10 @@ button:focus {
   padding: 2.7rem 3rem;
 }
 
+.product-desc ul {
+  font-family: "AlbertSans" !important;
+}
+
 .product-desc-content h2 {
   font-weight: 400;
   font-size: 2.4rem;
@@ -17517,7 +17588,6 @@ button:focus {
 .review {
   padding-bottom: 1.3rem;
   margin-bottom: 2rem;
-  border-bottom: .1rem solid #ebebeb;
 }
 
 .review:last-child {
@@ -17757,7 +17827,7 @@ button:focus {
 }
 
 .product-details-accordion .card .card-title a {
-  background-color: #fafafa;
+  background-color: #fff;
 }
 
 .product-details-accordion .card .card-title a:not(.collapsed) {
@@ -17827,7 +17897,7 @@ button:focus {
   display: block;
   width: 100%;
   text-align: center;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 /* Sticky bar */
@@ -17968,11 +18038,6 @@ button:focus {
     align-items: flex-start;
   }
 
-  .details-action-wrapper {
-    margin-left: 0;
-    margin-top: 1.5rem;
-  }
-
   .product-details-action .btn-cart {
     min-width: 198px;
   }
@@ -18026,11 +18091,6 @@ button:focus {
 
 @media screen and (max-width: 580px) {
 
-  .details-action-wrapper {
-    margin-left: 0;
-    margin-top: 1.5rem;
-  }
-
   .product-details-footer {
     flex-direction: column;
     align-items: flex-start;
@@ -18057,6 +18117,12 @@ button:focus {
   .product-details-sidebar .details-action-col .btn-product {
     min-width: 168px;
   }
+}
+
+.payment-heading {
+  color: #333333;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 
 /*--------------------- 5.4.Blog -------------------- */
@@ -18491,7 +18557,7 @@ button:focus {
   line-height: 1;
   letter-spacing: -.01em;
   margin-bottom: .8rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .posts-list {
@@ -19302,7 +19368,7 @@ button:focus {
   font-size: 1.4rem;
   line-height: 1.5;
   letter-spacing: -.01em;
-  text-transform: uppercase;
+  text-transform: capitalize;
   border-bottom: .1rem solid transparent;
 }
 
@@ -19495,10 +19561,7 @@ button:focus {
 /*--------------------- 5.7.About -------------------- */
 /* About us */
 .about-images {
-  position: relative;
-  text-align: right;
-  padding-top: 4rem;
-  height: 300px;
+  height: 200px;
   width: 100%;
   object-fit: cover;
 }
@@ -19867,10 +19930,10 @@ button:focus {
 }
 
 .contact-box h3 {
-  font-weight: 400;
-  font-size: 1.6rem;
+  font-weight: 600;
+  font-size: 1.8rem;
   letter-spacing: -.025em;
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.8rem;
 }
 
 .contact-box address,
@@ -19889,7 +19952,7 @@ button:focus {
 }
 
 .contact-box .social-icons {
-  padding-top: 1.5rem;
+  padding-top: 0.4rem;
 }
 
 .contact-box .social-icon {
@@ -20174,7 +20237,7 @@ button:focus {
 
 .sidebar-filter .widget-clean {
   color: #333333;
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.5;
@@ -20250,8 +20313,7 @@ button:focus {
   margin-bottom: .2rem;
 }
 
-.checkout .form-control {
-}
+.checkout .form-control {}
 
 .checkout .form-control+.form-control {
   margin-top: 2rem;
@@ -20283,9 +20345,8 @@ button:focus {
 }
 
 .checkout-title {
-  font-weight: 500;
-  font-size: 1.6rem;
-  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 2rem;
   margin-top: 2.2rem;
   margin-bottom: 1.8rem;
 }
@@ -20523,7 +20584,7 @@ button:focus {
   padding-top: .55rem;
   padding-bottom: .55rem;
   font-size: 1.3rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .table .action-col .btn i {
@@ -20692,13 +20753,16 @@ button:focus {
     margin-left: auto;
     margin-right: auto;
   }
+
   .product-col .product-media {
     max-width: 200px;
     margin-bottom: 10px;
   }
+
   .product-col .product-media {
     margin-right: 0px;
   }
+
   .table-mobile .product-col .product {
     /* justify-content: center; */
     flex-direction: column;
@@ -20846,7 +20910,8 @@ button:focus {
 .cart-bottom {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
+  margin-top: 7rem;
 }
 
 .cart-bottom .btn {
@@ -20855,8 +20920,9 @@ button:focus {
 }
 
 .cart-discount {
-  flex: 0 0 50%;
-  max-width: 326px;
+  width: 100%;
+  /* flex: 0 0 50%;
+  max-width: 326px; */
 }
 
 .cart-discount .form-control {
@@ -20961,8 +21027,7 @@ button:focus {
   margin-bottom: .2rem;
 }
 
-.dashboard .form-control {
-}
+.dashboard .form-control {}
 
 .dashboard .form-control+.form-control {
   margin-top: 2rem;
@@ -23644,7 +23709,8 @@ button:focus {
 .icon-user:before {
   content: '\f364';
 }
-.icon-user{
+
+.icon-user {
   display: block;
   font-size: 2.8rem;
   line-height: 1;
@@ -24902,4 +24968,3 @@ button:focus {
 }
 
 /* '' */
-

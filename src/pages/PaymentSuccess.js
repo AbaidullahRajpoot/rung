@@ -18,7 +18,8 @@ const PaymentSuccess = () => {
 
     const handlePaymentWithStripe = async () => {
         try {
-            const orderInfoString = localStorage.getItem('orderInfo');
+            const orderInfoString = await localStorage.getItem('orderInfo');
+            const user = await localStorage.getItem('user-info');
             if (orderInfoString) {
                 const orderInfo = JSON.parse(orderInfoString)
                 orderInfo.paymentstatus = true
@@ -36,7 +37,12 @@ const PaymentSuccess = () => {
                     localStorage.removeItem('orderInfo');
                     handleClearCart()
                     toast.success('Your Order has been Placed Successfully!')
-                    navigate('/dashboard');
+                    if(user){
+                        navigate('/dashboard');
+                    }
+                    else{
+                        navigate('/');   
+                    }
                 }
             }
             else {
@@ -44,6 +50,7 @@ const PaymentSuccess = () => {
             }
 
         } catch (err) {
+            toast.error(err)
         }
     };
 

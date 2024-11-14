@@ -63,7 +63,6 @@ html {
   font-size-adjust: 100%; }
 
 body {
-  font: normal 300 1.4rem/1.86 "Poppins", sans-serif;
   color: #666666;
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
@@ -6289,7 +6288,7 @@ a:focus {
   .header-31 .cart-text {
     margin-left: 1.4rem;
     margin-top: -0.6rem;
-    font-family: "Poppins", sans-serif;
+    font-family: "AlbertSans";
     font-size: 1.4rem;
     color: inherit;
     letter-spacing: -.02em; }
@@ -6600,7 +6599,7 @@ a:focus {
   background-repeat: no-repeat; }
   .page-header h1 {
     color: #333333;
-    font: normal 400 3.2rem/1.1 "Poppins", sans-serif;
+    font-family: "AlbertSans";
     letter-spacing: -.025em;
     margin-bottom: 0; }
     .page-header h1 span {
@@ -7215,7 +7214,7 @@ a:focus {
   letter-spacing: 0;
   font-size: 1.4rem;
   min-width: 0;
-  font-family: "Poppins", sans-serif; }
+  font-family: "AlbertSans" }
   .btn-link.btn-link-dark {
     color: #333; }
   .btn-link:hover, .btn-link:focus,

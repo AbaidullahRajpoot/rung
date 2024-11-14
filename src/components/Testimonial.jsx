@@ -9,24 +9,12 @@ import '../assets/css/bootstrap.css';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import user_1 from "../assets/images/testimonials/user-1.jpg";
-import user_2 from "../assets/images/testimonials/user-2.jpg";
 
 const Testimonial = () => {
 
     const [email, setEmail] = useState('');
     const [emailerror, setEmailError] = useState('');
     const [btnClick, setBtnClick] = useState(false);
-    const [SocialLinks, SetSocialLinks] = useState([]);
-
-    const getApi = async () => {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/business-settings`);
-        const data = await response.json();
-        var insidData = data.data;
-        SetSocialLinks(insidData);
-    }
-    useEffect(() => {
-        getApi();
-    }, []);
 
     //=========================================Sent Email From News Letter=====================================
 
@@ -65,36 +53,8 @@ const Testimonial = () => {
 
     }
 
-    //=================================End Sent Email From News Letter=====================================
 
-    var facbook_link;
-    var twiter_link;
-    var instagram_link;
-    var youtube_link;
-    var linkedin_link;
 
-    {
-        SocialLinks.map((item, index) => {
-            {
-                if (item.type === "facebook_link") {
-                    facbook_link = item.value
-                }
-                else if (item.type === "twitter_link") {
-                    twiter_link = item.value
-                }
-                else if (item.type === "instagram_link") {
-                    instagram_link = item.value
-                }
-                else if (item.type === "youtube_link") {
-                    youtube_link = item.value
-                }
-                else if (item.type === "linkedin_link") {
-                    linkedin_link = item.value
-                }
-            }
-
-        })
-    }
 
     return (
         <>
@@ -104,18 +64,33 @@ const Testimonial = () => {
                     <OwlCarousel className=" owl-carousel owl-theme owl-simple owl-testimonials-photo" dots={true} items={1} nav={false} loop={false} margin={20}>
                         <blockquote className="testimonial text-center">
                             <img src={user_1} alt="user" />
-                            <p>“I had an amazing experience shopping on this site! The selection of products is fantastic, and I found exactly what I was looking for. My order arrived quickly, and everything was well-packaged. I will definitely be back for more!”</p>
+                            <p>I absolutely loved my headwear as soon as I opened it. The fabric, colours and style were exactly as described and shown in the pictures. It is also nice to be able to change style of the scarf to create new looks. I recommend Masumi to anyone who is looking for beautiful headwear!</p>
                             <cite>
-                                Jenson Gregory
+                                Karen Sweeting
                                 <span>Customer</span>
                             </cite>
                         </blockquote>
                         <blockquote className="testimonial text-center">
-                            <img src={user_2} alt="user" />
-                            <p>“I love this online store! The prices are unbeatable, and the customer service is top-notch. I had a small issue with my order, but their support team was incredibly helpful and resolved it right away. Highly recommend!”</p>
-
+                            <img src={user_1} alt="user" />
+                            <p>Masumi Headwear has provided my mother with so much comfort and confidence at a really hard time in her life. I have purchased several items from this website. There are so many beautiful styles and patterns to choose from, suitable for any occasion and perfectly matches any outfit! The quality is fantastic. They’re extremely soft and durable. Can’t wait to see what new stock becomes available! HIGHLY recommend.</p>
+                            <cite> 
+                                Mariana Carvalho
+                                <span>Customer</span>
+                            </cite>
+                        </blockquote>
+                        <blockquote className="testimonial text-center">
+                            <img src={user_1} alt="user" />
+                            <p>Very pleased with service even phoned to let me know an item was out of stock and offered replacement. Very prompt and good value.</p>
                             <cite>
-                                Victoria Ventura
+                                Adele
+                                <span>Customer</span>
+                            </cite>
+                        </blockquote>
+                        <blockquote className="testimonial text-center">
+                            <img src={user_1} alt="user" />
+                            <p>Lovely fabric and stylish look. I’ve bought some cheaper ones and can definitely tell the difference in quality; it’s worth paying the extra for Masumi brand.</p>
+                            <cite>
+                                Tracey Harper
                                 <span>Customer</span>
                             </cite>
                         </blockquote>
@@ -128,25 +103,30 @@ const Testimonial = () => {
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="cta-wrapper cta-text text-center">
-                                <h3 className="cta-title">Shop Social
+                                <h3 className="title">Shop Social
                                 </h3>
-                                <p className="cta-desc">Join the Rung community! Connect with us on social media for the latest trends, exclusive promotions, and style inspiration. Share your favorite finds and tag us to be featured—let’s shop together! </p>
-                                <div className="social-icons social-icons-colored justify-content-center">
-                                    <a href={facbook_link} className="social-icon social-facebook" title="Facebook" target="_blank"><i
-                                        className="icon-facebook-f"></i></a>
-                                    <a href={twiter_link} className="social-icon social-twitter" title="Twitter" target="_blank"><i
-                                        className="icon-twitter"></i></a>
-                                    <a href={instagram_link} className="social-icon social-instagram" title="Instagram"
-                                        target="_blank"><i className="icon-instagram"></i></a>
-                                    <a href={youtube_link} className="social-icon social-youtube" title="Youtube" target="_blank"><i
-                                        className="icon-youtube"></i></a>
+                                <p className="cta-desc mt-2">Join the Rung community! Connect with us on social media for the latest trends, exclusive promotions, and style inspiration. Share your favorite finds and tag us to be featured—let’s shop together! </p>
+                                <div className="social-icons social-icons-colored justify-content-center mb-3">
+                                    <a href="https://www.facebook.com" className="social-icon social-facebook" title="Facebook" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.twitter.com" className="social-icon social-twitter" title="Twitter" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com" className="social-icon social-instagram" title="Instagram" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-instagram"></i>
+                                    </a>
+                                    <a href="https://www.youtube.com" className="social-icon social-youtube" title="Youtube" target="_blank" rel="noopener noreferrer">
+                                        <i className="icon-youtube"></i>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
                         <div className="col-lg-6">
                             <div className="cta-wrapper text-center">
-                                <h3 className="cta-title">Get the Latest Deals!</h3>
-                                <p className="cta-desc">Stay ahead of the trends and never miss out on exclusive offers from Rung. Subscribe now to get better deals</p>
+                                <h3 className="title ">Get The Latest Deals!</h3>
+                                <p className="cta-desc mt-2">Stay ahead of the trends and never miss out on exclusive offers from Rung. Subscribe now to get better deals</p>
                                 <form action="#" onSubmit={handleSubmit}>
                                     {
                                         btnClick === true && <LoadingSpinner />

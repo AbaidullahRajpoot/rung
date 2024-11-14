@@ -80,19 +80,41 @@ const Search = () => {
     const getProduct = async (minValue, maxValue) => {
         setProduct([])
         setIsloading(true)
-        let data = { min: minValue, max: maxValue, name: searchName?.name }
-        var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/search`, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
+        const userToken = sessionStorage.getItem('user-info_token');
+        if(userToken){
+            const userID = await JSON.parse((localStorage.getItem('user-info')))
+            let data = { min: minValue, max: maxValue, name: searchName?.name,user_id:userID }
+            var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/search`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            Result = await Result.json()
+            if (Result) {
+                setProduct(Result?.data)
             }
-        });
-        Result = await Result.json()
-        if (Result) {
-            setProduct(Result?.data)
+        }else{
+            localStorage.removeItem('user-info')
+            localStorage.removeItem('user')
+            localStorage.removeItem('user-name')
+            let data = { min: minValue, max: maxValue, name: searchName?.name,user_id:null }
+            var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/search`, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            });
+            Result = await Result.json()
+            if (Result) {
+                setProduct(Result?.data)
+            }
         }
+       
         setIsloading(false)
     }
 

@@ -1,19 +1,19 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import HeaderContainer from "../container/HeaderContainer";
 import Footer from "../components/Footer";
 import Dashboardcontent from "../components/Dashboardcontent";
 
-const Dashboard = () =>{
+const Dashboard = () => {
 
     useEffect(() => {
         window.scrollTo(0, 0)
-      }, [])
-      
-    return(
+    }, [])
+
+    return (
         <>
-            <HeaderContainer/>
-            <Dashboardcontent/>
-            <Footer/>
+            <HeaderContainer />
+            <Dashboardcontent />
+            <Footer />
         </>
     );
 }

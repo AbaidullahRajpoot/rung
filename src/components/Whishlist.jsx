@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import LoadingSpinner from './LoadingSpinner'
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
+
 import 'react-toastify/dist/ReactToastify.css';
 
 const WhishlistComponent = (props) => {
@@ -66,11 +67,15 @@ const WhishlistComponent = (props) => {
             }
         })
         Result = await Result.json()
-        var Data = Result.is_in_wishlist;
-        setLoading(false)
-        if (Data === false) {
-            notifyremove()
+        if(Result.message==="Product is removed from wishlist"){
+            ShowWhishlist()
+            var Data = Result.is_in_wishlist;
+            setLoading(false)
+            if (Data === false) {
+                notifyremove()
+            }
         }
+       
     }
 
     return (
@@ -84,8 +89,7 @@ const WhishlistComponent = (props) => {
                                 <th>Product</th>
                                 <th>Price</th>
                                 <th>Stock Status</th>
-                                <th></th>
-                                <th></th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -107,11 +111,13 @@ const WhishlistComponent = (props) => {
                                     Product && Product?.length > 0 ? Product.map((item, index) => {
                                         var cat_name = item.product.category_name
                                         var name = item.product.name
-                                        var main_price = item.product.price
+                                        var calculable_price = item.product.calculable_price
+                                        var currency_symbol = item.product.currency_symbol
                                         var image = item.product.thumbnail_image
+                                        var productStock = item.product.current_stock
                                         var product_id = item.product.id
                                         return (
-                                            <> 
+                                            <>
                                                 <tr key={index} id={"row" + product_id} >
                                                     <td className="product-col">
                                                         <div className="product">
@@ -127,19 +133,22 @@ const WhishlistComponent = (props) => {
                                                         </div>
                                                     </td>
                                                     <td className="price-col">{item.product.base_price}</td>
-                                                    <td className="stock-col"><span className="in-stock">{item.product.qty <= 0 ? "Out of stock" : "Instock"}</span></td>
+                                                    <td className="stock-col">{productStock <= 0 ? <span className="in-stock text-danger">Out of stock</span> : <span className="in-stock ">Instock</span>}</td>
                                                     <td className="action-col">
-                                                        <a onClick={notify} >
+                                                        <a>
                                                             <button onClick={() => {
-                                                                props.addToCartHandler({
-                                                                    cat_name: cat_name, name: name, quaintity: Value,
-                                                                    product_image: image, product_id: product_id, totalprice: (Value * main_price)
-                                                                })
-                                                                // props.addToCartHandler({
-                                                                //     cat_name: , name: , quantity: ,
-                                                                //     Price:, symbol: ,
-                                                                //     product_image: , product_id: , totalprice: 
-                                                                // })
+                                                                if (productStock <= 0) {
+                                                                    toast.error("Out of stock")
+                                                                }
+                                                                else if((productStock > 0)) {
+    
+                                                                    props.addToCartHandler({
+                                                                        cat_name: cat_name, name: name, quantity: Value,
+                                                                        Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
+                                                                        totalprice: (Value * calculable_price)
+                                                                    })
+                                                                    notify()
+                                                                }
                                                             }}
                                                                 className="btn btn-block btn-outline-primary-2"><i className="icon-cart-plus"></i>Add to Cart</button>
                                                         </a>
@@ -157,16 +166,6 @@ const WhishlistComponent = (props) => {
 
                         </tbody>
                     </table>
-                    <div className="wishlist-share">
-                        <div className="social-icons social-icons-sm mb-2">
-                            <label className="social-label">Share on:</label>
-                            <a href="#" className="social-icon" title="Facebook" target="_blank"><i className="icon-facebook-f"></i></a>
-                            <a href="#" className="social-icon" title="Twitter" target="_blank"><i className="icon-twitter"></i></a>
-                            <a href="#" className="social-icon" title="Instagram" target="_blank"><i className="icon-instagram"></i></a>
-                            <a href="#" className="social-icon" title="Youtube" target="_blank"><i className="icon-youtube"></i></a>
-                            <a href="#" className="social-icon" title="Pinterest" target="_blank"><i className="icon-pinterest"></i></a>
-                        </div>
-                    </div>
                 </div>
             </div>
 

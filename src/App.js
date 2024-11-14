@@ -1,10 +1,11 @@
-import React, { createContext } from 'react';
+import React, { createContext,useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './assets/css/bootstrap.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.bundle.js'
 import './assets/css/style.css';
 import './assets/css/mystyle.css';
+import './assets/css/demos/demo-5.css';
 
 import PrivateRoute from './components/Privateroute';
 import GuestRoute from './components/GuestRoute';
@@ -107,7 +108,6 @@ function App() {
               </PrivateRoute>
 
             } />
-
 
             <Route exact index element={<Home />} />
             <Route exact path="/about" element={<AboutUs />} />
