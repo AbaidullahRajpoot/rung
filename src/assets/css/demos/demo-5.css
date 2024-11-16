@@ -43,7 +43,7 @@
 }
 .slider-text-body h2 {
   font-size: 2vw !important;
-  color: #fdcc04;
+  color: var(--primary-color);
 }
 .slider-text-body p {
   padding-top: 15px;
@@ -56,8 +56,8 @@
 .slider-text-body button {
   padding: 1vw;
   font-size: 1.25vw !important;
-  background-color: #fdcc04 !important;
-  color: #fff !important;
+  background-color: var(--primary-color) !important;
+  color: var(--white-color) !important;
 
 }
 .intro-slide .intro-content {
@@ -70,13 +70,13 @@
 
 .intro-slide .btn-primary {
   background-color: transparent;
-  color: #fff;
-  border-color: #fff;
+  color: var(--white-color);
+  border-color: var(--white-color);
 }
 
 .intro-slide .btn-primary:hover,
 .intro-slide .btn-primary:focus {
-  background-color: #fff;
+  background-color: var(--white-color);
   color: #f30095;
 }
 
@@ -116,7 +116,7 @@
 
 .header-search-extended .btn-primary:hover,
 .header-search-extended .btn-primary:focus {
-  color: #fdcc04 !important;
+  color: var(--primary-color) !important;
 }
 
 .header-search-extended .btn-primary:not(:disabled):not(.disabled):active,
@@ -135,18 +135,18 @@
 }
 
 .owl-theme.owl-light .owl-nav [class*='owl-'] {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--white-color);
+  color: var(--white-color);
 }
 
 .brands-border .brand {
   height: 100px;
-  border: .1rem solid #ebebeb;
+  border: .1rem solid var(--border-light-color);
   border-left-width: 0;
 }
 
 .brands-carousel-full {
-  border-bottom: .1rem solid #ebebeb;
+  border-bottom: .1rem solid var(--border-light-color);
 }
 
 .brands-carousel-full.brands-border .brand {
@@ -212,18 +212,18 @@
 }
 
 .banner-subtitle {
-  color: #fff;
+  color: var(--white-color);
   font-weight: 400;
   font-size: 1.6rem;
   letter-spacing: -.01em;
 }
 
 .banner-subtitle~p span {
-  color: #fff;
+  color: var(--white-color);
 }
 
 .banner-title {
-  color: #fff;
+  color: var(--white-color);
   font-weight: 500;
   font-size: 2.5rem;
   line-height: 0.5;
@@ -231,7 +231,7 @@
 }
 
 .main .banner-title span {
-  color: #fff;
+  color: var(--white-color);
   font-weight: 600;
 }
 
@@ -247,11 +247,11 @@
 .main .banner-border .banner-subtitle,
 .main .banner-border .banner-title span,
 .main .banner-border .banner-link {
-  color: #fff;
+  color: var(--white-color);
 }
 
 .main .banner-border-hover .banner-link {
-  color: #333;
+  color: var(--black-color);
 }
 
 .banner .banner-link.btn {
@@ -324,11 +324,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #777;
+  color: var(--black-color);
   font-weight: 400;
   font-size: 1.6rem;
   line-height: 1.5;
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: 2rem 3rem 1.5rem;
 }
 
@@ -449,14 +449,14 @@
 .banner-set-image .banner-title span,
 .banner-set-image .banner-link,
 .banner-set-image .banner-detail {
-  color: #fff;
+  color: var(--white-color);
 }
 
 .banner-set-image .banner-subtitle {
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0;
-  color: #ebebeb;
+  color: var(--border-light-color);
   text-transform: uppercase;
 }
 
@@ -472,28 +472,28 @@
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0;
-  color: #ebebeb;
+  color: var(--border-light-color);
   margin-bottom: 3rem;
 }
 
 .banner-set-image .btn.banner-link {
   padding: 1.5rem 4rem;
   border-radius: 3rem;
-  color: #fff;
-  border: .2rem solid #fff;
+  color: var(--white-color);
+  border: .2rem solid var(--white-color);
 }
 
 .banner-set-image .btn.banner-link:hover,
 .banner-set-image .btn.banner-link:focus,
 .banner-set-image .btn.banner-link:active {
   color: #f30095;
-  background-color: #fff;
-  border-color: #fff;
+  background-color: var(--white-color);
+  border-color: var(--white-color);
 }
 
 /* Product 2 */
 .product.product-2 {
-  background-color: #fff;
+  background-color: var(--white-color);
 }
 
 .product.product-2 .product-action-vertical {
@@ -501,7 +501,7 @@
 }
 
 .product.product-2 .product-cat {
-  color: #ccc;
+  color: var(--grey-color);
 }
 
 .product.product-2 .product-body {
@@ -518,19 +518,19 @@
 }
 
 .product.product-2 .product-action-transparent .btn-product {
-  color: #ccc;
+  color: var(--grey-color);
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
 }
 
 .product.product-2 .product-action-transparent .btn-product span {
-  color: #333;
+  color: var(--black-color);
   text-transform: uppercase;
   margin-left: -1.35rem;
 }
 
 .product.product-2 .product-action-transparent .btn-product::before {
-  color: #fff;
+  color: var(--white-color);
   opacity: 0;
   visibility: hidden;
   transition: all .1s;
@@ -538,13 +538,13 @@
 
 .product.product-2 .product-action-transparent .btn-product:hover,
 .product.product-2 .product-action-transparent .btn-product:focus {
-  color: #fff;
-  background-color: #fdcc04;
+  color: var(--white-color);
+  background-color: var(--primary-color);
 }
 
 .product.product-2 .product-action-transparent .btn-product:hover span,
 .product.product-2 .product-action-transparent .btn-product:focus span {
-  color: #fff !important;
+  color: var(--white-color) !important;
   margin-left: 0;
   box-shadow: none;
 }
@@ -566,12 +566,12 @@
   right: 1rem;
   top: 0;
   height: .1rem;
-  background-color: #ebebeb;
+  background-color: var(--border-light-color);
 }
 
 .btn-wishlist {
   font-size: 1.6rem;
-  color: #333;
+  color: var(--black-color);
 }
 
 .product-cat a {
@@ -589,7 +589,7 @@
   margin-bottom: .5rem;
   font-size: 1.4rem;
   letter-spacing: 0;
-  color: #333;
+  color: var(--black-color);
   flex-direction: column;
   align-items: flex-start;
 }
@@ -601,7 +601,7 @@
 
 .btn-more {
   min-width: 170px;
-  border-color: #ebebeb;
+  border-color: var(--border-light-color);
 }
 
 .video-banner-title strong,
@@ -629,7 +629,7 @@
 }
 
 .cta-desc {
-  color: #999999;
+  color: var(--grey-heading);
   font-size: 1.5rem;
   line-height: 1.5;
 }
@@ -659,14 +659,14 @@
   border-bottom-right-radius: 30px;
   background-color: transparent;
   border-color: #e1e1e1;
-  color: #333;
+  color: var(--white-color);
 }
 
 .cta .input-group .btn:hover,
 .cta .input-group .btn:focus {
   background-color: #f30095;
   border-color: #f30095;
-  color: #fff;
+  color: var(--white-color);
 }
 
 .cta .input-group .btn i {
@@ -693,10 +693,10 @@
   justify-content: center;
   flex-direction: column;
   text-align: center;
-  background-color: #fff;
-  border: .1rem solid #ebebeb;
+  background-color: var(--white-color);
+  border: .1rem solid var(--border-light-color);
   margin-bottom: 2rem;
-  color: #333333;
+  color: var(--black-color);
 }
 
 .instagram-feed-title i {

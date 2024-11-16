@@ -150,10 +150,10 @@ const Fullwitdh = (props) => {
                         <div className="col-xl-10 ">
                             <div className="product-details-top">
                                 <div className="row">
-                                    {<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    <SkeletonTheme>
                                         {productloading ?
                                             <>
-                                                <div className="col-md-6">
+                                                <div  className="col-md-6">
                                                     <div className="product-gallery">
                                                         <figure className="product-main-image">
                                                             <ProductSkeltonCard />
@@ -163,7 +163,7 @@ const Fullwitdh = (props) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="col-md-6">
+                                                <div  className="col-md-6">
                                                     <div className="product-details">
                                                         <h1><Skeleton /></h1>
                                                         <div className="product-price">
@@ -173,9 +173,9 @@ const Fullwitdh = (props) => {
                                                             <p><Skeleton /></p>
                                                         </div>
                                                         <div className="details-filter-row details-row-size">
-                                                            <div className="select-custom">
-                                                                <h1><Skeleton /></h1>
-                                                            </div>
+
+                                                            <h1><Skeleton /></h1>
+
                                                         </div>
                                                         <div className="details-filter-row details-row-size">
                                                             <h1><Skeleton width={130} /></h1>
@@ -197,9 +197,9 @@ const Fullwitdh = (props) => {
                                                         <div className="accordion accordion-plus d-none d-md-block product-details-accordion" id="product-accordion">
                                                             <div className="card card-box card-sm">
                                                                 <div className="card-header" id="product-desc-heading">
-                                                                    <h2 className="card-title">
+                                                                    <div className="card-title">
                                                                         <h1><Skeleton width={100} /></h1>
-                                                                    </h2>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -217,8 +217,8 @@ const Fullwitdh = (props) => {
                                                 var product_id = item.id
 
                                                 return (
-                                                    <>
-                                                        <div className="col-md-6" key={index}>
+                                                    <React.Fragment key={index}>
+                                                        <div className="col-md-6" >
                                                             <div className="product-gallery">
                                                                 <div id="productImagesSlider" className="carousel slide" data-ride="carousel">
 
@@ -367,7 +367,6 @@ const Fullwitdh = (props) => {
                                                                                 <div className="card-body">
                                                                                     <div className="review">
                                                                                         {reletedReview.reviews.data.map((item, index) => {
-                                                                                            console.log(item)
                                                                                             return (
                                                                                                 <div key={index} className="row no-gutters">
                                                                                                     <div className="col-auto">
@@ -396,9 +395,9 @@ const Fullwitdh = (props) => {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </>);
+                                                    </React.Fragment>);
                                             })}
-                                    </SkeletonTheme>}
+                                    </SkeletonTheme>
                                 </div>
                             </div>
                         </div>
@@ -468,25 +467,24 @@ const Fullwitdh = (props) => {
                                                         <div className="reviews">
                                                             <div className="product-desc-content">
                                                                 {reletedReview.reviews.data.map((item, index) => {
-                                                                    console.log(item)
                                                                     return (
                                                                         <div key={index} className="row no-gutters">
-                                                                        <div className="col-12">
-                                                                       <a>{item.user_name}</a>
-                                                                            <div className="ratings-container">
-                                                                                <div className="ratings">
-                                                                                    <div className="ratings-val" style={{ width: `${item.rating}%` }}></div>
+                                                                            <div className="col-12">
+                                                                                <a>{item.user_name}</a>
+                                                                                <div className="ratings-container">
+                                                                                    <div className="ratings">
+                                                                                        <div className="ratings-val" style={{ width: `${item.rating}%` }}></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <span className="review-date">{item.time}</span>
+                                                                            </div>
+                                                                            <div className="col-12 mt-1">
+                                                                                <p className="review-heading">This product is good</p>
+                                                                                <div className="review-content">
+                                                                                    <p>{item.comment}</p>
                                                                                 </div>
                                                                             </div>
-                                                                            <span className="review-date">{item.time}</span>
                                                                         </div>
-                                                                        <div className="col-12 mt-1">
-                                                                            <p className="review-heading">This product is good</p>
-                                                                            <div className="review-content">
-                                                                                <p>{item.comment}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
                                                                     )
                                                                 })}
                                                             </div>

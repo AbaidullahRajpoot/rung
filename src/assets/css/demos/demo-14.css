@@ -47,18 +47,18 @@
 .intro-content {
   left: 20px; }
   .intro-content .btn {
-    color: #333;
+    color: var(--black-color);
     border-radius: .3rem;
     text-transform: uppercase;
     letter-spacing: 0; }
 
 .intro-subtitle {
-  color: #777;
+  color: var(--black-color);
   font-weight: 300;
   margin-bottom: .8rem; }
 
 .intro-title {
-  color: #333;
+  color: var(--black-color);
   font-weight: 600;
   font-size: 2.8rem;
   letter-spacing: -.025em;
@@ -67,7 +67,7 @@
     font-weight: 300; }
 
 .intro-text {
-  color: #333;
+  color: var(--black-color);
   font-weight: 300;
   font-size: 1.6rem;
   line-height: 1.3;
@@ -75,7 +75,7 @@
   margin-bottom: 1.6rem; }
 
 .intro-price {
-  color: #333333;
+  color: var(--black-color);
   font-weight: 700;
   font-size: 3.2rem;
   line-height: 1.2;
@@ -106,7 +106,7 @@
   justify-content: space-between; }
   .banner-content-stretch .banner-content .banner-link {
     background-color: rgba(153, 153, 153, 0.2);
-    color: #333;
+    color: var(--black-color);
     padding-left: .5rem;
     padding-right: .5rem; }
     .banner-content-stretch .banner-content .banner-link:hover, .banner-content-stretch .banner-content .banner-link:focus {
@@ -146,7 +146,7 @@
   letter-spacing: -.01em;
   margin-bottom: 1.1rem; }
   .banner-subtitle.text-white {
-    color: #ebebeb !important; }
+    color: var(--border-light-color) !important; }
 
 .banner-title {
   font-weight: 600;
@@ -162,7 +162,7 @@
   min-width: 150px;
   text-align: center;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white-color);
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.4;
@@ -182,7 +182,7 @@
   .banner-link.banner-link-dark:not(:hover):not(:focus) {
     background-color: rgba(51, 51, 51, 0.2); }
   .banner-link:hover, .banner-link:focus {
-    color: #333;
+    color: var(--black-color);
     text-decoration: none !important;
     background-color: #fcb941; }
     .banner-link:hover i, .banner-link:focus i {
@@ -204,7 +204,7 @@
     margin-top: .5rem; }
   .trending-products .product-media {
     padding: 2rem 2rem;
-    background-color: #fff; }
+    background-color: var(--white-color); }
   .trending-products .product-body {
     padding-top: 0;
     padding-bottom: 2.8rem; }
@@ -213,7 +213,7 @@
 .furniture .product-media,
 .clothing .product-media,
 .cooking .product-media {
-  background-color: #fff;
+  background-color: var(--white-color);
   padding: .5rem; }
 
 .owl-full .owl-nav [class*='owl-'] {
@@ -246,7 +246,7 @@
   display: flex;
   justify-content: center;
   padding-top: 2rem;
-  background-color: #fff; }
+  background-color: var(--white-color); }
 .widget-deals .product-label {
   top: 1rem; }
 
@@ -267,7 +267,7 @@
 
 .btn-product-icon {
   border-radius: 50%;
-  background-color: #fff;
+  background-color: var(--white-color);
   border: 0.1rem solid #fcb941; }
   .btn-product-icon span {
     top: -1px;
@@ -288,7 +288,7 @@
 .btn-product {
   padding-top: 1.05rem;
   padding-bottom: 1.05rem;
-  color: #fff;
+  color: var(--white-color);
   text-transform: uppercase;
   border-radius: .2rem;
   border: 0.1rem solid #fcb941;
@@ -296,14 +296,14 @@
   .btn-product:before {
     margin-right: .6rem; }
   .btn-product span {
-    color: #fff; }
+    color: var(--white-color); }
   .btn-product:before {
     display: inline-block;
     margin-top: -.1rem; }
   .btn-product:hover, .btn-product:focus {
     color: #fcb941;
-    background-color: #333;
-    border-color: #333; }
+    background-color: var(--black-color);
+    border-color: var(--black-color); }
     .btn-product:hover span, .btn-product:focus span {
       color: #fcb941;
       box-shadow: none; }
@@ -312,7 +312,7 @@
   padding-bottom: 1.8rem; }
 
 .product-cat {
-  color: #ccc;
+  color: var(--grey-color);
   text-transform: uppercase;
   margin-bottom: 1.2rem; }
 
@@ -350,13 +350,13 @@
       font-size: 1.6rem;
       margin-left: -.1rem; }
   .product-countdown .countdown-amount {
-    color: #fff;
+    color: var(--white-color);
     font-weight: 500;
     font-size: 1.6rem;
     letter-spacing: -.01em;
     margin-bottom: 0; }
   .product-countdown .countdown-period {
-    color: #fff;
+    color: var(--white-color);
     display: block;
     position: absolute;
     letter-spacing: 0;
@@ -389,7 +389,7 @@
       content: '•';
       margin-right: .8rem; }
   .cat-banner-list a {
-    color: #333; }
+    color: var(--black-color); }
     .cat-banner-list a:hover, .cat-banner-list a:focus {
       color: #fcb941; }
   .cat-banner-list .list-all-link a {
@@ -436,7 +436,7 @@
     letter-spacing: -.01em;
     margin-bottom: 2rem;
     padding-bottom: 1.4rem;
-    border-bottom: .1rem solid #ebebeb; }
+    border-bottom: .1rem solid var(--border-light-color); }
     .sidebar-home .widget-title span {
       display: inline-block;
       position: relative; }
@@ -463,7 +463,7 @@
   font-size: 1.4rem; }
 
 .widget-deals .product {
-  border-bottom: .1rem solid #ebebeb;
+  border-bottom: .1rem solid var(--border-light-color);
   padding-bottom: 7rem;
   margin-bottom: 2rem; }
   .widget-deals .product:hover .product-countdown {
@@ -482,7 +482,7 @@
 .widget-posts {
   overflow: hidden; }
   .widget-posts .entry {
-    color: #777;
+    color: var(--black-color);
     font-size: 1.4rem;
     line-height: 1.7;
     margin-bottom: 0; }
@@ -494,7 +494,7 @@
     padding-left: 2rem;
     padding-right: 2rem; }
   .widget-posts .entry-meta {
-    color: #ccc;
+    color: var(--grey-color);
     margin-bottom: .3rem; }
   .widget-posts .entry-title {
     font-weight: 600;
@@ -549,11 +549,11 @@
 .cta .btn {
   min-width: 170px;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white-color);
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: .3rem !important; }
   .cta .btn:hover, .cta .btn:focus {
-    color: #fff;
+    color: var(--white-color);
     border-color: #fcb941;
     background-color: #fcb941; }
 
@@ -564,7 +564,7 @@
 .footer .widget-newsletter form {
   padding-top: 2.3rem; }
   .footer .widget-newsletter form .form-control::placeholder {
-    color: #ccc; }
+    color: var(--grey-color); }
 
 .footer-bottom .container,
 .footer-bottom .container-fluid {

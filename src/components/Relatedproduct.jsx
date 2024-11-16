@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import Product_card_container from "../container/Product_card_container";
+import ProductCard from "../container/Product_card_container";
 import ProductSkeltonCard from "./Productskeltoncard";
 import Nouislider from "nouislider-react";
 import "nouislider/distribute/nouislider.css";
 
-const AllProduct = () => { 
+const AllProduct = () => {
 
     const [isloding, setIsloading] = useState(true);
     const [min, setMin] = useState(null)
@@ -39,9 +39,9 @@ const AllProduct = () => {
         setProduct([])
         setIsloading(true)
         const userToken = sessionStorage.getItem('user-info_token');
-        if(userToken){
+        if (userToken) {
             const user_id_product = await JSON.parse((localStorage.getItem('user-info')))
-            let data = { min: minValue, max: maxValue, categories: category_id,user_id:user_id_product }
+            let data = { min: minValue, max: maxValue, categories: category_id, user_id: user_id_product }
             var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/pricefilter`, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -56,11 +56,11 @@ const AllProduct = () => {
                 setTotalPages(Result?.total_pages)
             }
         }
-        else{
+        else {
             localStorage.removeItem('user-info')
             localStorage.removeItem('user')
             localStorage.removeItem('user-name')
-            let data = { min: minValue, max: maxValue, categories: category_id,user_id:null }
+            let data = { min: minValue, max: maxValue, categories: category_id, user_id: null }
             var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/pricefilter`, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -75,14 +75,14 @@ const AllProduct = () => {
                 setTotalPages(Result?.total_pages)
             }
         }
-       
+
         setIsloading(false)
     }
 
     //===============================================Get Pagination Api===========================================
 
     const GetPaginationData = async (currentPage) => {
- 
+
         setIsloading(true)
         let data = { min, max, categories: category_id }
         setProduct([])
@@ -131,39 +131,6 @@ const AllProduct = () => {
             <div className="page-content">
                 <div className="container">
                     <div className="row">
-                        {/* <div className="col-lg-3">
-                            <aside className=" order-lg-first">
-                                <div className="sidebar sidebar-shop">
-                                    <div className="widget widget-clean">
-                                        <label>Filter:</label>
-                                        <a style={{cursor:"pointer", color:"#fdcc04"}}  onClick={() => { ClearFilter() }} className="sidebar-filter-clear">Clean Filter</a>
-                                    </div>
-                                    <div className="widget widget-collapsible">
-                                        <h3 className="widget-title">
-                                            <a data-toggle="collapse" href="#widget-5" role="button" aria-expanded="true" aria-controls="widget-5">
-                                                Price
-                                            </a>
-                                        </h3>
-                                        <div className="collapse show" id="widget-5">
-                                            <div className="widget-body">
-                                                <div className="filter-price">
-                                                    <div className="filter-price-text d-flex justify-content-between">
-                                                        Price Range:
-                                                    </div>
-                                                    <Nouislider
-                                                        tooltips={true}
-                                                        onChange={getRangeSliderValue}
-                                                        range={{ min: 0, max: 1000 }}
-                                                        start={[20, 500]}
-                                                        connect
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div> */}
                         <div className="col-lg-12">
                             <div className="products mb-3">
                                 <div className="row justify-content-center">
@@ -181,10 +148,8 @@ const AllProduct = () => {
                                             Product && Product.length > 0 ? Product.map((product, index) => {
                                                 document.getElementById('cat_title').innerText = product.category_name;
                                                 document.getElementById('cat_bred_cumb').innerText = product.category_name;
-                                                return (<>
-
-                                                    <Product_card_container itemId={item_id} array={product} />
-                                                </>
+                                                return (
+                                                    <ProductCard key={index} itemId={item_id} array={product} />
                                                 );
                                             })
                                                 :

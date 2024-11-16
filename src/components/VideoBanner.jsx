@@ -22,7 +22,7 @@ const VideoBanner=()=>{
                 {/* <!-- End .container --> */}
             </div>
           {/* <!-- End .video-banner bg-image --> */}
-          <div className="pt-6 pb-6" style={{backgroundColor:" #fff"}}>
+          <div className="pt-6 pb-6" style={{backgroundColor:" var(--white-color)"}}>
                 <div className="container">
                     <div className="banner-set">
                         <div className="row">

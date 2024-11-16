@@ -7,8 +7,8 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements, } from '@stripe/react-stripe-js';
 
 
-const stripePromise = loadStripe('pk_test_51MRvgrI8Q2cWx8u9dN5751EZoLBySTxhWSBhPr7ZrhOevgMRvI8XIEpeNyX7U3hKws4sj5r4aiS9Zvj89LGyTza200sLDLJ37m');
 const Checkout = () => {
+    const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
@@ -18,7 +18,7 @@ const Checkout = () => {
             <Elements stripe={stripePromise} options={{
                 mode: "payment",
                 amount: 2000,
-                currency: 'usd',
+                currency: 'aed',
                 
             }}>
                 <HeaderContainer />

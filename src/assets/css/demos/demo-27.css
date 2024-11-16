@@ -56,7 +56,7 @@ figure {
 
 .banner-desc {
   font-size: 1.5em;
-  color: #666666;
+  color: var(--black-color);
   line-height: 2.6rem; }
 
 .women-section,
@@ -90,7 +90,7 @@ figure {
       font-family: 'Line Awesome',sans-serif;
       font-size: 2rem;
       color: #2a3342;
-      background-color: #fff;
+      background-color: var(--white-color);
       border-radius: 0;
       transition: color .35s, background-color .35s; }
       .women-section .owl-nav .owl-prev:not(.disabled):hover,
@@ -98,7 +98,7 @@ figure {
       .men-section .owl-nav .owl-prev:not(.disabled):hover,
       .men-section .owl-nav .owl-next:not(.disabled):hover {
         background: #f30095;
-        color: #fff; }
+        color: var(--white-color); }
     .women-section .owl-nav .owl-next,
     .men-section .owl-nav .owl-next {
       margin-left: .1rem; }
@@ -145,7 +145,7 @@ figure {
   text-align: center;
   border-radius: 50%;
   background-color: #222;
-  color: #fff;
+  color: var(--white-color);
   transition: color .35s, background-color .35s; }
   .hotspot.active {
     background: #f30095; }
@@ -153,7 +153,7 @@ figure {
 .hotspot-wrapper {
   position: absolute; }
   .hotspot-wrapper:hover .hotspot, .hotspot-wrapper:active .hotspot, .hotspot-wrapper:focus .hotspot {
-    color: #fff;
+    color: var(--white-color);
     background: #f30095; }
   .hotspot-wrapper:hover .tooltip, .hotspot-wrapper:active .tooltip, .hotspot-wrapper:focus .tooltip {
     opacity: 1;
@@ -169,7 +169,7 @@ figure {
     display: flex;
     width: 250px;
     padding: .2rem;
-    background-color: #fff; }
+    background-color: var(--white-color); }
     .tooltip .product-media img {
       width: 75px;
       height: 100px; }
@@ -193,7 +193,7 @@ figure {
     margin-bottom: 0;
     font-size: 1.4rem;
     font-weight: 700;
-    color: #333; }
+    color: var(--black-color); }
   .tooltip .btn-link {
     display: inline-block; }
   .tooltip::before {
@@ -206,14 +206,14 @@ figure {
     .tooltip.right-tooltip::before {
       left: -.9rem;
       border-top: 9px solid transparent;
-      border-right: 9px solid #fff;
+      border-right: 9px solid var(--white-color);
       border-bottom: 9px solid transparent; }
   .tooltip.left-tooltip {
     right: 4.7rem; }
     .tooltip.left-tooltip::before {
       right: -.9rem;
       border-top: 9px solid transparent;
-      border-left: 9px solid #fff;
+      border-left: 9px solid var(--white-color);
       border-bottom: 9px solid transparent; }
 
 .women-section .hotspot-1 {
@@ -243,7 +243,7 @@ figure {
   margin: 0 auto 5.2rem;
   font-size: 8em; }
 .video-banner .btn-video {
-  color: #fff;
+  color: var(--white-color);
   background: #f30095;
   box-shadow: 0 0 0 1.5rem rgba(204, 153, 102, 0.4); }
   .video-banner .btn-video:hover, .video-banner .btn-video:focus, .video-banner .btn-video:active {
@@ -278,12 +278,12 @@ figure {
     padding-bottom: 6.8rem; }
 
 .brands-border {
-  border-top: 1px solid #ebebeb;
-  border-bottom: 1px solid #ebebeb; }
+  border-top: 1px solid var(--border-light-color);
+  border-bottom: 1px solid var(--border-light-color); }
 
 .brand {
   height: 10rem;
-  border-left: 1px solid #ebebeb; }
+  border-left: 1px solid var(--border-light-color); }
 
 .heading {
   margin-bottom: 4.7rem;
@@ -297,7 +297,7 @@ figure {
   .heading h6 {
     font-size: 1.4rem;
     letter-spacing: .01em;
-    color: #999999; }
+    color: var(--grey-heading); }
 
 .product-label.label-sale {
   padding: .5rem .7rem;
@@ -306,23 +306,23 @@ figure {
 .product-action {
   top: -4rem;
   bottom: auto;
-  border-bottom: 1px solid #ebebeb; }
+  border-bottom: 1px solid var(--border-light-color); }
 
 .product-cat {
   margin-bottom: .5rem;
-  color: #ccc;
+  color: var(--grey-color);
   letter-spacing: .01em; }
   .product-cat:focus {
     outline: none; }
 
 .product-nav a {
   margin-right: .7rem;
-  border: 2px solid #fff;
+  border: 2px solid var(--white-color);
   border-radius: 3px; }
   .product-nav a.active {
-    box-shadow: 0 0 1px #999999; }
+    box-shadow: 0 0 1px var(--grey-heading); }
   .product-nav a:hover {
-    box-shadow: 0 0 1px #999999; }
+    box-shadow: 0 0 1px var(--grey-heading); }
 
 .product-27 .btn-product {
   padding: 1.1rem 0; }
@@ -330,12 +330,12 @@ figure {
     margin-right: .4rem; }
   .product-27 .btn-product span {
     letter-spacing: .1em;
-    color: #333333; }
+    color: var(--black-color); }
   .product-27 .btn-product:hover {
     background-color: #f30095;
-    color: #fff; }
+    color: var(--white-color); }
     .product-27 .btn-product:hover span {
-      color: #fff;
+      color: var(--white-color);
       box-shadow: none; }
 .product-27:hover {
   box-shadow: none; }
@@ -355,7 +355,7 @@ figure {
   .product-section .product-price {
     margin-bottom: 0;
     font-size: 1.4rem;
-    color: #333333;
+    color: var(--black-color);
     letter-spacing: -.015em; }
     .product-section .product-price .old-price {
       text-decoration: none; }
@@ -370,9 +370,9 @@ figure {
 
 .footer {
   background-color: #222;
-  color: #999999; }
+  color: var(--grey-heading); }
   .footer p {
-    color: #999999; }
+    color: var(--grey-heading); }
 
 .newsletter-heading {
   padding: .9rem 0 3.2rem; }
@@ -395,11 +395,11 @@ figure {
   height: 4.6rem;
   padding-left: 1.8rem;
   letter-spacing: .005em;
-  background-color: #fff;
+  background-color: var(--white-color);
   overflow: hidden;
   text-overflow: ellipsis;
   border: none;
-  color: #999999; }
+  color: var(--grey-heading); }
   .newsletter .form-control::placeholder {
     color: inherit; }
   .newsletter .form-control::-webkit-input-placeholder {
@@ -407,16 +407,16 @@ figure {
   .newsletter .form-control::-moz-placeholder {
     color: inherit; }
   .newsletter .form-control:focus {
-    border-color: #fff; }
+    border-color: var(--white-color); }
 .newsletter .btn-white {
   min-width: 11.7rem;
   border: none;
   color: #f30095; }
   .newsletter .btn-white:hover, .newsletter .btn-white:focus, .newsletter .btn-white:active {
-    color: #fff; }
+    color: var(--white-color); }
 
 .spacing {
-  color: #333333;
+  color: var(--black-color);
   opacity: .08; }
 
 .icon-box-side {
@@ -486,7 +486,7 @@ figure {
 .footer-menu {
   margin-left: .4rem; }
   .footer-menu li a {
-    border-bottom: 1px solid #999999;
+    border-bottom: 1px solid var(--grey-heading);
     box-shadow: none; }
   .footer-menu li + li {
     margin-left: 1.9rem; }
@@ -505,7 +505,7 @@ figure {
       display: inline-block;
       width: 8px;
       height: 8px;
-      border: 1px solid #ebebeb;
+      border: 1px solid var(--border-light-color);
       border-radius: 50%;
       transition: height .35s, background-color .35s, border-color .35s; }
       .section-scroll-nav li a span {

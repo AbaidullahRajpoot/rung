@@ -69,7 +69,6 @@ const Checkout_content = (props) => {
 	var total;
 	var currency;
 	var data = props.data.cardData
-	console.log(data)
 	if (props.data.discount) {
 		var discounted_price = props.data.discount[0].DiscountetdPrice
 	}
@@ -97,7 +96,6 @@ const Checkout_content = (props) => {
 				}
 			});
 			Result = await Result.json()
-			console.log(Result)
 			if (Result?.data) {
 				setshippingInfo(Result?.data[0])
 				SetValue(Result?.data[0])
@@ -119,12 +117,13 @@ const Checkout_content = (props) => {
 				}
 			}
 			else {
-				toast.error("You have not saved any shipping information.")
+				navigate('/dashboard')
+				toast.error("First save your shipping address.")
 				setShippingType("manual")
 			}
 		}
 		else {
-			toast.error("Please login first")
+			navigate('/login')
 			setShippingType("manual")
 		}
 
@@ -342,10 +341,11 @@ const Checkout_content = (props) => {
 				shipping_day: shippingData?.working_days,
 				shipping_name: shippingData?.name,
 				shipping_cost: shippingData?.cost,
-				discount_price: discountValueResult,
+				coupon_discount: discountValueResult,
+				payment_type:selectedOption,
 				grand_total: total
 			}
-
+			console.log(data)
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 			if (emailRegex.test(email)) {
@@ -360,6 +360,7 @@ const Checkout_content = (props) => {
 				});
 
 				Result = await Result.json();
+				
 				if (Result?.message === "Your order has been placed successfully") {
 
 					//=====================Call Paypal Function================
@@ -441,8 +442,8 @@ const Checkout_content = (props) => {
 
 	const PayWithPaypal = async (data, orderid) => {
 
-		const clientId = 'AZJb8CElfp8wxq1RN_UAkg8TVLUv_8KtFQlqM_oCzjJiV4xNdVCaO95iYoASF1NNRrvk3i-S8DEk1wY0';
-		const clientSecret = 'EKLNcEXyjcPVm5mypFyRxingdeB8nxu2jNH8cy-RbCuTJs8Iuc1HkjPdKwjfIjRyCB0bV2sQhrcBRnCP';
+		const clientId = process.env.REACT_APP_PAYPAL_CLIENT_ID;
+		const clientSecret = process.env.REACT_APP_PAYPAL_CLIENT_SECRET;
 
 		//====================================Get Auth Token===================================
 
@@ -489,10 +490,10 @@ const Checkout_content = (props) => {
 					},
 				],
 				application_context: {
-					// return_url: 'http://localhost:3000/success',
-					// cancel_url: 'http://localhost:3000/checkout',
-					return_url: 'https://myrung.ae/success',
-					cancel_url: 'https://myrung.ae/checkout',
+					return_url: process.env.REACT_APP_PAYPAL_Return_Url,
+					cancel_url: process.env.REACT_APP_PAYPAL_Cancel_Url,
+					// return_url: 'https://myrung.ae/success',
+					// cancel_url: 'https://myrung.ae/checkout',
 				},
 			}),
 		});
@@ -558,8 +559,8 @@ const Checkout_content = (props) => {
 				};
 				const OrderData = JSON.stringify(orderPaymentData);
 				localStorage.setItem('orderInfo', OrderData);
-				window.location.href = 'https://myrung.ae/success';
-				// window.location.href = 'http://localhost:3000/success';
+				// window.location.href = 'https://myrung.ae/success';
+				window.location.href = process.env.REACT_APP_STRIPE_URL;
 			}
 		}
 	};
@@ -567,16 +568,15 @@ const Checkout_content = (props) => {
 	//==============================================Get User Info==========================================
 
 	const getData = async () => {
-        const userToken = sessionStorage.getItem('user-info_token');
-		if(userToken){
+		const userToken = sessionStorage.getItem('user-info_token');
+		if (userToken) {
 			const data = await JSON.parse((localStorage.getItem('user-info')))
-			console.log(data)
 			setUser_id(data)
 		}
-		else{
+		else {
 			localStorage.removeItem('user-info')
-            localStorage.removeItem('user')
-            localStorage.removeItem('user-name')
+			localStorage.removeItem('user')
+			localStorage.removeItem('user-name')
 		}
 	}
 
@@ -590,7 +590,6 @@ const Checkout_content = (props) => {
 		else if (CouponResultValue?.discount_type === 'amount') {
 			discountValue = parseFloat(CouponResultValue?.discount);
 		}
-		console.log("discountValue", discountValue)
 		setDiscountValueResult(discountValue)
 	}
 
@@ -609,7 +608,6 @@ const Checkout_content = (props) => {
 			body: JSON.stringify(data),
 		});
 		Result = await Result.json();
-		console.log(Result)
 		setLoading(false)
 		if (Result.result === true) {
 			if (total >= parseInt(Result?.min_buy)) {
@@ -939,7 +937,7 @@ const Checkout_content = (props) => {
 												<tr className="summary-subtotal">
 													<td>Subtotal:</td>
 													<td></td>
-													<td>{currency} {total}</td>
+													<td>{currency} {total.toFixed(2)}</td>
 												</tr>
 												<tr className="summary-subtotal">
 													<td>Shipping Type:</td>
@@ -956,9 +954,9 @@ const Checkout_content = (props) => {
 													</td>
 												</tr>
 												{shippingOption?.map(shipping => (
-													<tr>
+													<tr key={shipping.id}>
 														<td className="w-33">
-															<div key={shipping.id} className="form-check shipping-radio">
+															<div className="form-check shipping-radio">
 																<input
 																	type="radio"
 																	id={`shipping-${shipping.id}`}

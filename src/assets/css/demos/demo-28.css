@@ -85,7 +85,7 @@
   .banner-link i:before {
     width: 15px;
     border-radius: 3rem;
-    color: #fff;
+    color: var(--white-color);
     background: #61ab00;
     margin-top: -3px;
     vertical-align: middle;
@@ -126,7 +126,7 @@
   padding-top: 1.4rem; }
 
 .cat-title {
-  color: #333;
+  color: var(--black-color);
   font-weight: 500;
   letter-spacing: -.01em;
   transition: color .3s, box-shadow .3s; }
@@ -137,7 +137,7 @@
   padding-bottom: 3.6rem;
   font-size: 1.4rem;
   line-height: .9em;
-  color: #ccc; }
+  color: var(--grey-color); }
 
 .flash-section {
   padding-top: 4.5rem; }
@@ -179,7 +179,7 @@
   bottom: 2rem; }
 .flash-content .ratings-container {
   max-width: 100%;
-  color: #ccc; }
+  color: var(--grey-color); }
 .flash-content .product-sold {
   bottom: 5.1rem;
   width: calc(100% - 4rem);
@@ -204,7 +204,7 @@
     overflow: hidden; }
 .product .btn-product:hover span,
 .product .btn-product:focus span {
-  color: #fff;
+  color: var(--white-color);
   box-shadow: none; }
 
 .btn-product-zoom {
@@ -254,7 +254,7 @@
       border-top: 0.8em solid; }
   .btn-product-zoom:hover {
     background-color: #61ab00;
-    color: #fff; }
+    color: var(--white-color); }
 
 .product:not(:hover) .btn-product-zoom {
   opacity: 0;
@@ -262,7 +262,7 @@
 
 .newsletter-section {
   min-height: 360px;
-  border: .1rem solid #ebebeb; }
+  border: .1rem solid var(--border-light-color); }
   .newsletter-section .banner-content {
     transform: none;
     left: 0; }
@@ -310,7 +310,7 @@
 
 .banner-group-2 .banner {
   min-height: 230px;
-  border: .1rem solid #ebebeb; }
+  border: .1rem solid var(--border-light-color); }
 .banner-group-2 .banner-content {
   padding-top: .2rem;
   left: 55%; }
@@ -330,13 +330,13 @@
 .recommend-section .owl-simple .owl-next {
   top: 46%;
   bottom: 0;
-  color: #333;
+  color: var(--black-color);
   font-size: 2.4rem;
   width: 6rem;
   height: 6rem;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 50%;
-  border: .1rem solid #ebebeb;
+  border: .1rem solid var(--border-light-color);
   transition: .3s;
   opacity: 1; }
 .flash-content .owl-simple .owl-prev,
@@ -355,21 +355,21 @@
 .flash-content .owl-stage-outer,
 .recommend-section .owl-stage-outer {
   margin: 0 2px 0 0;
-  border: 1px solid #ccc; }
+  border: 1px solid var(--grey-color); }
 .flash-content .product,
 .recommend-section .product {
   overflow: visible;
   padding: 3rem 2rem 6.8rem;
-  border-left: 1px solid #ebebeb;
+  border-left: 1px solid var(--border-light-color);
   transition: box-shadow .3s, border-color .3s; }
   .flash-content .product:hover,
   .recommend-section .product:hover {
-    border-color: #ccc;
+    border-color: var(--grey-color);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     z-index: 9; }
     .flash-content .product:hover .product-footer,
     .recommend-section .product:hover .product-footer {
-      border-color: #ccc;
+      border-color: var(--grey-color);
       transform: none;
       box-shadow: 0 -1rem 1rem 0 rgba(0, 0, 0, 0.07); }
 .flash-content .product-footer,
@@ -380,7 +380,7 @@
   bottom: -1px;
   transform: translateY(105%);
   padding: 1.3rem 2rem 1rem;
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--border-light-color);
   border-top: 0;
   transition: transform .35s, border-color .35s, box-shadow .35s;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.01);
@@ -394,7 +394,7 @@
   -webkit-box-orient: vertical; }
 .flash-content .product-cat,
 .recommend-section .product-cat {
-  color: #ccc;
+  color: var(--grey-color);
   font-size: 1.4rem;
   letter-spacing: .01em;
   -webkit-line-clamp: 1; }
@@ -448,7 +448,7 @@
   top: 40%; }
 .recommend-section .product {
   padding: 3rem 2rem 0;
-  border: 1px solid #ebebeb;
+  border: 1px solid var(--border-light-color);
   border-right: 0;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.01); }
 .recommend-section .product-footer {
@@ -481,7 +481,7 @@
 .entry-meta {
   font-size: 1.4rem;
   line-height: 1.5;
-  color: #ccc;
+  color: var(--grey-color);
   text-transform: none;
   margin: -5px 0 5px 0; }
 
@@ -518,7 +518,7 @@
   font-size: 1.4rem;
   line-height: 1.86;
   letter-spacing: 0;
-  color: #999999;
+  color: var(--grey-heading);
   text-transform: none;
   font-style: normal; }
 

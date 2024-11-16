@@ -31,7 +31,6 @@ import ResetPassword from './pages/ResetPassword';
 import Register from './pages/Registeration';
 import Verification from './pages/Verification.js';
 import Dashboard from './pages/Dashboard';
-import ShippingAddress from './pages/ShippingAddress.js';
 import ProductFullWidth from './pages/Singelproduct';
 import Cart from './pages/Cart';
 import Whishlist from './pages/Whishlist';
@@ -93,12 +92,6 @@ function App() {
             <Route exact path="/whishlist" element={
               <PrivateRoute>
                 <Whishlist />
-              </PrivateRoute>
-
-            } />
-            <Route exact path="/shipping-address" element={
-              <PrivateRoute>
-                <ShippingAddress />
               </PrivateRoute>
 
             } />

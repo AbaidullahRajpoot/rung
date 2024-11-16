@@ -25,8 +25,8 @@ const Returns_content =() =>{
             <div className="page-content">
             	<div className="categories-page">
 	                <div className="container">
-                    { ReturnData.map((data, i) => {
-                        return  <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                    { ReturnData.map((data, index) => {
+                        return  <div key={index} dangerouslySetInnerHTML={{ __html: data.content }} />
                    })}
 	                </div>
                 </div>

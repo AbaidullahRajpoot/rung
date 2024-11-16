@@ -3,6 +3,7 @@ import finel_logo from "../assets/images/runglogo.png";
 import payamentsimg from "../assets/images/payment-methods.png";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Footer = () => {
@@ -50,8 +51,6 @@ const Footer = () => {
 
     }
 
-
-
     return (
         <>
             <footer className="footer footer-2">
@@ -60,42 +59,35 @@ const Footer = () => {
                         <div className="row">
                             <div className="col-sm-12 col-lg-6">
                                 <div className="widget widget-about">
-                                    <img src={finel_logo} className="footer-logo" alt="Footer Logo"
-                                        width="105" height="25" />
+                                    {/* <img src={finel_logo} className="footer-logo" alt="Footer Logo"
+                                        width="105" height="25" /> */}
+                                    <LazyLoadImage
+                                        className='footer-logo'
+                                        alt={"Footer Logo"}
+                                        effect="blur"
+                                        width={105}
+                                        height={25}
+                                        src={finel_logo}
+                                    />
                                     <p>At Rung we believe that true luxury is defined not just by what you wear, but by how it makes you feel. Each piece we create is an embodiment of elegance, craftsmanship, and a commitment to the art of tailoring. From the finest fabrics to meticulous attention to detail, our collections are designed for those who understand that luxury is not just a choice—it's a way of life.
                                         Founded on the principles of timeless style and uncompromising quality, Rung merges classic sophistication with modern sensibilities. Whether for an unforgettable evening or everyday elegance, each garment is crafted to offer unparalleled comfort, exceptional fit, and enduring beauty.</p>
                                     <div className="widget-about-info">
                                         <div className="row">
                                             <div className="col-sm-6 col-md-8">
                                                 <figure className="footer-payments">
-                                                    <img src={payamentsimg} alt="Payment methods" width="272"
-                                                        height="20" />
+                                                    {/* <img src={payamentsimg} alt="Payment methods" width="272"
+                                                        height="20" /> */}
+                                                    <LazyLoadImage
+                                                        alt={"Payment Methods"}
+                                                        effect="blur"
+                                                        width={172}
+                                                        height={10}
+                                                        src={payamentsimg}
+                                                    />
                                                 </figure>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="col-sm-4 col-lg-2">
-                                <div className="widget">
-                                    <h4 className="widget-title">My Account</h4>
-                                    <ul className="widget-list">
-                                        {
-                                            sessionStorage.getItem('user-info_token') ?
-                                                <>
-                                                    <li><NavLink to="/dashboard">Dashboard</NavLink> </li>
-                                                    <li><a onClick={loginHandler} style={{ cursor: "pointer" }}>Logout</a> </li>
-                                                </>
-                                                :
-                                                <>
-                                                    <li><NavLink to="/login">Sign In</NavLink> </li>
-                                                    <li><NavLink to="/signup">Sign Up</NavLink> </li>
-                                                </>
-                                        }
-                                        <li><NavLink to="/cart">View Cart</NavLink> </li>
-                                        <li><a style={{ cursor: "pointer" }} onClick={WhishlistHandler} >My Wishlist</a></li>
-                                    </ul>
                                 </div>
                             </div>
                             <div className="col-sm-4 col-lg-2">
@@ -116,6 +108,25 @@ const Footer = () => {
                                     <ul className="widget-list">
                                         <li><NavLink to="/contact">Contact Us</NavLink></li>
                                         <li><NavLink to="/faq">FAQ</NavLink></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="col-sm-4 col-lg-2">
+                                <div className="widget">
+                                    <h4 className="widget-title">My Account</h4>
+                                    <ul className="widget-list">
+                                        {
+                                            sessionStorage.getItem('user-info_token') ?
+                                                <>
+                                                    <li><NavLink to="/dashboard">Dashboard</NavLink> </li>
+                                                </>
+                                                :
+                                                <>
+                                                    <li><NavLink to="/login">Sign In</NavLink> </li>
+                                                    <li><NavLink to="/signup">Sign Up</NavLink> </li>
+                                                </>
+                                        }
+                                        <li><NavLink to="/cart">View Cart</NavLink> </li>
                                     </ul>
                                 </div>
                             </div>

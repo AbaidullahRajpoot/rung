@@ -26,7 +26,7 @@ const CategoriesSection = () => {
 				<div className="container">
 					<div className="row">
 						{
-							<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+							<SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="var(--white-color)">
 								{isloading ?
 									<>
 										<SkeltonCard />
@@ -34,23 +34,21 @@ const CategoriesSection = () => {
 										<SkeltonCard />
 									</>
 									:
-									Catagaries.map((item, i) => {
+									Catagaries.map((item, index) => {
 										itemName = item.name.replace(' ', '');
 										return (
-											<>
-												<div className="col-md-4" key={item.id}>
-													<div className="banner banner-cat banner-badge">
-														<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`}  >
-															<img src={"https://beta.myrung.co.uk/b/public/" + item.banner} alt="Banner" />
-														</NavLink>
-														<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`} className="banner-link" >
-															<h3 className="banner-title" style={{color:"#777"}}>{item.name}</h3>
-															<h4 className="banner-subtitle" style={{color:"#000"}}>{item.product_cout} Products</h4>
-															<span className="banner-link-text">Shop Now</span>
-														</NavLink>
-													</div>
+											<div className="col-md-4" key={index}>
+												<div className="banner banner-cat banner-badge">
+													<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`}  >
+														<img src={"https://beta.myrung.co.uk/b/public/" + item.banner} alt="Banner" />
+													</NavLink>
+													<NavLink to={`/shop/product/catogeroy/${itemName}=${item.id}`} className="banner-link" >
+														<h3 className="banner-title" style={{ color: "var(--black-color)" }}>{item.name}</h3>
+														<h4 className="banner-subtitle" style={{ color: "#000" }}>{item.product_cout} Products</h4>
+														<span className="banner-link-text">Shop Now</span>
+													</NavLink>
 												</div>
-											</>
+											</div>
 										);
 									})
 								}

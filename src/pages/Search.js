@@ -1,39 +1,3 @@
-// import React, { useEffect } from "react";
-// import Sidebar from "../components/Shopsidbar";
-// import SearchContainer from "../container/SearchContainer";
-// import HeaderContainer from "../container/HeaderContainer";
-// import ProductPageTitle from "../components/ProductPageTitle";
-// import Footer2 from '../components/Footer2';
-
-// const Search = () => {
-//     useEffect(() => {
-//         window.scrollTo(0, 0)
-//     }, [])
-
-//     return (
-//         <>
-//             <HeaderContainer />
-//             <ProductPageTitle />
-//             <div className="page-content">
-//                 <div className="container">
-//                     <div className="row">
-//                         <div className="col-lg-3">
-//                             <Sidebar />
-//                         </div>
-//                         <div className="col-lg-9">
-//                             <SearchContainer />
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
-//             <Footer2 />
-//         </>
-//     );
-// }
-// export default Search;
-
-
-
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import Product_card_container from "../container/Product_card_container";
@@ -181,7 +145,7 @@ const Search = () => {
                                 <div className="sidebar sidebar-shop">
                                     <div className="widget widget-clean">
                                         <label>Filter:</label>
-                                        <a style={{cursor:"pointer", color:"#fdcc04"}} onClick={() => { ClearFilter() }} className="sidebar-filter-clear">Clean Filter</a>
+                                        <a style={{cursor:"pointer", color:"var(--primary-color)"}} onClick={() => { ClearFilter() }} className="sidebar-filter-clear">Clean Filter</a>
                                     </div>
                                     <div className="widget widget-collapsible">
                                         <h3 className="widget-title">

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
-import LoadingSpinner from './LoadingSpinner'
 import Skeleton from "react-loading-skeleton";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from 'react-redux';
@@ -13,8 +12,7 @@ const AdminWhishlistComponent = (props) => {
     const [loading, setLoading] = useState(true);
     const [Product, setProduct] = useState([]);
     const [user_id, setUser_id] = useState(null);
-
-    var Value = 1
+    const [Value, setValue] = useState(1);
 
     //=========================================Get Wishlist Data========================================
 
@@ -86,6 +84,7 @@ const AdminWhishlistComponent = (props) => {
     return (
         <>
             <div className="page-content">
+
                 <div className="">
                     <table className="table table-wishlist table-mobile">
                         <thead>
@@ -101,7 +100,18 @@ const AdminWhishlistComponent = (props) => {
                             {
                                 loading === true ?
                                     <>
-                                        <LoadingSpinner />
+                                        <>
+                                            <tr className="w-100 text-center">
+                                                <td colSpan={4}>
+                                                    <Skeleton height={120} width={"100%"} />
+                                                </td>
+                                            </tr>
+                                            <tr className="w-100 text-center">
+                                                <td colSpan={4}>
+                                                    <Skeleton height={120} width={"100%"} />
+                                                </td>
+                                            </tr>
+                                        </>
                                     </>
                                     :
                                     Product && Product?.length > 0 ? Product.map((item, index) => {
@@ -154,9 +164,11 @@ const AdminWhishlistComponent = (props) => {
                                         );
                                     })
                                         :
-                                        <div>
-                                            <h3 className="text-center mt-5">No Record Found.</h3>
-                                        </div>
+                                        <tr>
+                                            <td colSpan={5}>
+                                                <h3 className="text-center mt-5">No Record Found.</h3>
+                                            </td>
+                                        </tr>
                             }
 
                         </tbody>

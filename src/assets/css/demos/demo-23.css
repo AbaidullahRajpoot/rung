@@ -59,7 +59,7 @@
   .menu.sf-arrows .menu-col {
     padding: 15rem 0 3rem 4.5rem; }
   .menu.sf-arrows .menu-title {
-    color: #cc9966;
+    color: var(--secondary-color);
     font-size: 1.3rem;
     letter-spacing: .01em;
     text-transform: uppercase;
@@ -83,16 +83,16 @@
   padding-left: 0;
   justify-content: flex-start;
   min-width: unset;
-  color: #cc9966; }
+  color: var(--secondary-color); }
   .view-all-demos:hover, .view-all-demos:focus, .view-all-demos:active {
-    color: #fff; }
+    color: var(--white-color); }
 
 .menu.sf-arrows .sf-with-ul::after {
   content: '\f274';
   right: 6rem;
   visibility: hidden;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--black-color);
   top: 45%; }
 
 .menu.sf-arrows > li > .sf-with-ul {
@@ -147,7 +147,7 @@ ul.sub-menu {
 .footer-copyright {
   font-weight: 300;
   letter-spacing: 0;
-  color: #777; }
+  color: var(--black-color); }
 
 .header-left {
   margin-left: 0; }
@@ -179,7 +179,7 @@ ul.sub-menu {
   font-weight: 300;
   font-family: "AlbertSans";
   letter-spacing: .01em;
-  color: #777; }
+  color: var(--black-color); }
 
 .header-search-extended {
   margin: 0;
@@ -229,13 +229,13 @@ p {
   line-height: 1;
   margin-left: .2rem;
   margin-top: .1rem;
-  color: #fff;
-  background-color: #cc9966; }
+  color: var(--white-color);
+  background-color: var(--secondary-color); }
 
 .cart-dropdown, .wishlist {
   padding-left: 2rem; }
   .cart-dropdown .dropdown-toggle, .wishlist .dropdown-toggle {
-    color: #333; }
+    color: var(--black-color); }
 
 .user-dropdown {
   text-align: right; }
@@ -243,13 +243,13 @@ p {
     display: none; }
 
 .header-right a {
-  color: #333; }
+  color: var(--black-color); }
 .header-right .account {
   padding-left: 2rem; }
   .header-right .account a {
     font-size: 3rem; }
     .header-right .account a:hover, .header-right .account a:focus {
-      color: #cc9966; }
+      color: var(--secondary-color); }
 .header-right .wishlist a {
   font-size: 2.8rem;
   display: flex;
@@ -258,7 +258,7 @@ p {
 .header-right .cart-dropdown a.dropdown-toggle {
   font-size: 3.2rem; }
 .header-right p {
-  color: #333;
+  color: var(--black-color);
   margin-left: 1rem; }
 
 .cart-dropdown .cart-count,
@@ -352,24 +352,24 @@ p {
   font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: .1em;
-  color: #fff;
+  color: var(--white-color);
   text-transform: uppercase; }
 .intro .content h4 {
   font-size: 8rem;
   font-weight: 700;
   font-family: 'Playfair Display';
   letter-spacing: .01em;
-  color: #fff;
+  color: var(--white-color);
   text-transform: uppercase; }
 .intro .action a {
   font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: .1em;
-  color: #fff;
+  color: var(--white-color);
   text-transform: uppercase;
   transition: all .3s; }
   .intro .action a:hover, .intro .action a:focus {
-    color: #cc9966; }
+    color: var(--secondary-color); }
 
 .intro-slide {
   display: flex;
@@ -377,7 +377,7 @@ p {
   align-items: center; }
   .intro-slide .intro {
     padding: 4.5rem 3.5rem 3.5rem 3.5rem;
-    border: .1rem solid #fff; }
+    border: .1rem solid var(--white-color); }
   .intro-slide .title, .intro-slide .content {
     margin-bottom: 3rem; }
   .intro-slide .title, .intro-slide .content, .intro-slide .action {
@@ -410,7 +410,7 @@ p {
 .icon-box-content p {
   font-weight: 300;
   letter-spacing: 0;
-  color: #777; }
+  color: var(--black-color); }
 
 .banner {
   background-color: transparent; }
@@ -437,7 +437,7 @@ p {
     right: 1rem;
     height: .1rem;
     top: 0;
-    background-color: #ebebeb; }
+    background-color: var(--border-light-color); }
 
 .new-men .banner {
   padding-left: 5rem; }
@@ -452,7 +452,7 @@ p {
     left: 7.9rem;
     top: 2.5rem; }
     .banner-lg .intro .title h3 {
-      color: #777; }
+      color: var(--black-color); }
     .banner-lg .intro .content {
       margin-top: 3.6rem; }
       .banner-lg .intro .content h4 {
@@ -466,12 +466,12 @@ p {
         font-weight: 400;
         color: #222;
         padding: 1.3rem 2rem;
-        border: 0.1rem solid #cc9966; }
+        border: 0.1rem solid var(--secondary-color); }
         .banner-lg .intro .action a i {
           margin-left: 1.5rem; }
         .banner-lg .intro .action a:hover, .banner-lg .intro .action a:focus {
-          color: #fff;
-          background-color: #cc9966; }
+          color: var(--white-color);
+          background-color: var(--secondary-color); }
 
 .testimonials {
   display: flex;
@@ -503,7 +503,7 @@ p {
   .testimonials-content p.role {
     font-weight: 300;
     letter-spacing: 0;
-    color: #777;
+    color: var(--black-color);
     line-height: 1em; }
 
 .banner-section {
@@ -522,20 +522,20 @@ p {
       top: 22rem; }
     .banner-section .banner-lg .title h3 {
       font-weight: 400;
-      color: #fff; }
+      color: var(--white-color); }
     .banner-section .banner-lg .content {
       margin-top: 0; }
       .banner-section .banner-lg .content h4 {
         text-indent: 0;
-        color: #fff;
+        color: var(--white-color);
         line-height: 1.3em; }
     .banner-section .banner-lg .action {
       margin-top: 4rem; }
       .banner-section .banner-lg .action a {
-        color: #fff; }
+        color: var(--white-color); }
     .banner-section .banner-lg p {
       margin-top: 1.5rem;
-      color: #fff;
+      color: var(--white-color);
       letter-spacing: .1em;
       text-transform: uppercase; }
   .banner-section .banner-sm {
@@ -546,7 +546,7 @@ p {
       transform: translate(-50%, -50%); }
     .banner-section .banner-sm .title h3 {
       font-weight: 400;
-      color: #fff; }
+      color: var(--white-color); }
     .banner-section .banner-sm .content {
       margin-top: 1.8rem; }
       .banner-section .banner-sm .content h4 {
@@ -567,7 +567,7 @@ p {
   .heading p.heading-cat {
     font-weight: 300;
     letter-spacing: .1em;
-    color: #777;
+    color: var(--black-color);
     text-transform: uppercase;
     margin-bottom: 3rem; }
   .heading h3.heading-title {
@@ -587,9 +587,9 @@ p {
   right: 3rem; }
 .tranding .carousel-with-shadow.owl-simple .owl-nav [class*='owl-'] {
   margin-top: -87px;
-  background-color: #fff;
+  background-color: var(--white-color);
   font-size: 2.4rem;
-  color: #333;
+  color: var(--black-color);
   width: 6rem;
   height: 6rem; }
 .tranding .owl-simple .owl-dots {
@@ -627,7 +627,7 @@ p {
   padding-bottom: 2rem; }
 
 section.instagram {
-  border-top: .1rem solid #ebebeb;
+  border-top: .1rem solid var(--border-light-color);
   padding-top: 1rem; }
   section.instagram .heading {
     margin-top: 5rem;
@@ -647,7 +647,7 @@ section.instagram {
   margin-top: 0;
   margin-bottom: 2.2rem; }
 .subscribe .heading h3.heading-title {
-  color: #fff;
+  color: var(--white-color);
   margin-bottom: 0; }
 .subscribe .heading p.heading-cat {
   font-weight: 300;
@@ -662,7 +662,7 @@ section.instagram {
 .subscribe .input-group {
   flex-wrap: nowrap; }
 .subscribe input {
-  border: .1rem solid #fff;
+  border: .1rem solid var(--white-color);
   border-right-width: 0;
   padding: .95rem 0 .95rem 2.2rem;
   min-width: 0;
@@ -676,17 +676,17 @@ section.instagram {
     outline: none; }
 .subscribe .btn-subscribe {
   min-width: 130px;
-  color: #cc9966;
-  border: .1rem solid #fff;
+  color: var(--secondary-color);
+  border: .1rem solid var(--white-color);
   border-left-width: 0;
   transition: all .3s;
   text-transform: uppercase;
   font-size: 1.3rem;
   letter-spacing: .1em; }
   .subscribe .btn-subscribe:hover, .subscribe .btn-subscribe:focus {
-    color: #fff;
-    background-color: #cc9966;
-    border-color: #cc9966; }
+    color: var(--white-color);
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color); }
 
 .footer {
   background-color: #222;
@@ -695,15 +695,15 @@ section.instagram {
     text-transform: uppercase;
     font-size: 1.3rem;
     font-weight: 600;
-    color: #fff; }
+    color: var(--white-color); }
   .footer p {
-    color: #777; }
+    color: var(--black-color); }
 
 .widget-about p {
   max-width: 36rem; }
 
 .widget-about-title {
-  color: #fff; }
+  color: var(--white-color); }
 
 .footer-bottom {
   margin-top: 8rem;
@@ -725,7 +725,7 @@ section.instagram {
     left: -3rem;
     right: -3rem;
     height: .1rem;
-    background-color: #333; }
+    background-color: var(--black-color); }
 
 .mmenu-active .mobile-menu-container {
   visibility: visible;

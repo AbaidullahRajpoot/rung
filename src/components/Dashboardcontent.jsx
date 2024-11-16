@@ -367,7 +367,7 @@ const Dashboardcontent = () => {
                                     <div className="tab-pane fade" id="tab-address" role="tabpanel" aria-labelledby="tab-address-link">
                                         <p>The following addresses will be used on the checkout page by default.</p>
                                         <div className="row">
-                                            <div className="col-lg-12">
+                                            {/* <div className="col-lg-12">
                                                 <div className="card card-dashboard">
                                                     <div className="card-body">
                                                         <h3 className="card-title">Billing Address</h3>
@@ -375,7 +375,7 @@ const Dashboardcontent = () => {
                                                             <a href="#">Edit <i className="icon-edit"></i></a></p>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             {DataLoading === true ? (
                                                 <LoadingSpinner />
                                             ) : (
@@ -473,20 +473,20 @@ const Dashboardcontent = () => {
                         <div className="modal-body  pr-2">
                             <form onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Address:</label>
+                                    <label htmlFor="recipient-add-address" className="col-form-label">Address:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-add-address"
                                         value={shippingAddress}
                                         onChange={(e) => setShippingAddress(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Country:</label>
+                                    <label htmlFor="recipient-add-country" className="col-form-label">Country:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-add-country"
                                         onChange={handleShippingCountryChange}
                                         aria-label="Shipping country select"
                                     >
@@ -499,10 +499,10 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">State:</label>
+                                    <label htmlFor="recipient-add-state" className="col-form-label">State:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-add-state"
                                         onChange={handleShippingStateChange}
                                         aria-label="Shipping country select"
                                     >
@@ -515,10 +515,10 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">City:</label>
+                                    <label htmlFor="recipient-add-city" className="col-form-label">City:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-add-city"
                                         onChange={(e) => { setSelectedShippingCity(e.target.value) }}
                                         aria-label="Shipping country select"
                                     >
@@ -531,28 +531,31 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
+                                    <label htmlFor="recipient-add-postal-code" className="col-form-label">Postal Code:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-add-postal-code"
                                         value={shippingpostal}
                                         onChange={(e) => setShippingPostal(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
+                                    <label htmlFor="recipient-add-phone" className="col-form-label">Phone:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-add-phone"
                                         value={shippingPhone}
                                         onChange={(e) => setShippingPhone(e.target.value)}
                                     />
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" onClick={() => setIsOpenAdd(false)}>Close</button>
-                                    <button type="submit" className="btn btn-primary">Send message</button>
+                                    <button type="button" className="btn btn-danger" onClick={() => {
+                                        document.querySelector('body').classList.remove("modal-open")
+                                        setIsOpenAdd(false)
+                                    }}>Close</button>
+                                    <button type="submit" className="btn btn-primary">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -575,20 +578,20 @@ const Dashboardcontent = () => {
                         <div className="modal-body  pr-2">
                             <form onSubmit={handleEditSubmit}>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Address:</label>
+                                    <label htmlFor="recipient-edit-address" className="col-form-label">Address:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-edit-address"
                                         value={shippingAddress}
                                         onChange={(e) => setShippingAddress(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Country:</label>
+                                    <label htmlFor="recipient-edit-country" className="col-form-label">Country:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-edit-country"
                                         onChange={handleShippingCountryChange}
                                         aria-label="Shipping country select"
                                     >
@@ -601,10 +604,10 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">State:</label>
+                                    <label htmlFor="recipient-edit-state" className="col-form-label">State:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-edit-state"
                                         onChange={handleShippingStateChange}
                                         aria-label="Shipping country select"
                                     >
@@ -617,10 +620,10 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">City:</label>
+                                    <label htmlFor="recipient-edit-city" className="col-form-label">City:</label>
                                     <select
                                         className="form-control form-select"
-                                        id="shipping-country"
+                                        id="shipping-edit-city"
                                         onChange={(e) => { setSelectedShippingCity(e.target.value) }}
                                         aria-label="Shipping country select"
                                     >
@@ -633,27 +636,30 @@ const Dashboardcontent = () => {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Postal Code:</label>
+                                    <label htmlFor="recipient-edit-postal-code" className="col-form-label">Postal Code:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-edit-postal-code"
                                         value={shippingpostal}
                                         onChange={(e) => setShippingPostal(e.target.value)}
                                     />
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">Phone:</label>
+                                    <label htmlFor="recipient-edit-phone" className="col-form-label">Phone:</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        id="recipient-name"
+                                        id="recipient-edit-phone"
                                         value={shippingPhone}
                                         onChange={(e) => setShippingPhone(e.target.value)}
                                     />
                                 </div>
                                 <div className="modal-footer">
-                                    <button type="button" className="btn btn-danger" onClick={() => setIsOpenEdit(false)}>Close</button>
+                                    <button type="button" className="btn btn-danger" onClick={() => {
+                                        document.querySelector('body').classList.remove("modal-open")
+                                        setIsOpenEdit(false)
+                                    }}>Close</button>
                                     <button type="submit" className="btn btn-primary">Save</button>
                                 </div>
                             </form>

@@ -2,7 +2,7 @@
     background-color: rgba(0, 0, 0, 0.75);
   }
   .mainheading{
-    color: #fdcc04;
+    color: var(--primary-color);
 
   }
   .closeBtn{
@@ -41,7 +41,7 @@
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--grey-color);
     border-radius: 5px;
     outline: none;
   }
@@ -50,12 +50,12 @@
     background-color: white !important;
     padding: 1rem 1.5rem;
     max-width: 198px;
-    color: #fdcc04 !important;
-    border: 0.1rem solid #fdcc04 !important;
+    color: var(--primary-color) !important;
+    border: 0.1rem solid var(--primary-color) !important;
   }
   .submit-button:hover {
-    color: #fff !important;
-    border-color: #fdcc04 !important;
-    background-color: #fdcc04 !important;
+    color: var(--white-color) !important;
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
   }
   

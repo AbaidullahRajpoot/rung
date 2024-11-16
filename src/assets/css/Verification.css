@@ -1,5 +1,5 @@
 body {
-    background: #fff;
+    background: var(--white-color);
   }
   
   #card {
@@ -12,23 +12,23 @@ body {
   
   #upper-side {
     padding: 2em;
-    background-color: #fdcc04;
+    background-color: var(--primary-color);
     display: block;
-    color: #fff;
+    color: var(--white-color);
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
   }
   
   
   #status {
-    color: #fff;
+    color: var(--white-color);
     font-weight: 600;
     font-size: 1.6em;
   }
   
   #lower-side {
     padding: 2em 2em 5em 2em;
-    background: #fff;
+    background: var(--white-color);
     display: block;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -45,9 +45,9 @@ body {
     position: relative;
     top: 2em;
     text-decoration: none;
-    background: #fdcc04;
+    background: var(--primary-color);
     font-weight: 600;
-    color: #fff;
+    color: var(--white-color);
     margin: auto;
     padding: .8em 3em;
   }

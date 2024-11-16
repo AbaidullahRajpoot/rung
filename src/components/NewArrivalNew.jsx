@@ -153,7 +153,7 @@ const NewArrivel = (props) => {
                             <div className="row justify-content-center">
                                 {isMainloading ?
                                     <>
-                                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="var(--white-color)">
                                             <div className="col-6 col-md-4 col-lg-3">
                                                 <ProductSkeltonCard />
                                             </div>

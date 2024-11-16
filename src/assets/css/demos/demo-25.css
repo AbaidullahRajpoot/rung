@@ -67,21 +67,21 @@
   padding: 1.2rem 2.4rem;
   background-color: transparent;
   border: .2rem solid transparent;
-  border-bottom-color: #333;
-  color: #333;
+  border-bottom-color: var(--black-color);
+  color: var(--black-color);
   min-width: 130px; }
   .btn-dark:hover {
-    color: #fff;
-    background-color: #333;
-    border-color: #333;
+    color: var(--white-color);
+    background-color: var(--black-color);
+    border-color: var(--black-color);
     text-decoration: none !important; }
   .btn-dark.btn-primary {
-    color: #cc9966;
-    border-bottom-color: #cc9966; }
+    color: var(--secondary-color);
+    border-bottom-color: var(--secondary-color); }
     .btn-dark.btn-primary:hover {
-      color: #fff;
-      background-color: #cc9966;
-      border-color: #cc9966; }
+      color: var(--white-color);
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color); }
 
 .footer-newsletter .title {
   line-height: 1.5; }
@@ -109,15 +109,15 @@
   border: .1rem solid transparent; }
 .nav.nav-pills .nav-item.show .nav-link,
 .nav.nav-pills .nav-item .nav-link.active {
-  color: #333;
-  border-color: #333; }
+  color: var(--black-color);
+  border-color: var(--black-color); }
 
 .main .product {
   background-color: #f9f9f9;
   border: .1rem solid transparent;
   transition: border .35s; }
   .main .product:not(.product-sm):hover {
-    border-color: #ebebeb; }
+    border-color: var(--border-light-color); }
     .main .product:not(.product-sm):hover .product-footer {
       opacity: 1;
       visibility: visible; }
@@ -159,12 +159,12 @@
   padding: 1.6rem 1.6rem 4rem; }
 
 .btn-product-icon {
-  color: #333;
-  background-color: #fff;
-  border: .1rem solid #333; }
+  color: var(--black-color);
+  background-color: var(--white-color);
+  border: .1rem solid var(--black-color); }
   .btn-product-icon:hover {
-    color: #fff;
-    background-color: #333; }
+    color: var(--white-color);
+    background-color: var(--black-color); }
 
 .owl-theme.owl-nav-inside .owl-dots {
   bottom: 95px; }
@@ -192,9 +192,9 @@
 .cross-txt {
   padding: 0 7rem; }
   .cross-txt:before {
-    background: linear-gradient(270deg, #333, transparent); }
+    background: linear-gradient(270deg, var(--black-color), transparent); }
   .cross-txt:after {
-    background: linear-gradient(90deg, #333, transparent); }
+    background: linear-gradient(90deg, var(--black-color), transparent); }
 
 .product.product-sm .product-media {
   flex: 0 0 120px;
@@ -205,7 +205,7 @@
   padding-top: 2.5rem !important; }
 
 .icon-boxes {
-  border-top: .1rem solid #ebebeb; }
+  border-top: .1rem solid var(--border-light-color); }
 
 .icon-box {
   padding-bottom: 3.5rem; }
@@ -233,7 +233,7 @@
   display: block;
   width: .5rem;
   height: .5rem;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: 50%; }
 
 .heading.heading-center p {
@@ -242,7 +242,7 @@
 .instagram-container .btn {
   font-size: 1.2rem; }
   .instagram-container .btn:hover {
-    color: #cc9966; }
+    color: var(--secondary-color); }
 
 .footer a {
   font-size: 1.4rem;
@@ -254,9 +254,9 @@
 .footer .social-icon {
   border-color: transparent; }
   .footer .social-icon:hover {
-    color: #333;
-    background-color: #fff;
-    border-color: #fff; }
+    color: var(--black-color);
+    background-color: var(--white-color);
+    border-color: var(--white-color); }
 
 .footer-middle {
   border-top: none; }

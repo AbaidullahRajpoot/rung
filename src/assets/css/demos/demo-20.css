@@ -54,7 +54,7 @@
   letter-spacing: -.025em; }
 
 .title-link {
-  color: #777;
+  color: var(--black-color);
   font-weight: 400;
   text-transform: uppercase; }
   .title-link:hover, .title-link:focus {
@@ -120,8 +120,8 @@
   height: 100%;
   padding: 3rem 2rem 1rem;
   border-radius: .4rem;
-  background-color: #fff;
-  border: .1rem solid #ebebeb; }
+  background-color: var(--white-color);
+  border: .1rem solid var(--border-light-color); }
 
 .product-media {
   margin-left: 1rem;
@@ -150,8 +150,8 @@
   top: 100%;
   padding: 0 2rem 1rem;
   border-radius: .4rem;
-  background-color: #fff;
-  border: .1rem solid #ebebeb;
+  background-color: var(--white-color);
+  border: .1rem solid var(--border-light-color);
   border-top: none;
   box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.01); }
 
@@ -188,16 +188,16 @@
     margin-top: -.2rem;
     margin-right: .7rem; }
   .btn-product:hover, .btn-product:focus {
-    color: #fff;
+    color: var(--white-color);
     background-color: #1cc0a0; }
     .btn-product:hover span, .btn-product:focus span {
-      color: #fff;
+      color: var(--white-color);
       box-shadow: none; }
   .btn-product.btn-wishlist {
     border: none;
-    color: #777; }
+    color: var(--black-color); }
     .btn-product.btn-wishlist span {
-      color: #777; }
+      color: var(--black-color); }
     .btn-product.btn-wishlist:hover, .btn-product.btn-wishlist:focus {
       color: #666;
       background-color: transparent; }
@@ -219,7 +219,7 @@
   margin-right: .7rem; }
 
 .product-cat {
-  color: #ccc;
+  color: var(--grey-color);
   margin-bottom: .1rem; }
 
 .product-title {
@@ -250,7 +250,7 @@
   max-width: 452px;
   margin-left: auto;
   margin-right: auto;
-  color: #fff; }
+  color: var(--white-color); }
   .product-big > img {
     border-radius: .4rem; }
   .product-big .product-wrap {
@@ -272,7 +272,7 @@
   .product-big .product-cat,
   .product-big .product-title,
   .product-big .product-price {
-    color: #fff; }
+    color: var(--white-color); }
     .product-big .product-cat a:hover,
     .product-big .product-cat a:focus,
     .product-big .product-title a:hover,
@@ -298,19 +298,19 @@
   .product-big .product-action {
     align-items: flex-start; }
   .product-big .btn-product {
-    border-color: #fff;
+    border-color: var(--white-color);
     max-width: 140px; }
     .product-big .btn-product span {
-      color: #fff; }
+      color: var(--white-color); }
     .product-big .btn-product:before {
-      color: #fff; }
+      color: var(--white-color); }
     .product-big .btn-product:hover, .product-big .btn-product:focus {
-      color: #333;
-      background-color: #fff; }
+      color: var(--black-color);
+      background-color: var(--white-color); }
       .product-big .btn-product:hover:before,
       .product-big .btn-product:hover span, .product-big .btn-product:focus:before,
       .product-big .btn-product:focus span {
-        color: #333; }
+        color: var(--black-color); }
 
 .icon-boxes-container {
   padding-top: .5rem;
@@ -325,7 +325,7 @@
   text-align: left; }
 
 .icon-box-icon {
-  color: #ccc;
+  color: var(--grey-color);
   font-size: 3.4rem; }
 
 .banner-group .banner {
@@ -337,7 +337,7 @@
   margin-bottom: 2.5rem; }
 .blog-posts .entry {
   font-size: 1.4rem;
-  background-color: #fff;
+  background-color: var(--white-color);
   border-radius: .3rem;
   margin-bottom: 3rem;
   overflow: hidden;
@@ -366,7 +366,7 @@
   margin-left: auto;
   margin-right: auto; }
 .cta-newsletter .cta-icon {
-  color: #333;
+  color: var(--black-color);
   display: inline-block;
   font-size: 4.5rem;
   line-height: 1;
@@ -381,7 +381,7 @@
   padding-bottom: 1.15rem;
   border-top-left-radius: .3rem;
   border-bottom-left-radius: .3rem;
-  background-color: #fff; }
+  background-color: var(--white-color); }
 .cta-newsletter .btn {
   padding-top: 1.15rem;
   padding-bottom: 1.15rem;
@@ -402,7 +402,7 @@
       top: 0;
       left: 15px;
       right: 15px;
-      background-color: #ebebeb; }
+      background-color: var(--border-light-color); }
 
 .footer-2 .footer-middle {
   padding-top: 0; }

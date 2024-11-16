@@ -1,5 +1,5 @@
 .header-5 .sticky-header.fixed {
-    background-color: #fff;
+    background-color: var(--white-color);
 }
 
 .product-price {
@@ -12,7 +12,7 @@
 }
 
 .new-price {
-    color: #fdcc04 !important;
+    color: var(--primary-color) !important;
 }
 
 .header-5 .menu>li>a::before {
@@ -25,7 +25,7 @@
 
 .banner-badge .banner-link:hover .banner-link-text,
 .banner-badge .banner-link:focus .banner-link-text {
-    background-color: #fdcc04 !important;
+    background-color: var(--primary-color) !important;
 }
 
 .heading-center .title {
@@ -40,9 +40,9 @@
     height: 2px;
     /* border-radius: 25rem; */
     width: 100%;
-    background: #fdcc04 !important;
+    background: var(--primary-color) !important;
     /* background: linear-gradient(90deg, hsl(121, 99%, 30%) 0%, hsl(323, 100%, 48%) 33%, hsl(48, 98%, 50%) 66%, hsl(240, 97%, 51%) 100%); */
-    /* background: linear-gradient(90deg, #019803 25%, #fdcc04 25%, #fdcc04 60%, #0808fb 25%); */
+    /* background: linear-gradient(90deg, #019803 25%, var(--primary-color) 25%, var(--primary-color) 60%, #0808fb 25%); */
     top: 120%;
     left: 50%;
     transform: translateX(-50%);
@@ -65,7 +65,7 @@
 }
 
 .heading-center .title svg path {
-    stroke: #fdcc04 !important;
+    stroke: var(--primary-color) !important;
     stroke-width: 9;
     fill: none;
     stroke-dasharray: 1500;
@@ -74,11 +74,11 @@
 }
 
 .header-top {
-    color: #333;
+    color: var(--black-color);
 }
 
 .breadcrumb-item a {
-    color: #333;
+    color: var(--black-color);
 }
 
 .hidden {
@@ -168,7 +168,7 @@ input[type=number] {
 .dropdown-cart-products {
     max-height: 500px;
     overflow-y: scroll;
-    scrollbar-color: #fdcc04 transparent;
+    scrollbar-color: var(--primary-color) transparent;
     scrollbar-width: thin;
 }
 
@@ -178,7 +178,7 @@ input[type=number] {
 
 .dropdown-cart-products::-webkit-scrollbar-thumb {
     width: 5px;
-    background-color: #fdcc04;
+    background-color: var(--primary-color);
 }
 
 .btn-remove {
@@ -223,7 +223,7 @@ input[type=number] {
 }
 
 .filter-price-text a {
-    color: #fdcc04 !important;
+    color: var(--primary-color) !important;
     cursor: pointer;
 }
 
@@ -354,7 +354,7 @@ input[type=number] {
 }
 
 .carousel-indicators li.active {
-    border: 3px solid #fdcc04;
+    border: 3px solid var(--primary-color);
 }
 
 .carousel-indicators li img {
@@ -370,7 +370,7 @@ input[type=number] {
     top: 50%;
     bottom: unset;
     transform: translateY(-50%);
-    background: #fdcc04;
+    background: var(--primary-color);
     width: 35px;
     height: 35px;
 }
@@ -378,8 +378,8 @@ input[type=number] {
 .customer-radio {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-light-color);
 }
 
 #manualShipping {
@@ -389,8 +389,8 @@ input[type=number] {
 .use-location-radio {
     padding-top: 10px;
     padding-bottom: 10px;
-    background-color: #fff;
-    border: 1px solid #ebebeb;
+    background-color: var(--white-color);
+    border: 1px solid var(--border-light-color);
     margin-top: 10px;
 }
 
@@ -406,7 +406,7 @@ input[type=number] {
 .no-gutters {
     padding-bottom: 1.3rem;
     padding-top: 1.3rem;
-    border-bottom: .1rem solid #ebebeb;
+    border-bottom: .1rem solid var(--border-light-color);
 }
 
 .Shipping-type-heading {
@@ -423,7 +423,7 @@ input[type=number] {
 }
 
 .StripeElement {
-    border: 1px solid #ccc;
+    border: 1px solid var(--grey-color);
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
@@ -437,13 +437,13 @@ input[type=number] {
     top: 0px;
     right: 0px;
     z-index: 9999;
-    background-color: #fdcc04;
+    background-color: var(--primary-color);
     height: 25px;
     width: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: var(--white-color);
 }
 .close-btn-style{
     font-size: 15px !important;
@@ -451,14 +451,17 @@ input[type=number] {
     top: 10px !important;
     right: 10px !important;
     z-index: 9999 !important;
-    background-color: #fdcc04 !important;
+    background-color: var(--primary-color) !important;
     height: 30px !important;
     width: 30px !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    color: #fff !important;
+    color: var(--white-color) !important;
 }
 .quickViewBox{
     height: 200px;
+}
+.product-media a .lazy-load-image-background{
+    display: flex !important;
 }

@@ -453,7 +453,7 @@
 }
 
 .border-white {
-  border-color: #fff !important;
+  border-color: var(--white-color) !important;
 }
 
 .border-1 {
@@ -1274,7 +1274,7 @@
 }
 
 .text-white {
-  color: #fff !important;
+  color: var(--white-color) !important;
 }
 
 .text-body {
@@ -1330,11 +1330,11 @@
 }
 
 .bg-body {
-  background-color: #fff !important;
+  background-color: var(--white-color) !important;
 }
 
 .bg-white {
-  background-color: #fff !important;
+  background-color: var(--white-color) !important;
 }
 
 .bg-transparent {

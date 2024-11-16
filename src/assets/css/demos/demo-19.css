@@ -16,7 +16,7 @@ body {
 .wrap-container {
   width: 100%;
   max-width: 1290px;
-  background-color: #fff;
+  background-color: var(--white-color);
   margin-left: auto;
   margin-right: auto; }
 
@@ -24,7 +24,7 @@ body {
   background-color: transparent; }
   .header-3 .header-top,
   .header-3 .header-middle {
-    background-color: #333; }
+    background-color: var(--black-color); }
     .header-3 .header-top .header-right p,
     .header-3 .header-middle .header-right p {
       margin-top: .3rem; }
@@ -50,7 +50,7 @@ body {
       font-size: 1.4rem;
       font-weight: 600;
       letter-spacing: -.01em;
-      color: #333;
+      color: var(--black-color);
       text-transform: uppercase;
       margin-right: 1rem; }
   .header-3 .header-bottom.fixed {
@@ -60,7 +60,7 @@ body {
     padding-top: .75rem;
     padding-bottom: .75rem; }
   .header-3 .account a {
-    color: #fff; }
+    color: var(--white-color); }
     .header-3 .account a:hover, .header-3 .account a:focus {
       color: #fcb842; }
   .header-3 .menu .megamenu {
@@ -78,7 +78,7 @@ body {
     letter-spacing: 0; }
   .header-3 .header-search-extended .form-control {
     padding: .9rem 5rem .9rem 1rem;
-    background-color: #fff;
+    background-color: var(--white-color);
     letter-spacing: -.01em;
     height: 38px; }
     .header-3 .header-search-extended .form-control::placeholder {
@@ -97,11 +97,11 @@ body {
     .header-3 .header-search .search-wrapper-wide {
       width: 576px; } }
   .header-3 .wishlist-link {
-    color: #fff; }
+    color: var(--white-color); }
     .header-3 .wishlist-link:hover, .header-3 .wishlist-link:focus {
       color: #fcb842; }
   .header-3 .wishlist-count {
-    color: #333; }
+    color: var(--black-color); }
   .header-3 .header-dropdown-link {
     display: flex; }
   .header-3 .cart-dropdown,
@@ -132,7 +132,7 @@ body {
       color: #fcb842; }
 
 .header-text {
-  color: #666666;
+  color: var(--black-color);
   display: flex;
   align-items: center;
   font-weight: 300;
@@ -164,7 +164,7 @@ body {
 .menu-vertical {
   background-color: #f8f8f8; }
   .menu-vertical > li > a {
-    color: #333;
+    color: var(--black-color);
     font-weight: 400;
     border: none;
     padding-left: 3rem;
@@ -177,15 +177,15 @@ body {
   .menu-vertical > li:hover > a,
   .menu-vertical > li.show > a,
   .menu-vertical > li.active > a {
-    color: #333;
-    background-color: #fff; }
+    color: var(--black-color);
+    background-color: var(--white-color); }
 
 .title {
   font-weight: 600;
   letter-spacing: -.025em; }
 
 .title-link {
-  color: #777;
+  color: var(--black-color);
   font-weight: 400;
   letter-spacing: -.01em;
   text-transform: uppercase; }
@@ -206,7 +206,7 @@ body {
   text-align: left; }
 
 .icon-box-icon {
-  color: #333; }
+  color: var(--black-color); }
 
 .icon-box-side .icon-box-title {
   font-weight: 600; }
@@ -224,7 +224,7 @@ body {
     margin-left: 1.8rem; }
   .nav-pills.nav .nav-link {
     padding: .8rem .9rem;
-    color: #ccc;
+    color: var(--grey-color);
     font-weight: 600;
     font-size: 2rem;
     letter-spacing: -.025em;
@@ -233,11 +233,11 @@ body {
       color: #fcb842; }
   .nav-pills.nav .nav-item .nav-link.active,
   .nav-pills.nav .nav-item.show .nav-link {
-    color: #333;
-    border-bottom-color: #333; }
+    color: var(--black-color);
+    border-bottom-color: var(--black-color); }
 
 .nav.nav-border-anim .nav-link:before {
-  background-color: #333; }
+  background-color: var(--black-color); }
 
 .carousel-with-shadow .owl-stage-outer {
   padding-top: 1rem; }
@@ -253,7 +253,7 @@ body {
 /* Product */
 .product {
   padding: .9rem;
-  background-color: #fff; }
+  background-color: var(--white-color); }
   @media screen and (min-width: 992px) {
     .product {
       margin-bottom: 2.3rem; } }
@@ -267,11 +267,11 @@ body {
     content: '\f233'; }
 
 .btn-product-icon {
-  color: #333;
+  color: var(--black-color);
   background-color: #fcb842; }
   .btn-product-icon:hover, .btn-product-icon:focus {
     color: #fcb842;
-    background-color: #fff; }
+    background-color: var(--white-color); }
 
 .product-action-vertical {
   top: 1.1rem;
@@ -287,24 +287,24 @@ body {
 .btn-product {
   padding-top: 1.2rem;
   padding-bottom: 1.2rem;
-  color: #333;
+  color: var(--black-color);
   background-color: rgba(252, 184, 66, 0.95);
   text-transform: uppercase; }
   .btn-product span {
-    color: #333;
+    color: var(--black-color);
     font-size: 1.4rem; }
   .btn-product:before {
     display: inline-block;
     margin-top: -.2rem; }
   .btn-product:hover, .btn-product:focus {
     color: #fcb842;
-    background-color: #fff; }
+    background-color: var(--white-color); }
     .btn-product:hover span, .btn-product:focus span {
       color: #fcb842;
       box-shadow: none; }
 
 .product-cat {
-  color: #ccc;
+  color: var(--grey-color);
   margin-bottom: .1rem; }
 
 .product-title {
@@ -327,7 +327,7 @@ body {
   font-size: 3.6rem;
   font-weight: 600;
   letter-spacing: -.025em;
-  color: #fff;
+  color: var(--white-color);
   line-height: 1em;
   text-transform: uppercase;
   text-indent: -.2rem; }
@@ -337,7 +337,7 @@ body {
   font-weight: 400;
   letter-spacing: -.01em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--white-color);
   margin-bottom: 1.8rem; }
   .banner-price .price {
     color: #fcb842;
@@ -350,7 +350,7 @@ body {
     font-size: 2.8rem;
     font-weight: 300;
     letter-spacing: -.025em;
-    color: #333; }
+    color: var(--black-color); }
 
 .banner-txt {
   margin-top: .3rem;
@@ -362,7 +362,7 @@ body {
 a.banner-link {
   font-size: 1.4rem;
   letter-spacing: -.01em;
-  color: #333;
+  color: var(--black-color);
   background-color: #fcb842;
   text-transform: uppercase;
   padding: .2rem 2rem;
@@ -373,8 +373,8 @@ a.banner-link {
     margin-left: .5rem; }
   a.banner-link:hover, a.banner-link:focus {
     text-decoration: none;
-    color: #333;
-    background-color: #fff; }
+    color: var(--black-color);
+    background-color: var(--white-color); }
 
 .banner.banner-lg.align-center .banner-content,
 .banner.banner-sm.align-center .banner-content {
@@ -501,7 +501,7 @@ img.banner-title-img,
   .cta-horizontal-box .btn:not(.btn-block) {
     min-width: 140px; }
   .cta-horizontal-box .btn {
-    color: #333;
+    color: var(--black-color);
     text-transform: uppercase; }
     .cta-horizontal-box .btn i {
       margin-left: .3rem; }
@@ -525,7 +525,7 @@ img.banner-title-img,
   padding-bottom: .5rem; }
 .blog-posts .entry {
   font-size: 1.4rem;
-  background-color: #fff;
+  background-color: var(--white-color);
   margin-bottom: 2rem;
   overflow: hidden;
   transition: all .35s ease; }

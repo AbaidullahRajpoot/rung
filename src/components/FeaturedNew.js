@@ -157,7 +157,7 @@ const Featured = (props) => {
                 <OwlCarousel className=" owl-theme owl-carousel owl-simple carousel-equal-height carousel-with-shadow" dots={true}
                     nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
                     {
-                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="var(--white-color)">
                             {isloading === true ?
                                 <>
                                     <ProductSkeltonCard />

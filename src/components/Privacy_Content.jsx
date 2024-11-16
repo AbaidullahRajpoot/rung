@@ -25,8 +25,8 @@ const PrivacyContent =() =>{
             <div className="page-content">
             	<div className="categories-page">
 	                <div className="container">
-                    { PrivacyData.map((data, i) => {
-                       return  <div dangerouslySetInnerHTML={{ __html: data.content }} />
+                    { PrivacyData.map((data, index) => {
+                       return  <div key={index} dangerouslySetInnerHTML={{ __html: data.content }} />
                    })}
 	                </div>
                 </div>

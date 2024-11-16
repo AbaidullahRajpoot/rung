@@ -123,7 +123,6 @@ const QuickViewPopup = (props) => {
                                                 var image = item.thumbnail_image
                                                 var product_id = item.id
                                                 var product_price = item.main_price
-                                                console.log(item)
                                                 return (
                                                     <> 
                                                         <div className="col-md-6" key={index}>

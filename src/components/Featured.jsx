@@ -6,6 +6,7 @@ import ProductSkeltonCard from "./Productskeltoncard";
 import { SkeletonTheme } from "react-loading-skeleton";
 import LoadingSpinner from "./LoadingSpinner";
 import Quickviewcontainer from "../container/Quickviewcontainer";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import axios from "axios";
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -124,7 +125,7 @@ const Featured = (props) => {
                 <OwlCarousel className=" owl-theme owl-carousel owl-simple carousel-equal-height carousel-with-shadow" dots={true}
                     nav={false} margin={20} autoPlay={true} loop={false} {...options1} >
                     {
-                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                        <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="var(--white-color)">
                             {isLoading === true ?
                                 <>
                                     <ProductSkeltonCard />
@@ -138,7 +139,13 @@ const Featured = (props) => {
                                         <div className="product product-7" key={index}>
                                             <figure className="product-media">
                                                 <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
-                                                    <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product image" className="product-image" />
+                                                    {/* <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product image" className="product-image" /> */}
+                                                    <LazyLoadImage
+                                                        className="product-image"
+                                                        effect="blur"
+                                                        alt={"Product image"}
+                                                        src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`}
+                                                    />
                                                 </NavLink>
                                                 {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
                                                 <div className="product-action-vertical">

@@ -12,7 +12,7 @@ const WhishlistComponent = (props) => {
     const [loading, setLoading] = useState(false);
     const [Product, setProduct] = useState([]);
     const [user_id, setUser_id] = useState(null);
-    var Value = 1
+    const [Value, setValue] = useState(1);
 
     //==================================================Call Whenever Page Rendered================================
 
@@ -67,7 +67,7 @@ const WhishlistComponent = (props) => {
             }
         })
         Result = await Result.json()
-        if(Result.message==="Product is removed from wishlist"){
+        if (Result.message === "Product is removed from wishlist") {
             ShowWhishlist()
             var Data = Result.is_in_wishlist;
             setLoading(false)
@@ -75,7 +75,7 @@ const WhishlistComponent = (props) => {
                 notifyremove()
             }
         }
-       
+
     }
 
     return (
@@ -117,51 +117,52 @@ const WhishlistComponent = (props) => {
                                         var productStock = item.product.current_stock
                                         var product_id = item.product.id
                                         return (
-                                            <>
-                                                <tr key={index} id={"row" + product_id} >
-                                                    <td className="product-col">
-                                                        <div className="product">
-                                                            <figure className="product-media">
-                                                                <a href="#">
-                                                                    <img src={'https://beta.myrung.co.uk/b/public/' + item.product.thumbnail_image} alt="Product image" />
-                                                                </a>
-                                                            </figure>
+                                            <tr key={index} id={"row" + product_id} >
+                                                <td className="product-col">
+                                                    <div className="product">
+                                                        <figure className="product-media">
+                                                            <a href="#">
+                                                                <img src={'https://beta.myrung.co.uk/b/public/' + item.product.thumbnail_image} alt="Product image" />
+                                                            </a>
+                                                        </figure>
 
-                                                            <h3 className="product-title">
-                                                                <NavLink to={`/shop/product/catogeroy/fullwidth/${product_id}`} >{item.product.name}</NavLink>
-                                                            </h3>
-                                                        </div>
-                                                    </td>
-                                                    <td className="price-col">{item.product.base_price}</td>
-                                                    <td className="stock-col">{productStock <= 0 ? <span className="in-stock text-danger">Out of stock</span> : <span className="in-stock ">Instock</span>}</td>
-                                                    <td className="action-col">
-                                                        <a>
-                                                            <button onClick={() => {
-                                                                if (productStock <= 0) {
-                                                                    toast.error("Out of stock")
-                                                                }
-                                                                else if((productStock > 0)) {
-    
-                                                                    props.addToCartHandler({
-                                                                        cat_name: cat_name, name: name, quantity: Value,
-                                                                        Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
-                                                                        totalprice: (Value * calculable_price)
-                                                                    })
-                                                                    notify()
-                                                                }
-                                                            }}
-                                                                className="btn btn-block btn-outline-primary-2"><i className="icon-cart-plus"></i>Add to Cart</button>
-                                                        </a>
-                                                    </td>
-                                                    <td className="remove-col"><button onClick={RemoveWhislist} data-id={product_id} className="btn-remove"><i data-id={product_id} className="icon-close"></i></button></td>
-                                                </tr>
-                                            </>
+                                                        <h3 className="product-title">
+                                                            <NavLink to={`/shop/product/catogeroy/fullwidth/${product_id}`} >{item.product.name}</NavLink>
+                                                        </h3>
+                                                    </div>
+                                                </td>
+                                                <td className="price-col">{item.product.base_price}</td>
+                                                <td className="stock-col">{productStock <= 0 ? <span className="in-stock text-danger">Out of stock</span> : <span className="in-stock ">Instock</span>}</td>
+                                                <td className="action-col">
+                                                    <a>
+                                                        <button onClick={() => {
+                                                            if (productStock <= 0) {
+                                                                toast.error("Out of stock")
+                                                            }
+                                                            else if ((productStock > 0)) {
+
+                                                                props.addToCartHandler({
+                                                                    cat_name: cat_name, name: name, quantity: Value,
+                                                                    Price: calculable_price, symbol: currency_symbol, product_image: image, product_id: product_id,
+                                                                    totalprice: (Value * calculable_price)
+                                                                })
+                                                                notify()
+                                                            }
+                                                        }}
+                                                            className="btn btn-block btn-outline-primary-2"><i className="icon-cart-plus"></i>Add to Cart</button>
+                                                    </a>
+                                                </td>
+                                                <td className="remove-col"><button onClick={RemoveWhislist} data-id={product_id} className="btn-remove"><i data-id={product_id} className="icon-close"></i></button></td>
+                                            </tr>
+
                                         );
                                     })
                                         :
-                                        <div>
-                                            <h3 className="text-center mt-5">No Record Found.</h3>
-                                        </div>
+                                        <tr>
+                                            <td colSpan={5}>
+                                                <h3 className="text-center mt-5">No Record Found.</h3>
+                                            </td>
+                                        </tr>
                             }
 
                         </tbody>

@@ -6,6 +6,7 @@ import ProductSkeltonCard from "./Productskeltoncard";
 import LoadingSpinner from './LoadingSpinner';
 import { SkeletonTheme } from "react-loading-skeleton";
 import Quickviewcontainer from "../container/Quickviewcontainer";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import axios from "axios";
 
 const NewArrivals = (props) => {
@@ -117,7 +118,7 @@ const NewArrivals = (props) => {
                         <div className="products">
                             <div className="row justify-content-center">
                                 {isMainLoading ? (
-                                    <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="#fff">
+                                    <SkeletonTheme baseColor="rgb(244 244 244)" highlightColor="var(--white-color)">
                                         {[...Array(4)].map((_, index) => (
                                             <div className="col-6 col-md-4 col-lg-3" key={index}>
                                                 <ProductSkeltonCard />
@@ -141,7 +142,13 @@ const NewArrivals = (props) => {
                                                 <div className="product product-7">
                                                     <figure className="product-media">
                                                         <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
-                                                            <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product" className="product-image" />
+                                                            {/* <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product" className="product-image" /> */}
+                                                            <LazyLoadImage
+                                                                className="product-image"
+                                                                effect="blur"
+                                                                alt={"Product image"}
+                                                                src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`}
+                                                            />
                                                         </NavLink>
                                                         {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
                                                         <div className="product-action-vertical">
@@ -209,7 +216,13 @@ const NewArrivals = (props) => {
                                                         <div className="product product-7">
                                                             <figure className="product-media">
                                                                 <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
-                                                                    <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product" className="product-image" />
+                                                                    {/* <img src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`} alt="Product" className="product-image" /> */}
+                                                                    <LazyLoadImage
+                                                                        className="product-image"
+                                                                        effect="blur"
+                                                                        alt={"Product image"}
+                                                                        src={`https://beta.myrung.co.uk/b/public/${item.thumbnail_image}`}
+                                                                    />
                                                                 </NavLink>
                                                                 {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
                                                                 <div className="product-action-vertical">

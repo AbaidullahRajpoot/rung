@@ -22,9 +22,9 @@ const PageTitle = ({ name }) => {
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><NavLink to='/'>Home</NavLink></li>
                         {
-                            splitUrl.map((item, i) => {
+                            splitUrl.map((item, index) => {
                                 return (
-                                    item === '' ? null : <li className="breadcrumb-item" key={item.id}><a href="#">{item}</a></li>
+                                    item === '' ? null : <li className="breadcrumb-item" key={index}><a href="#">{item}</a></li>
                                 )
                             })
                         }

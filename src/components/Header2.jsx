@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import finel_logo from '../assets/images/runglogo.png';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import { toast } from 'react-toastify';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
@@ -135,14 +137,32 @@ const Header2 = (props) => {
                         </div>
                         <div className="header-left">
                             <NavLink to='/' className="logo">
-                                <img src={finel_logo} alt="Molla Logo" width="150" height="auto" />
+                                {/* <img src={finel_logo} alt="Rung Logo" width="150" height="auto" /> */}
+                                <LazyLoadImage
+                                    alt={"Rung Logo"}
+                                    effect="blur"
+                                    src={finel_logo}
+                                    height={"auto"}
+                                    width={150} />
                             </NavLink>
                             <nav className="main-nav">
                                 <ul className="menu sf-arrows">
                                     <li className={splitLocation[1] === "" ? "active" : ""}>
                                         <NavLink to="/">Home</NavLink>
                                     </li>
-                                    <li >
+                                    <li>
+                                        <a className="sf-with-ul">Our Collection</a>
+                                        <ul>
+                                            <li><NavLink to={`/shop/categories`}>All</NavLink></li>
+                                            {Catagaries?.map((category, index) => (
+                                                <li key={index}> <NavLink to={`/shop/product/catogeroy/${category.name}=${category.id}`}>
+                                                    {category.name}
+                                                </NavLink>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </li>
+                                    {/* <li >
                                         <div className="menudropdown">
                                             <a className={splitLocation[1] === "shop" ? "primary" : ""}> Our Collection</a>
                                             <div className="menudropdown-menu">
@@ -156,7 +176,7 @@ const Header2 = (props) => {
                                                 ))}
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> */}
                                     <li className={splitLocation[1] === "about" ? "active" : ""}>
                                         <NavLink to="/about">About Us</NavLink>
                                     </li>
@@ -218,7 +238,11 @@ const Header2 = (props) => {
                                     </div>
                                     <div className="dropdown-cart-total">
                                         <span>Total</span>
-                                        <span className="cart-total-price">{data && data.length > 0 && data[0].symbol + " " + data.reduce((total, item) => total + (item.totalprice ? item.totalprice : item.Price), 0)}</span>
+                                        {/* <span className="cart-total-price">{data && data.length > 0 && data[0].symbol + " " + data.reduce((total, item) => (total + (item.totalprice ? item.totalprice : item.Price), 0)).toFixed(2)}</span> */}
+                                        <span className="cart-total-price">
+                                            {data && data.length > 0 && `${data[0].symbol} ${data.reduce((total, item) => total + (item.totalprice ? item.totalprice : item.Price), 0).toFixed(2)}`}
+                                        </span>
+
                                     </div>
                                     <div className="dropdown-cart-action">
                                         <NavLink to="/cart" className="btn btn-primary">View Cart</NavLink>
@@ -261,7 +285,13 @@ const Header2 = (props) => {
                 <div className=" mobile-menu-wrapper">
                     <span onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-close"> <i className="icon-close"></i></span>
                     <NavLink to='/' className="logo mt-0 ml-4 mb-2">
-                                <img src={finel_logo} alt="Rung Logo" width="100" height="auto" />
+                        {/* <img src={finel_logo} alt="Rung Logo" width="100" height="auto" /> */}
+                        <LazyLoadImage
+                            alt={"Rung Logo"}
+                            effect="blur"
+                            src={finel_logo}
+                            height={"auto"}
+                            width={100} />
                     </NavLink>
                     <nav className="mobile-nav">
                         <ul className="mobile-menu">
@@ -283,9 +313,8 @@ const Header2 = (props) => {
                             }
                             {isDropdownOpen && (
                                 Catagaries.map((category, index) => (
-                                    <li>
+                                    <li key={index}>
                                         <NavLink
-                                            key={index}
                                             to={`/shop/product/catogeroy/${category.name}=${category.id}`}
                                         >
                                             {category.name}

@@ -42,12 +42,12 @@
   margin-bottom: .5rem; }
 
 .intro-title {
-  color: #333;
+  color: var(--black-color);
   letter-spacing: -.025em;
   margin-bottom: .7rem; }
 
 .intro-price {
-  color: #333333;
+  color: var(--black-color);
   font-weight: 700;
   font-size: 3rem;
   line-height: 1.2;
@@ -69,7 +69,7 @@
     position: absolute;
     top: 50%;
     left: 0;
-    background-color: #333333; }
+    background-color: var(--black-color); }
 
 .intro-banners .banner-subtitle {
   font-size: 1.4rem;
@@ -95,12 +95,12 @@
   .intro-banners .banner-link i {
     margin-left: .7rem; }
   .intro-banners .banner-link:hover, .intro-banners .banner-link:focus {
-    color: #fff;
+    color: var(--white-color);
     background-color: #fcb941;
     text-decoration: none; }
 
 .featured .nav.nav-border-anim .nav-link:before {
-  background-color: #333; }
+  background-color: var(--black-color); }
 
 .top .nav.nav-pills .nav-link,
 .trending .nav.nav-pills .nav-link {
@@ -139,7 +139,7 @@
 .nav-pills.nav-big .nav-link {
   padding-top: .8rem;
   padding-bottom: .8rem;
-  color: #ccc;
+  color: var(--grey-color);
   font-weight: 600;
   font-size: 4rem;
   text-transform: capitalize; }
@@ -147,17 +147,17 @@
     color: #fcb941; }
 .nav-pills.nav-big .nav-item.show .nav-link,
 .nav-pills.nav-big .nav-item .nav-link.active {
-  color: #333; }
+  color: var(--black-color); }
 
 .product.product-2 {
-  background-color: #fff;
-  border: .1rem solid #ebebeb;
+  background-color: var(--white-color);
+  border: .1rem solid var(--border-light-color);
   overflow: hidden; }
   .product.product-2 .product-nav-dots {
     margin-bottom: 1.5rem; }
 
 .product-cat {
-  color: #ccc; }
+  color: var(--grey-color); }
 
 .btn-product + .btn-product {
   border-left-style: solid; }
@@ -167,10 +167,10 @@
   .product-action:not(.product-action-dark) .btn-product + .btn-product {
     border-left-color: #d1d1d3; }
   .product-action:not(.product-action-dark) .btn-product:not(:hover):not(:focus) {
-    color: #333; }
+    color: var(--black-color); }
 
 .product-action-dark .btn-product:not(:hover):not(:focus) {
-  color: #fff; }
+  color: var(--white-color); }
 
 .product-price {
   margin-bottom: 1.2rem; }
@@ -182,13 +182,13 @@
   text-decoration: none; }
 
 .btn-product-icon {
-  color: #333;
+  color: var(--black-color);
   background-color: #fcb941; }
   .btn-product-icon span {
-    color: #333;
+    color: var(--black-color);
     background-color: #fcb941; }
   .btn-product-icon:hover, .btn-product-icon:focus {
-    color: #333;
+    color: var(--black-color);
     background-color: #fcb941; }
 
 .deal-container .heading {
@@ -210,7 +210,7 @@
   display: flex;
   flex-flow: row wrap;
   padding: 3.6rem 4rem 4.8rem;
-  background-color: #fff;
+  background-color: var(--white-color);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -221,7 +221,7 @@
   .deal .btn {
     padding: 0 0 .2rem; }
   .deal h4 {
-    color: #777;
+    color: var(--black-color);
     font-weight: 300;
     font-size: 1.4rem;
     line-height: 1.25;
@@ -229,7 +229,7 @@
     margin-bottom: .5rem;
     max-width: 240px; }
   .deal h2 {
-    color: #ef837b;
+    color: var(--secondary-danger);
     font-weight: 500;
     font-size: 2rem;
     line-height: 1.1;
@@ -253,7 +253,7 @@
 .btn.btn-outline-dark-2 {
   border-color: #d7d7d7; }
   .btn.btn-outline-dark-2:hover, .btn.btn-outline-dark-2:focus {
-    background-color: #fff; }
+    background-color: var(--white-color); }
 
 .deal-countdown {
   margin-bottom: 0;
@@ -274,7 +274,7 @@
     border: none;
     margin-bottom: 2rem; }
     .deal-countdown .countdown-section:not(:last-child):after {
-      color: #333333;
+      color: var(--black-color);
       content: ':';
       display: inline-block;
       font-weight: 400;
@@ -295,7 +295,7 @@
     bottom: -2rem;
     display: block;
     font-weight: 400;
-    color: #333333;
+    color: var(--black-color);
     text-transform: lowercase;
     width: 100%;
     padding-left: 0;
@@ -305,7 +305,7 @@
     text-overflow: ellipsis; }
   .deal-countdown .countdown-amount {
     display: inline-block;
-    color: #fff;
+    color: var(--white-color);
     font-weight: 500;
     font-size: 2.4rem;
     line-height: 1;
@@ -336,7 +336,7 @@
 .cta-half .cta-wrapper.cta-text .cta-desc {
   margin-bottom: 2rem; }
 .cta-half .cta-desc {
-  color: #999999;
+  color: var(--grey-heading);
   font-size: 1.6rem;
   line-height: 1.5; }
 .cta-half .cta-wrapper.cta-text {
@@ -408,7 +408,7 @@
   position: relative;
   font-size: 1.3rem;
   padding: 2.1rem 2rem 1.6rem 7rem;
-  border: .1rem solid #ebebeb;
+  border: .1rem solid var(--border-light-color);
   border-radius: .3rem;
   line-height: 1.25;
   max-width: 270px; }
@@ -426,7 +426,7 @@
     display: block;
     font-weight: 400;
     font-size: 2rem;
-    color: #333333; }
+    color: var(--black-color); }
     .widget-call a:hover, .widget-call a:focus {
       color: #fcb941;
       box-shadow: none; }

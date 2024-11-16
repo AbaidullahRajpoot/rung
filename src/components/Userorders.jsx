@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Rating from 'react-rating-stars-component';
 import LoadingSpinner from "./LoadingSpinner";
+import ReactPaginate from "react-paginate";
 import { toast } from 'react-toastify';
 
 const User_orders = () => {
@@ -16,7 +17,11 @@ const User_orders = () => {
     const [isOpenAReviewProduct, setIsOpenReviewProduct] = useState(false);
 
     const [rating, setRating] = useState(0);
-    const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('')
+
+    const [isloding, setIsloading] = useState(true);
+    const [totalpages, setTotalPages] = useState(10);
+    const [activePage, setActivePage] = useState(0)
 
     //===========================================Call Whenever Page Rendered========================
 
@@ -80,11 +85,46 @@ const User_orders = () => {
             }
         });
         const data = await Result.json();
+        console.log(data)
         if (data.data) {
             setOrders(data.data);
+            setTotalPages(data?.meta?.last_page)
+            setActivePage(data?.meta?.current_page)
         }
         setActionloading(false);
     };
+
+    //===============================================Get Product History=================================
+
+    const GetPaginationData = async (currentPage) => {
+        setActionloading(true)
+        var usertoken = JSON.parse(sessionStorage.getItem('user-info_token'));
+        var response = await fetch(`${process.env.REACT_APP_BASE_URL}/purchase-history?page=${currentPage}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                "Authorization": "Bearer " + usertoken
+            }
+        });
+        const data = await response.json();
+        setOrders([])
+        if (data.data) {
+            setOrders(data.data);
+            setTotalPages(data?.meta?.last_page)
+            setActivePage(data?.meta?.current_page)
+        }
+        setActionloading(false)
+
+    }
+    //===============================================Get Product History=================================
+
+    const handlePageClick = async (data) => {
+        let currentPage = data.selected + 1;
+        setActivePage(data.selected)
+        GetPaginationData(currentPage);
+
+    }
 
     //===================================Print Function Code========================================
 
@@ -110,30 +150,50 @@ const User_orders = () => {
                     <table class="table">
                         <tbody>
                             <tr>
+                                <td className="rotate">Order id</td>
+                                <td>${Singleorders?.id}</td>
+                            </tr>
+                            <tr>
                                 <td >Product Image</td>
                                 <td>
                                     <img src="https://beta.myrung.co.uk/b/public/${Singleorders.thumbnail_img}" alt="Product image" style="max-width: 20%;">
                                 </td>
                             </tr>
                             <tr>
-                                <td >Buy Date</td>
-                                <td>${Singleorders.date}</td>
-                            </tr>
-                            <tr>
                                 <td >Product Name</td>
                                 <td>${Singleorders.product_name}</td>
+                            </tr>
+                             <tr>
+                                <td >Buy Date</td>
+                                <td>${Singleorders.date}</td>
                             </tr>
                             <tr>
                                 <td >Payment Status</td>
                                 <td>${Singleorders.payment_status}</td>
                             </tr>
+                             <tr>
+                                <td className="rotate">Payment Type</td>
+                                <td>${Singleorders?.payment_type}</td>
+                                </tr>
                             <tr>
                                 <td >Delivery Status</td>
                                 <td>${Singleorders.delivery_status_string}</td>
                             </tr>
+                           <tr>
+                                <td className="rotate">Discount</td>
+                                <td>${Singleorders?.coupon_discount}</td>
+                            </tr>
                             <tr>
-                                <td >Total Price</td>
-                                <td>${Singleorders.grand_total}</td>
+                                <td className="rotate">Shipping Cost</td>
+                                <td>AED ${Singleorders?.shipping_cost}</td>
+                            </tr>
+                            <tr>
+                                <td className="rotate">Product Price</td>
+                                <td>${Singleorders?.grand_total}</td>
+                            </tr>
+                            <tr>
+                                <td className="rotate">Total Price</td>
+                                <td>AED ${parseFloat(Singleorders?.price)+parseFloat(Singleorders?.shipping_cost)+parseFloat(Singleorders?.discount)}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -161,17 +221,20 @@ const User_orders = () => {
                                 <th className="px-4" scope="col">Product Image</th>
                                 <th className="px-4" scope="col">Product Name</th>
                                 <th className="px-4" scope="col">Buy Date</th>
+                                <th className="px-4" scope="col">Payment Type</th>
                                 <th className="px-4" scope="col">Payment Status</th>
                                 <th className="px-4" scope="col">Delivery Status</th>
+                                <th className="px-4" scope="col">Discount</th>
                                 <th className="px-4" scope="col">Shipping Cost</th>
                                 <th className="px-4" scope="col">Shipping Days</th>
                                 <th className="px-4" scope="col">Product Price</th>
+                                <th className="px-4" scope="col">Total</th>
                                 <th className="px-4" scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {orders.map((item) => (
-                                <tr key={item.id}>
+                            {orders.map((item, index) => (
+                                <tr key={index}>
                                     <td className="text-center">{item.id}</td>
                                     <td className="text-center">
                                         <img
@@ -186,11 +249,14 @@ const User_orders = () => {
                                             : item.product_name}
                                     </td>
                                     <td className="text-center">{item.date}</td>
+                                    <td className="text-center">{item.payment_type}</td>
                                     <td className="text-center">{item.payment_status}</td>
                                     <td className="text-center">{item.delivery_status_string}</td>
+                                    <td className="text-center">{item.coupon_discount}</td>
                                     <td className="text-center">{item.shipping_cost}</td>
                                     <td className="text-center">{item?.shipping_day}</td>
                                     <td className="text-center">{item?.grand_total}</td>
+                                    <td className="text-center">AED     {parseFloat(item?.price)+parseFloat(item.shipping_cost)+parseFloat(item.discount)}</td>
                                     <td className="text-center">
                                         <div className="product-details-action pb-0">
                                             {
@@ -213,6 +279,30 @@ const User_orders = () => {
                             ))}
                         </tbody>
                     </table>
+                    {
+                        orders &&
+
+                        <ReactPaginate
+                            breakLabel={'...'}
+                            previousLabel="< Previous"
+                            nextLabel="Next >"
+                            pageCount={totalpages}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={2}
+                            onPageChange={handlePageClick}
+                            containerClassName={'pagination justify-content-center'}
+                            pageClassName={'page_item'}
+                            pageLinkClassName={'page-link'}
+                            previousClassName={'page-item'}
+                            previousLinkClassName={'page-link'}
+                            nextClassName={'page-item'}
+                            nextLinkClassName={'page-link'}
+                            breakClassName={'page-item'}
+                            breakLinkClassName={'page-link'}
+                            activeClassName={'active'}
+                            forcePage={activePage - 1}
+                        />
+                    }
                 </div>
             ) : (
                 <p>No order has been made yet.</p>
@@ -236,6 +326,10 @@ const User_orders = () => {
                             <table className="table">
                                 <tbody>
                                     <tr>
+                                        <td className="rotate">Order id</td>
+                                        <td>{Singleorders?.id}</td>
+                                    </tr>
+                                    <tr>
                                         <td className="rotate">Product Image</td>
                                         <td>
                                             <img
@@ -246,12 +340,16 @@ const User_orders = () => {
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td className="rotate">Product Name</td>
+                                        <td>{Singleorders?.product_name}</td>
+                                    </tr>
+                                    <tr>
                                         <td className="rotate">Buy Date</td>
                                         <td>{Singleorders?.date}</td>
                                     </tr>
                                     <tr>
-                                        <td className="rotate">Product Name</td>
-                                        <td>{Singleorders?.product_name}</td>
+                                        <td className="rotate">Payment Type</td>
+                                        <td>{Singleorders?.payment_type}</td>
                                     </tr>
                                     <tr>
                                         <td className="rotate">Payment Status</td>
@@ -262,8 +360,20 @@ const User_orders = () => {
                                         <td>{Singleorders?.delivery_status_string}</td>
                                     </tr>
                                     <tr>
-                                        <td className="rotate">Total Price</td>
+                                        <td className="rotate">Discount</td>
+                                        <td>{Singleorders?.coupon_discount}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Shipping Cost</td>
+                                        <td>AED {Singleorders?.shipping_cost}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Product Price</td>
                                         <td>{Singleorders?.grand_total}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="rotate">Total Price</td>
+                                        <td>AED {parseFloat(Singleorders?.price)+parseFloat(Singleorders?.shipping_cost)+parseFloat(Singleorders?.discount)}</td>
                                     </tr>
                                 </tbody>
                             </table>
