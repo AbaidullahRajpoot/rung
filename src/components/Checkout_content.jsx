@@ -195,7 +195,6 @@ const Checkout_content = (props) => {
 		if (ShippingResult?.data) {
 			setShippingOption(ShippingResult?.data)
 		}
-
 	};
 
 	//========================================Handle Shipping State==============================
@@ -356,7 +355,6 @@ const Checkout_content = (props) => {
 				});
 
 				Result = await Result.json();
-
 				if (Result?.message === "Your order has been placed successfully") {
 
 					//=====================Call Paypal Function================

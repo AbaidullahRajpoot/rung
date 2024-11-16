@@ -27,19 +27,6 @@ const Header2 = (props) => {
     var token;
     var data = props.data.cardData;
 
-    //=============================================Sticky Header Code=========================================
-
-    useEffect(() => {
-        document.addEventListener("scroll", () => {
-            if (window.scrollY > 300) {
-                setScroll("fixed")
-            }
-            else {
-                setScroll("")
-            }
-        })
-    }, [scroll])
-
     //==============================================Get All Categories============================================
 
     useEffect(() => {
@@ -124,7 +111,7 @@ const Header2 = (props) => {
     return (
         <>
             <header className="header">
-                <div className={"header-middle sticky-header " + scroll}>
+                <div className="header-middle sticky-header ">
                     <div className="container-fluid">
                         <div className="header-first-left">
                             <button onClick={() => setHiddenmenu(!hiddenmenu)} className="mobile-menu-toggler">

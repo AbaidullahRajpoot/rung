@@ -11,7 +11,7 @@
 }
 
 .title {
-  font-family: "Tempnou";
+  font-family: 'Grotesk-extra-bold';
   font-weight: 600;
   font-size: 3rem;
   letter-spacing: 1px
@@ -585,8 +585,8 @@
 }
 
 .product-price {
-  /* margin-top: 1rem; */
-  /* margin-bottom: .5rem; */
+  margin-top: 1rem;
+  margin-bottom: .5rem;
   font-size: 1.4rem;
   letter-spacing: 0;
   color: var(--black-color);

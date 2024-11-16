@@ -54,7 +54,6 @@ const Featured = (props) => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/products/featured`, {
                 user_id
             });
-            console.log(response)
             setProduct(response.data.data);
             setIsLoading(false);
         } catch (error) {
@@ -119,7 +118,7 @@ const Featured = (props) => {
     return (
         <>
             <div className="container">
-                <div className="heading heading-center mb-3 mt-4">
+                <div className="heading heading-center my-5">
                     <h2 className="title">Premium Headwear</h2>
                 </div>
                 {wishlistLoading === true && <LoadingSpinner />}

@@ -78,7 +78,6 @@ const Search = () => {
                 setProduct(Result?.data)
             }
         }
-
         setIsloading(false)
     }
 
