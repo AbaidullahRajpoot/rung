@@ -121,7 +121,6 @@ const Dashboardcontent = () => {
         else if (Result?.result === false) {
             toast.error(Result.message)
         }
-
         setIsOpenAdd(false);
         setLoading(false)
     };
@@ -383,7 +382,7 @@ const Dashboardcontent = () => {
                                                     <div className="col-lg-12">
                                                         <div className="card card-dashboard">
                                                             <div className="card-body">
-                                                                <h3 className="card-title">Billing Address</h3>
+                                                                <h3 className="card-title">Shipping Address</h3>
                                                                 <p>
                                                                     Name: {user.name}<br />
                                                                     Country: {shippingInfo[0].country_name}<br />

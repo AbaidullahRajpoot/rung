@@ -51,6 +51,7 @@ const AllProduct = () => {
                 }
             });
             Result = await Result.json()
+            console.log(Result)
             if (Result) {
                 setProduct(Result?.products?.data)
                 setTotalPages(Result?.total_pages)

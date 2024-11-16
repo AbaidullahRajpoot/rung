@@ -54,6 +54,7 @@ const Featured = (props) => {
             const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/products/featured`, {
                 user_id
             });
+            console.log(response)
             setProduct(response.data.data);
             setIsLoading(false);
         } catch (error) {
@@ -148,6 +149,7 @@ const Featured = (props) => {
                                                     />
                                                 </NavLink>
                                                 {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                                                {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
                                                 <div className="product-action-vertical">
                                                     <a onClick={item.wishlist_status === 1 ? notify.bind(null, "Already added to wishlist", 'error') : handleAddWishlist} data-id={item.id} className={`btn-product-icon ${item.wishlist_status === 1 ? 'btn-product-icon-active' : ''} btn-wishlist`} title="Add to wishlist">
                                                         <span>add to wishlist</span>
@@ -185,8 +187,11 @@ const Featured = (props) => {
                                                 <h3 className="product-title">
                                                     <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>{item.name}</NavLink>
                                                 </h3>
+                                                <div className="stock-price">
+                                                    {item.stroked_price}
+                                                </div>
                                                 <div className="product-price">
-                                                    {item.currency_symbol + " " + item.calculable_price}
+                                                    {item.main_price}
                                                 </div>
                                             </div>
                                         </div>)

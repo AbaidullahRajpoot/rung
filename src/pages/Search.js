@@ -45,9 +45,9 @@ const Search = () => {
         setProduct([])
         setIsloading(true)
         const userToken = sessionStorage.getItem('user-info_token');
-        if(userToken){
+        if (userToken) {
             const userID = await JSON.parse((localStorage.getItem('user-info')))
-            let data = { min: minValue, max: maxValue, name: searchName?.name,user_id:userID }
+            let data = { min: minValue, max: maxValue, name: searchName?.name, user_id: userID }
             var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/search`, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -60,11 +60,11 @@ const Search = () => {
             if (Result) {
                 setProduct(Result?.data)
             }
-        }else{
+        } else {
             localStorage.removeItem('user-info')
             localStorage.removeItem('user')
             localStorage.removeItem('user-name')
-            let data = { min: minValue, max: maxValue, name: searchName?.name,user_id:null }
+            let data = { min: minValue, max: maxValue, name: searchName?.name, user_id: null }
             var Result = await fetch(`${process.env.REACT_APP_BASE_URL}/products/search`, {
                 method: 'POST',
                 body: JSON.stringify(data),
@@ -78,7 +78,7 @@ const Search = () => {
                 setProduct(Result?.data)
             }
         }
-       
+
         setIsloading(false)
     }
 
@@ -145,7 +145,7 @@ const Search = () => {
                                 <div className="sidebar sidebar-shop">
                                     <div className="widget widget-clean">
                                         <label>Filter:</label>
-                                        <a style={{cursor:"pointer", color:"var(--primary-color)"}} onClick={() => { ClearFilter() }} className="sidebar-filter-clear">Clean Filter</a>
+                                        <a style={{ cursor: "pointer", color: "var(--primary-color)" }} onClick={() => { ClearFilter() }} className="sidebar-filter-clear">Clean Filter</a>
                                     </div>
                                     <div className="widget widget-collapsible">
                                         <h3 className="widget-title">
@@ -187,15 +187,15 @@ const Search = () => {
                                                 </div>
                                             </>
                                             :
-                                            Product && Product.length>0 ? Product.map((product, index) => {
+                                            Product && Product.length > 0 ? Product.map((product, index) => {
                                                 document.getElementById('cat_bred_cumb').innerText = product.category_name;
-                                                return  <Product_card_container itemId={item_id} array={product} />
-                                                
+                                                return <Product_card_container itemId={item_id} array={product} />
+
                                             })
-                                            :
-                                            <div>
-                                                <h3>No Record Found.</h3>
-                                            </div>
+                                                :
+                                                <div>
+                                                    <h3>No Record Found.</h3>
+                                                </div>
                                     }
                                 </div>
                                 {

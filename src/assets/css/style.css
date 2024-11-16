@@ -12140,10 +12140,10 @@ a:focus {
 .product-cat {
   color: var(--grey-color);
   font-weight: 300;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: 1.2;
   letter-spacing: -.01em;
-  margin-bottom: .3rem;
+  margin-bottom: .7rem;
 }
 
 .product-cat a {
@@ -12210,6 +12210,11 @@ a:focus {
 .product-label.label-sale {
   color: var(--white-color);
   background-color: var(--secondary-danger);
+}
+
+.product-label.label-discount {
+  color: var(--white-color);
+  background-color: var(--secondary-success); 
 }
 
 .product-label.label-new {

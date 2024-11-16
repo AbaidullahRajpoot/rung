@@ -40,6 +40,7 @@ const Testimonial = () => {
 
                 Result = await Result.json();
                 setBtnClick(false)
+                setEmail('')
                 if (Result?.message === "Your email has been submitted successfully") {
                     toast.success(Result?.message)
                 }
@@ -150,7 +151,7 @@ const Testimonial = () => {
                                         btnClick === true && <LoadingSpinner />
                                     }
                                     <div className="input-group">
-                                        <input type="text" name='email' maxLength={250} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter your Email Address"
+                                        <input type="text" name='email' value={email} maxLength={250} onChange={(e) => setEmail(e.target.value)} className="form-control" placeholder="Enter your Email Address"
                                             aria-label="Email Adress" />
                                         <div className="input-group-append">
                                             <button className="btn btn-primary btn-rounded" type="submit"><i

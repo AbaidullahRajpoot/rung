@@ -9,7 +9,8 @@
   /* --primary-color: #ec0d91; */
   /* --primary-color: #86646C; */
   --secondary-color: #cc9966;
-  --secondary-danger: #ef837b;
+  --secondary-danger: #dc3545;
+  --secondary-success: #19875A;
 
   /*=============================Border Color============================= */
 
@@ -23,7 +24,7 @@
   --grey-heading: #999999; */
   --black-color: #000;
   --white-color: #fff;
-  --grey-color: #ccc;
+  --grey-color: #000;
   --grey-heading: #000;
 
 }

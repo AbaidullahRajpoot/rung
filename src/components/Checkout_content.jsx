@@ -257,15 +257,12 @@ const Checkout_content = (props) => {
 	}
 
 	const SetValue = (value) => {
-
-		setName('')
 		setCountry(value?.country_name)
 		setCity(value?.city_name)
 		setStreet_address(value?.address)
 		setState(value?.state_name)
 		setZip(value?.postal_code)
 		setPhone(value?.phone)
-		setEmail('')
 		setNotes('')
 		setErrors({ name: '', country: '', city: '', street_address: '', state: '', zip: '', phone: '', shippingData: '', email: '', notes: '' });
 
@@ -342,7 +339,7 @@ const Checkout_content = (props) => {
 				shipping_name: shippingData?.name,
 				shipping_cost: shippingData?.cost,
 				coupon_discount: discountValueResult,
-				payment_type:selectedOption,
+				payment_type: selectedOption,
 				grand_total: total
 			}
 			console.log(data)
@@ -360,7 +357,7 @@ const Checkout_content = (props) => {
 				});
 
 				Result = await Result.json();
-				
+
 				if (Result?.message === "Your order has been placed successfully") {
 
 					//=====================Call Paypal Function================
@@ -565,13 +562,56 @@ const Checkout_content = (props) => {
 		}
 	};
 
+	//==============================================Get Shipping Info==========================================
+
+	const getShippingInfoUser = async (user) => {
+		let data = {
+			user_id: user,
+		}
+		let Result = await fetch(`${process.env.REACT_APP_BASE_URL}/user/shipping/address`, {
+			method: 'POST',
+			body: JSON.stringify(data),
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		});
+		Result = await Result.json()
+		console.log(Result)
+		if (Result?.data) {
+			setshippingInfo(Result?.data[0])
+			SetValue(Result?.data[0])
+			let data = {
+				country_id: Result?.data[0].country_id
+			}
+			let ShippingResult = await fetch(`${process.env.REACT_APP_BASE_URL}/shipping_cost`, {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json'
+				}
+			});
+			ShippingResult = await ShippingResult.json()
+			if (ShippingResult?.data) {
+				setShippingOption(ShippingResult?.data)
+				// setShippingType("saved")
+			}
+		}
+	}
 	//==============================================Get User Info==========================================
 
 	const getData = async () => {
 		const userToken = sessionStorage.getItem('user-info_token');
 		if (userToken) {
+			const userData = await JSON.parse((localStorage.getItem('user')))
 			const data = await JSON.parse((localStorage.getItem('user-info')))
-			setUser_id(data)
+			if (userData) {
+				setName(userData.name)
+				setEmail(userData.email)
+				setUser_id(data)
+				getShippingInfoUser(data)
+			}
 		}
 		else {
 			localStorage.removeItem('user-info')
@@ -648,50 +688,54 @@ const Checkout_content = (props) => {
 							<div className="row">
 								<div className="col-lg-7">
 									<h2 className="checkout-title">Checkout Billing Details</h2>
-									<div className="row">
-										<div className="col-sm-12">
-											<div className="mt-1">
-												<div className="form-check customer-radio">
-													<h6 className="m-0">Existing Customer?</h6>
-													<input
-														type="radio"
-														id="savedAddress"
-														name="shippingType"
-														value="saved"
-														checked={shippingType === 'saved'}
-														onChange={handleShippingTypeChange}
-														className="mr-2"
-													/>
-													{
-														user_id ?
-															<label htmlFor="savedAddress" className="form-check-label">
-																Use your save details
-															</label>
-															:
-															<label htmlFor="savedAddress" className="form-check-label">
-																Sign in to use your save details
-															</label>
-													}
+									{
+										user_id == null &&
+										<div className="row">
+											<div className="col-sm-12">
+												<div className="mt-1">
+													<div className="form-check customer-radio">
+														<h6 className="m-0">Existing Customer?</h6>
+														<input
+															type="radio"
+															id="savedAddress"
+															name="shippingType"
+															value="saved"
+															checked={shippingType === 'saved'}
+															onChange={handleShippingTypeChange}
+															className="mr-2"
+														/>
+														{
+															user_id ?
+																<label htmlFor="savedAddress" className="form-check-label">
+																	Use your save details
+																</label>
+																:
+																<label htmlFor="savedAddress" className="form-check-label">
+																	Sign in to use your save details
+																</label>
+														}
 
-												</div>
-												<div className="form-check use-location-radio">
-													<input
-														type="radio"
-														id="manualShipping"
-														name="shippingType"
-														value="manual"
-														checked={shippingType === 'manual'}
-														onChange={handleShippingTypeChange}
-														className="mr-2"
-													/>
-													<label htmlFor="manualShipping" className="form-check-label">
-														Checkout as guest
-													</label>
+													</div>
+													<div className="form-check use-location-radio">
+														<input
+															type="radio"
+															id="manualShipping"
+															name="shippingType"
+															value="manual"
+															checked={shippingType === 'manual'}
+															onChange={handleShippingTypeChange}
+															className="mr-2"
+														/>
+														<label htmlFor="manualShipping" className="form-check-label">
+															Checkout as guest
+														</label>
 
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									}
+
 									{
 										shippingType === "manual" ?
 											<>
@@ -702,6 +746,9 @@ const Checkout_content = (props) => {
 														{errors.name && <span className="text-danger">{errors.name}</span>}
 													</div>
 												</div>
+												<label>Email Address *</label>
+												<input type="text" disabled maxLength={250} onChange={(e) => setEmail(e.target.value)} value={email} name="email" className="form-control" />
+												{errors.email && <span className="text-danger">{errors.email}<br></br></span>}
 												<label>Street Address *</label>
 												<input type="text" maxLength={250} onChange={(e) => setStreet_address(e.target.value)} name="street_address" value={street_address} className="form-control" />
 												{errors.street_address && <span className="text-danger">{errors.street_address}</span>}
@@ -715,7 +762,11 @@ const Checkout_content = (props) => {
 													>
 														<option value="">Select a country</option>
 														{shippingCountry.map(country => (
-															<option key={country.id} value={country.id}>
+															<option
+																key={country.id}
+																value={country.id}
+																selected={shippingInfo?.country_id	 === country?.id}
+															>
 																{country.name}
 															</option>
 														))}
@@ -787,9 +838,6 @@ const Checkout_content = (props) => {
 													</select>
 													{errors.shippingData && <span className="text-danger">{errors.shippingData}<br></br></span>}
 												</div> */}
-												<label>Email Address *</label>
-												<input type="text" maxLength={250} onChange={(e) => setEmail(e.target.value)} value={email} name="email" className="form-control" />
-												{errors.email && <span className="text-danger">{errors.email}<br></br></span>}
 												<label>Order Notes (optional)</label>
 												<textarea className="form-control" onChange={(e) => setNotes(e.target.value)} name="textarea" cols="30" rows="4" maxLength="150" />
 											</>
@@ -891,7 +939,6 @@ const Checkout_content = (props) => {
 											<thead>
 												<tr>
 													<th>Product</th>
-													<th></th>
 													<th>Total</th>
 												</tr>
 											</thead>
@@ -921,7 +968,6 @@ const Checkout_content = (props) => {
 																	></i>
 																</a>
 															</td>
-															<td></td>
 															<td>
 																{item.symbol} {item.Price}
 															</td>
@@ -931,17 +977,14 @@ const Checkout_content = (props) => {
 												})}
 												<tr className="summary-subtotal">
 													<td>Discount:</td>
-													<td></td>
 													<td>{currency} {discountValueResult ? discountValueResult : 0}</td>
 												</tr>
 												<tr className="summary-subtotal">
 													<td>Subtotal:</td>
-													<td></td>
 													<td>{currency} {total.toFixed(2)}</td>
 												</tr>
 												<tr className="summary-subtotal">
 													<td>Shipping Type:</td>
-													<td></td>
 													<td className="py-4">
 														{
 															shippingOption ?
@@ -955,7 +998,7 @@ const Checkout_content = (props) => {
 												</tr>
 												{shippingOption?.map(shipping => (
 													<tr key={shipping.id}>
-														<td className="w-33">
+														<td className="">
 															<div className="form-check shipping-radio">
 																<input
 																	type="radio"
@@ -971,11 +1014,11 @@ const Checkout_content = (props) => {
 																	htmlFor={`shipping-${shipping.id}`}
 																>
 																	{shipping.name}
+																	<p className="text-right ">{shipping.working_days}</p>
 																</label>
 															</div>
 														</td>
-														<td className="text-right w-33">{shipping.working_days}</td>
-														<td className="text-end w-33">{shipping.base_cost}</td>
+														<td className="text-end ">{shipping.base_cost}</td>
 													</tr>)
 												)}
 
@@ -995,7 +1038,6 @@ const Checkout_content = (props) => {
 												} */}
 												<tr className="summary-total">
 													<td>Total:</td>
-													<td></td>
 													<td>
 														{currency + " "}
 														{shippingData?.cost

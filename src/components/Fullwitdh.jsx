@@ -50,6 +50,7 @@ const Fullwitdh = (props) => {
         axios.get(`${process.env.REACT_APP_BASE_URL}/products/` + Page_Title_id)
             .then(res => {
                 var insidData = res.data.data;
+                console.log(insidData)
                 SetProduct(insidData);
                 setproductloading(false)
             })
@@ -226,10 +227,8 @@ const Fullwitdh = (props) => {
                                                                         {galary.map((phots, index) => {
                                                                             return (
                                                                                 <div key={index} className={`carousel-item  ${index === 0 ? "active" : ""}`}>
-                                                                                    {
-                                                                                        productStock <= 0 && <span className="product-label label-sale">Out of stock</span>
-
-                                                                                    }
+                                                                                   {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                                                                                   {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
                                                                                     <img className="product-slider-img" src={"https://beta.myrung.co.uk/b/public/" + phots.path} alt="product side" />
                                                                                 </div>
                                                                             );

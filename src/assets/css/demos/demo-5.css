@@ -585,13 +585,24 @@
 }
 
 .product-price {
-  margin-top: 1rem;
-  margin-bottom: .5rem;
+  /* margin-top: 1rem; */
+  /* margin-bottom: .5rem; */
   font-size: 1.4rem;
   letter-spacing: 0;
   color: var(--black-color);
   flex-direction: column;
   align-items: flex-start;
+}
+.stock-price {
+  /* margin-top: 1rem; */
+  /* margin-bottom: .5rem; */
+  font-size: 1.2rem;
+  letter-spacing: 0;
+  color: var(--black-color);
+  text-decoration: line-through;
+  flex-direction: column;
+  align-items: flex-start;
+  opacity: 0.6;
 }
 
 .old-price {

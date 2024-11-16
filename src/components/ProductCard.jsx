@@ -91,10 +91,11 @@ const ProductCard = (props) => {
             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                 <div className="product product-7">
                     <figure className="product-media">
-                        {
-                            product.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>
 
-                        }
+                        {product?.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                        {product?.current_stock > 0 && product?.discount_in_percentage > 0 && <span className="product-label label-discount">{product?.discount_in_percentage}% OFF</span>}
+
+
                         <NavLink to={`/shop/product/catogeroy/fullwidth/${product.id}`}>
                             <img src={"https://beta.myrung.co.uk/b/public/" + product.thumbnail_image} alt="Product image" className="product-image" />
                         </NavLink>
@@ -109,22 +110,22 @@ const ProductCard = (props) => {
                             <div onClick={() => { quickView(product.id) }} className="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></div>
                         </div>
                         <div className="product-action">
-                        <div className="product-action product-action-transparent">
-                            <a onClick={() => {
-                                if (product.current_stock <= 0) {
-                                    toast.error("Out of stock")
-                                }
-                                else if (product.current_stock > 0) {
-                                    props.addToCartHandler({
-                                        cat_name: product.category_name, name: product.name, quantity: Value,
-                                        Price: product.calculable_price, symbol: product.currency_symbol,
-                                        product_image: product.thumbnail_image, product_id: product.id, totalprice: (Value * product.calculable_price)
-                                    })
-                                    notify()
-                                }
+                            <div className="product-action product-action-transparent">
+                                <a onClick={() => {
+                                    if (product.current_stock <= 0) {
+                                        toast.error("Out of stock")
+                                    }
+                                    else if (product.current_stock > 0) {
+                                        props.addToCartHandler({
+                                            cat_name: product.category_name, name: product.name, quantity: Value,
+                                            Price: product.calculable_price, symbol: product.currency_symbol,
+                                            product_image: product.thumbnail_image, product_id: product.id, totalprice: (Value * product.calculable_price)
+                                        })
+                                        notify()
+                                    }
 
-                            }}
-                                className="btn-product btn-cart"><span>add to cart</span></a>
+                                }}
+                                    className="btn-product btn-cart"><span>add to cart</span></a>
                             </div>
                         </div>
                     </figure>
@@ -133,8 +134,11 @@ const ProductCard = (props) => {
                             <NavLink to={`/shop/product/catogeroy/fullwidth/${product.id}`}>{product.category_name}</NavLink>
                         </div>
                         <h3 className="product-title"><NavLink to={`/shop/product/catogeroy/fullwidth/${product.id}`}>{product.name}</NavLink></h3>
+                        <div className="stock-price">
+                            {product.stroked_price}
+                        </div>
                         <div className="product-price">
-                            {product.currency_symbol} {product.calculable_price}
+                            {product.main_price}
                         </div>
                     </div>
                 </div>

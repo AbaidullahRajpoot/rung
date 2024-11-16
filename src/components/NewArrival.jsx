@@ -151,6 +151,7 @@ const NewArrivals = (props) => {
                                                             />
                                                         </NavLink>
                                                         {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                                                        {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
                                                         <div className="product-action-vertical">
                                                             {item.wishlist_status === 1 ? (
                                                                 <a onClick={() => toast.error("Already added to wishlist")} data-id={item.id} className="btn-product-icon btn-product-icon-active btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
@@ -180,8 +181,11 @@ const NewArrivals = (props) => {
                                                         <h3 className="product-title">
                                                             <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>{item.name}</NavLink>
                                                         </h3>
+                                                        <div className="stock-price">
+                                                            {item.stroked_price}
+                                                        </div>
                                                         <div className="product-price">
-                                                            {item.currency_symbol} {item.calculable_price}
+                                                            {item.main_price}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -225,6 +229,7 @@ const NewArrivals = (props) => {
                                                                     />
                                                                 </NavLink>
                                                                 {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                                                                {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
                                                                 <div className="product-action-vertical">
                                                                     {item.wishlist_status === 1 ? (
                                                                         <a onClick={() => toast.error("Already added to wishlist")} data-id={item.id} className="btn-product-icon btn-product-icon-active btn-wishlist" title="Add to wishlist"><span>add to wishlist</span></a>
@@ -255,8 +260,11 @@ const NewArrivals = (props) => {
                                                                 <h3 className="product-title">
                                                                     <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>{item.name}</NavLink>
                                                                 </h3>
+                                                                <div className="stock-price">
+                                                                    {item.stroked_price}
+                                                                </div>
                                                                 <div className="product-price">
-                                                                    {item.currency_symbol} {item.calculable_price}
+                                                                    {item.main_price}
                                                                 </div>
                                                             </div>
                                                         </div>
