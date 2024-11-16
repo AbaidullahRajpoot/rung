@@ -73,6 +73,10 @@
   font-family: 'Grotesk-bold';
   src: url('../fonts/Schibsted_Grotesk/SchibstedGrotesk-Bold.ttf');
 }
+@font-face {
+  font-family: 'Grotesk-medium';
+  src: url('../fonts/Schibsted_Grotesk/SchibstedGrotesk-Medium.ttf');
+}
 
 /*--------------------- 1.General Styles ---------- */
 html {

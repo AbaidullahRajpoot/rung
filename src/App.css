@@ -23,7 +23,7 @@
   --grey-heading: #999999; */
   --black-color: #000;
   --white-color: #fff;
-  --grey-color: #ccc;
+  --grey-color: #000;
   --grey-heading: #000;
 
 }
@@ -57,6 +57,7 @@ body {
   text-decoration: none;
   padding: 10px 15px;
   transition: background-color 0.3s;
+  font-family: 'Grotesk-medium';
 }
 
 /* Dropdown Styles */
