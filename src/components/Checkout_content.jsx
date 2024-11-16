@@ -50,7 +50,7 @@ const Checkout_content = (props) => {
 	const stripe = useStripe();
 	const elements = useElements();
 
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	const [errors, setErrors] = useState({
 		name: '',
@@ -154,7 +154,6 @@ const Checkout_content = (props) => {
 	//========================================Handle Shipping Country==============================
 
 	const handleShippingCountryChange = async (e) => {
-		setLoading(true)
 		const country_id = e.target.value;
 		const shippingId = parseInt(e.target.value, 10);
 		const ShippingCountry = shippingCountry.find(item => item.id === shippingId);
@@ -196,7 +195,7 @@ const Checkout_content = (props) => {
 		if (ShippingResult?.data) {
 			setShippingOption(ShippingResult?.data)
 		}
-		setLoading(false)
+
 	};
 
 	//========================================Handle Shipping State==============================
@@ -581,6 +580,46 @@ const Checkout_content = (props) => {
 		if (Result?.data) {
 			setshippingInfo(Result?.data[0])
 			SetValue(Result?.data[0])
+
+			//====================================Get State ID Base Data=====================
+
+			fetch(`${process.env.REACT_APP_BASE_URL}/states-by-country/${Result?.data[0].country_id}}`)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok ' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
+					const insidData = data?.data;
+					console.log(insidData)
+					if (insidData) {
+						setShippingState(insidData)
+					}
+				})
+				.catch(error => {
+					console.error('There was a problem with the fetch operation:', error);
+				});
+
+			//====================================Get CITY ID Bases Data===============================
+
+			fetch(`${process.env.REACT_APP_BASE_URL}/cities-by-state/${Result?.data[0].state_id}}`)
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok ' + response.statusText);
+					}
+					return response.json();
+				})
+				.then(data => {
+					const insidData = data?.data;
+					if (insidData) {
+						setShippingCity(insidData)
+					}
+				})
+				.catch(error => {
+					console.error('There was a problem with the fetch operation:', error);
+				});
+
 			let data = {
 				country_id: Result?.data[0].country_id
 			}
@@ -598,6 +637,7 @@ const Checkout_content = (props) => {
 				// setShippingType("saved")
 			}
 		}
+		setLoading(false)
 	}
 	//==============================================Get User Info==========================================
 
@@ -605,6 +645,7 @@ const Checkout_content = (props) => {
 		const userToken = sessionStorage.getItem('user-info_token');
 		if (userToken) {
 			const userData = await JSON.parse((localStorage.getItem('user')))
+			console.log(userData)
 			const data = await JSON.parse((localStorage.getItem('user-info')))
 			if (userData) {
 				setName(userData.name)
@@ -617,6 +658,7 @@ const Checkout_content = (props) => {
 			localStorage.removeItem('user-info')
 			localStorage.removeItem('user')
 			localStorage.removeItem('user-name')
+			setLoading(false)
 		}
 	}
 
@@ -667,6 +709,7 @@ const Checkout_content = (props) => {
 	//===========================================Call Whenever Page Rendered===================================
 
 	useEffect(() => {
+		setLoading(true)
 		getData()
 		getCountry()
 	}, [])
@@ -747,7 +790,7 @@ const Checkout_content = (props) => {
 													</div>
 												</div>
 												<label>Email Address *</label>
-												<input type="text" disabled maxLength={250} onChange={(e) => setEmail(e.target.value)} value={email} name="email" className="form-control" />
+												<input type="text" disabled={user_id ? true : false} maxLength={250} onChange={(e) => setEmail(e.target.value)} value={email} name="email" className="form-control" />
 												{errors.email && <span className="text-danger">{errors.email}<br></br></span>}
 												<label>Street Address *</label>
 												<input type="text" maxLength={250} onChange={(e) => setStreet_address(e.target.value)} name="street_address" value={street_address} className="form-control" />
@@ -765,7 +808,7 @@ const Checkout_content = (props) => {
 															<option
 																key={country.id}
 																value={country.id}
-																selected={shippingInfo?.country_id	 === country?.id}
+																selected={shippingInfo?.country_id === country?.id}
 															>
 																{country.name}
 															</option>
@@ -784,7 +827,11 @@ const Checkout_content = (props) => {
 														>
 															<option value="">Select a state</option>
 															{shippingState.map(State => (
-																<option key={State.id} value={State.id}>
+																<option
+																	key={State.id}
+																	value={State.id}
+																	selected={shippingInfo?.state_id === State?.id}
+																>
 																	{State.name}
 																</option>
 															))}
@@ -801,7 +848,11 @@ const Checkout_content = (props) => {
 														>
 															<option value="">Select a city</option>
 															{shippingCity.map(city => (
-																<option key={city.id} value={city.id}>
+																<option
+																	key={city.id}
+																	value={city.id}
+																	selected={shippingInfo?.city_id === city?.id}
+																>
 																	{city.name}
 																</option>
 															))}

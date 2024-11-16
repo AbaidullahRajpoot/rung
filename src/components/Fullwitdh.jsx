@@ -154,7 +154,7 @@ const Fullwitdh = (props) => {
                                     <SkeletonTheme>
                                         {productloading ?
                                             <>
-                                                <div  className="col-md-6">
+                                                <div className="col-md-6">
                                                     <div className="product-gallery">
                                                         <figure className="product-main-image">
                                                             <ProductSkeltonCard />
@@ -164,7 +164,7 @@ const Fullwitdh = (props) => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div  className="col-md-6">
+                                                <div className="col-md-6">
                                                     <div className="product-details">
                                                         <h1><Skeleton /></h1>
                                                         <div className="product-price">
@@ -227,8 +227,8 @@ const Fullwitdh = (props) => {
                                                                         {galary.map((phots, index) => {
                                                                             return (
                                                                                 <div key={index} className={`carousel-item  ${index === 0 ? "active" : ""}`}>
-                                                                                   {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
-                                                                                   {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
+                                                                                    {item.current_stock <= 0 && <span className="product-label label-sale">Out of stock</span>}
+                                                                                    {item.current_stock > 0 && item.discount_in_percentage > 0 && <span className="product-label label-discount">{item.discount_in_percentage}% OFF</span>}
                                                                                     <img className="product-slider-img" src={"https://beta.myrung.co.uk/b/public/" + phots.path} alt="product side" />
                                                                                 </div>
                                                                             );
@@ -260,7 +260,7 @@ const Fullwitdh = (props) => {
                                                                 <h1 className="product-title">{item.name}</h1>
                                                                 <div className="ratings-container">
                                                                     <div className="ratings">
-                                                                        <div className="ratings-val" style={{ width: item.rating }}></div>
+                                                                        <div className="ratings-val" style={{ width: parseInt(item.rating) * 20 + "%" }}></div>
                                                                     </div>
                                                                     <a className="ratings-text" href="#product-accordion" id="review-link">( {item.rating} Reviews )</a>
                                                                 </div>
@@ -372,7 +372,7 @@ const Fullwitdh = (props) => {
                                                                                                         <h4><a href="#">{item.user_name}</a></h4>
                                                                                                         <div className="ratings-container">
                                                                                                             <div className="ratings">
-                                                                                                                <div className="ratings-val" style={{ width: `${item.rating}%` }}></div>
+                                                                                                                <div className="ratings-val" style={{ width: parseInt(item.rating) * 20 + "%" }}></div>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <span className="review-date">{item.time}</span>
