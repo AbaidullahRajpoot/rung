@@ -119,7 +119,7 @@ const Featured = (props) => {
         <>
             <div className="container">
                 <div className="heading heading-center my-5">
-                    <h2 className="title">Premium Headwear</h2>
+                    <h2 className="title pt-3">Premium Headwear</h2>
                 </div>
                 {wishlistLoading === true && <LoadingSpinner />}
                 <OwlCarousel className=" owl-theme owl-carousel owl-simple carousel-equal-height carousel-with-shadow" dots={true}

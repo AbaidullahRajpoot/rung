@@ -60,7 +60,7 @@ const Testimonial = () => {
 
     return (
         <>
-            <div className="about-testimonials bg-light-2 pt-6 pb-6">
+            <div className="about-testimonials pt-6 pb-6">
                 <div className="container">
                     <h2 className="title text-center mb-3">What Customer Say About Us</h2>
                     <OwlCarousel className=" owl-carousel owl-theme owl-simple owl-testimonials-photo" dots={true} items={1} nav={false} loop={false} margin={20}>
@@ -72,7 +72,7 @@ const Testimonial = () => {
                             />
                             <p>I absolutely loved my headwear as soon as I opened it. The fabric, colours and style were exactly as described and shown in the pictures. It is also nice to be able to change style of the scarf to create new looks. I recommend Masumi to anyone who is looking for beautiful headwear!</p>
                             <cite>
-                                Karen Sweeting
+                                <span className='customer-name'>Karen Sweeting</span>
                                 <span>Customer</span>
                             </cite>
                         </blockquote>
@@ -85,7 +85,7 @@ const Testimonial = () => {
                             />
                             <p>Masumi Headwear has provided my mother with so much comfort and confidence at a really hard time in her life. I have purchased several items from this website. There are so many beautiful styles and patterns to choose from, suitable for any occasion and perfectly matches any outfit! The quality is fantastic. They’re extremely soft and durable. Can’t wait to see what new stock becomes available! HIGHLY recommend.</p>
                             <cite>
-                                Mariana Carvalho
+                                <span className='customer-name'>Mariana Carvalho</span>
                                 <span>Customer</span>
                             </cite>
                         </blockquote>
@@ -97,7 +97,7 @@ const Testimonial = () => {
                             />
                             <p>Very pleased with service even phoned to let me know an item was out of stock and offered replacement. Very prompt and good value.</p>
                             <cite>
-                                Adele
+                                <span className='customer-name'>Adele</span>
                                 <span>Customer</span>
                             </cite>
                         </blockquote>
@@ -109,7 +109,7 @@ const Testimonial = () => {
                             />
                             <p>Lovely fabric and stylish look. I’ve bought some cheaper ones and can definitely tell the difference in quality; it’s worth paying the extra for Masumi brand.</p>
                             <cite>
-                                Tracey Harper
+                                <span className='customer-name'>Tracey Harper</span>
                                 <span>Customer</span>
                             </cite>
                         </blockquote>

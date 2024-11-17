@@ -98,9 +98,9 @@ const NewArrivals = (props) => {
 
     return (
         <>
-            <div className="container pt-3 new-arrivals">
+            <div className="container py-5 new-arrivals">
                 {isLoading && <LoadingSpinner />}
-                <div className="heading heading-center mb-3">
+                <div className="heading heading-center mt-3 mb-3">
                     <h2 className="title">New Arrivals</h2>
                     <ul className="nav nav-pills justify-content-center" role="tablist">
                         <li className="nav-item">
@@ -138,7 +138,7 @@ const NewArrivals = (props) => {
                                             totalprice: (value * item.calculable_price)
                                         };
                                         return (
-                                            <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-4">
+                                            <div key={index} className="col-12 col-sm-6 col-md-3 col-lg-3">
                                                 <div className="product product-7">
                                                     <figure className="product-media">
                                                         <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>
@@ -216,7 +216,7 @@ const NewArrivals = (props) => {
                                                     totalprice: (value * item.calculable_price)
                                                 };
                                                 return (
-                                                    <div key={index} className="col-12 col-sm-6 col-md-4 col-lg-4">
+                                                    <div key={index} className="col-12 col-sm-6 col-md-3 col-lg-3">
                                                         <div className="product product-7">
                                                             <figure className="product-media">
                                                                 <NavLink to={`/shop/product/catogeroy/fullwidth/${item.id}`}>

@@ -516,7 +516,7 @@ blockquote.text-white cite span {
 
 .page-content {
   padding-bottom: 5rem;
-  /* padding-top: 5rem; */
+  padding-top: 5rem;
 }
 
 @media screen and (min-width: 992px) {
@@ -10036,11 +10036,11 @@ a:focus {
 
 .footer .widget-title {
   color: #000;
-  font-weight: 500;
   font-size: 1.8rem;
   letter-spacing: -.01em;
   margin-top: 0;
   margin-bottom: 1.9rem;
+  font-family: "Grotesk-medium";
 }
 
 .footer-middle {
@@ -10419,7 +10419,7 @@ a:focus {
 
 .page-header h1 {
   color: var(--black-color);
-  font-family: "Tempnou";
+  font-family: "Grotesk-extra-bold";
   letter-spacing: 1px;
   margin-bottom: 0;
 }
@@ -11952,7 +11952,7 @@ a:focus {
 /* Product */
 .product {
   position: relative;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   /* transition: box-shadow .35s ease; */
   background-color: var(--white-color);
   /* border: 1px solid var(--grey-color); */
@@ -14278,7 +14278,7 @@ a:focus {
   padding: 1.2rem 2rem;
   text-align: center;
   min-width: 250px;
-  border-radius: .2rem;
+  border-radius: 0rem;
   position: absolute;
   top: auto;
   bottom: 3.2rem;
@@ -15916,10 +15916,6 @@ button:focus {
   margin-right: auto;
 }
 
-.footer .widget-title {
-  font-weight: 600;
-}
-
 .widget-about p {
   max-width: 260px;
 }
@@ -16673,6 +16669,18 @@ button:focus {
 
 .products .product {
   width: 100%;
+  transition: all .3s;
+  /* box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25); */
+  /* border-radius: 10px; */
+}
+.owl-carousel .product{
+  transition: all .3s;
+}
+.products .product:hover{
+  box-shadow: 5px 5px 28px rgba(0, 0, 0, 0.25);
+}
+.owl-carousel .product:hover{
+  box-shadow: 5px 5px 18px rgba(0, 0, 0, 0.20);
 }
 
 .product {
@@ -17331,6 +17339,7 @@ button:focus {
   font-weight: 400;
   font-size: 1.4rem;
   margin-bottom: 0;
+  margin-top: 0;
 }
 
 .details-filter-row .product-nav {
@@ -17370,7 +17379,7 @@ button:focus {
 .product-details-action {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   flex-flow: row wrap;
   padding-bottom: 2rem;
 }
